@@ -16,7 +16,7 @@
 }
 
 .leaflet-container {
-  width: 40vw;
+  width: 50vw;
   height: 93vh;
 }
 
@@ -52,7 +52,7 @@
 
 #menu-div {
   background-color: #ebebeb;
-  width: 60%;
+  width: 50%;
   height: 93vh;
 }
 
