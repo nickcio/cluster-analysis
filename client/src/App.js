@@ -1,11 +1,14 @@
 import './App.css';
+import Map from './components/Map';
+import AppBanner from './components/AppBanner';
+import Menu from './components/Menu';
+import Body from './components/Body';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        HI 416
-      </header>
+      <AppBanner/>
+      <Body/>
     </div>
   );
 }
