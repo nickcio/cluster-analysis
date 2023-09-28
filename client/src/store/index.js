@@ -14,12 +14,13 @@ function GlobalStoreContextProvider(props) {
 
     const storeReducer = (action) => {
         const { type, payload } = action;
+        console.log(store, payload);
         switch (type) {
             // LIST UPDATE OF ITS NAME
             case GlobalStoreActionType.SET_STATE: {
                 return setStore({
                     ...store,
-                    currentState: payload.state,
+                    currentState: payload,
                 });
             }
             default:
@@ -28,9 +29,10 @@ function GlobalStoreContextProvider(props) {
     }
 
     store.setState = async function(state) {
+        
         storeReducer({
             type: GlobalStoreActionType.SET_STATE,
-            payload: { state: state }
+            payload: state
         });
 
     }

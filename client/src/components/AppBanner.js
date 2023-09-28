@@ -23,16 +23,15 @@ export default function AppBanner() {
                 <img src={eaglesLogo} height={60} width={60}/>
             </Box>
             <Typography variant="h4" fontWeight="bold">
-                Cluster ANALysis
+                Cluster AAAAAAA
             </Typography>
             <Box>
                 <IconButton 
                     size="medium" 
                     sx={{bgcolor: "#544c4c", color: "white"}} 
-                    style={{border: "2px solid white", borderRadius: "15px", fontWeight:"bold"}}
+                    style={{ borderRadius: "15px", fontWeight:"bold"}}
                     onClick={handleRefreshButton}>
                     <RefreshIcon sx={{color: "white", marginRight: "3px"}}></RefreshIcon>
-                    Reset
                 </IconButton>
             </Box>
         </Toolbar>

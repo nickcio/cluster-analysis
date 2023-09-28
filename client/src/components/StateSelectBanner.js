@@ -27,7 +27,7 @@ export default function StateSelectBanner() {
     return (
         <Grid container spacing={0} sx={{bgcolor: "white"}} style={{height: "8vh", display: "flex", alignItems: "center"}}>
             <Grid item xs={4}>
-                <FormControl style={{width: "17vw"}}>
+                <FormControl style={{width: "13vw"}}>
                     <InputLabel htmlFor="this_is_a_label" sx={{bgcolor: "white"}} style={{fontWeight: "bold"}}>{dropLabel}</InputLabel>
                     <Select labelId="this_is_a_label">
                         <MenuItem onClick={handleSelectAZ}>Arizona</MenuItem>
@@ -37,10 +37,10 @@ export default function StateSelectBanner() {
                 </FormControl>
             </Grid>
             <Grid item xs={4}>
-                <Button variant="contained" style={{height: "5.5vh", width: "17vw", fontWeight: "bold"}}>This Is A Button</Button>
+                <Button variant="contained" style={{height: "5.5vh", width: "13vw", fontWeight: "bold"}}>This Is A Button</Button>
             </Grid>
             <Grid item xs={4}>
-                <Button variant="contained" style={{height: "5.5vh", width: "17vw", fontWeight: "bold"}}>This Is A Button 2</Button>
+                <Button variant="contained" style={{height: "5.5vh", width: "13vw", fontWeight: "bold"}}>This Is A Button 2</Button>
             </Grid>
         </Grid>
     )
