@@ -1,17 +1,41 @@
-import logo from "./images/eagle.png";
+import AppBar from "@mui/material/AppBar";
+import Toolbar from "@mui/material/Toolbar";
+import Box from "@mui/material/Box";
+import Typography from "@mui/material/Typography"
+import IconButton from "@mui/material/IconButton"
+
+
+import RefreshIcon from '@mui/icons-material/Refresh';
+
+import eaglesLogo from "./images/eagle.png";
 
 export default function AppBanner() {
+
+    // Placeholder, for now it refreshes the page but it should probably be that only the gui components revert 
+    const handleRefreshButton = () => {
+        window.location.reload()
+    }
+
     return (
-        <div id="app_banner_container">
-            <div id="app_banner_logo">
-                <img src={logo} width="60" height="60"></img>
-            </div>
-            <div id="app_banner_title">
-                Incumbency Anaylsis
-            </div>
-            <div id="app_banner_reset_button">
-                <button id="reset_button">This Is The Reset Button</button>
-            </div>
-        </div>
+       <AppBar sx={{bgcolor: "#2f2f30"}} style={{height: "7vh"}} position="static">
+        <Toolbar sx={{display: "flex", justifyContent: "space-between"}}>
+            <Box>
+                <img src={eaglesLogo} height={60} width={60}/>
+            </Box>
+            <Typography variant="h4" fontWeight="bold">
+                Cluster ANALysis
+            </Typography>
+            <Box>
+                <IconButton 
+                    size="medium" 
+                    sx={{bgcolor: "#544c4c", color: "white"}} 
+                    style={{border: "2px solid white", borderRadius: "15px", fontWeight:"bold"}}
+                    onClick={handleRefreshButton}>
+                    <RefreshIcon sx={{color: "white", marginRight: "3px"}}></RefreshIcon>
+                    Reset
+                </IconButton>
+            </Box>
+        </Toolbar>
+       </AppBar>
     );
 }

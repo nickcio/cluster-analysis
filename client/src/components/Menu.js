@@ -1,9 +1,14 @@
 import { useContext } from 'react'
 
-export default function Menu(){
+import StateSelectBanner from "./StateSelectBanner"
+
+import Box from "@mui/material/Box";
+
+export default function Menu() {
     return(
-        <div id='menu-div'>
+        <Box sx={{bgcolor: "lightgrey"}} style={{width: "60%", height: "93vh"}}>
+            <StateSelectBanner/>
             Hello
-        </div>
+        </Box>
     )
 }
