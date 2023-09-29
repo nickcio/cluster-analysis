@@ -29,7 +29,8 @@ function GlobalStoreContextProvider(props) {
     }
 
     store.setState = async function(state) {
-        
+        console.log("STATE CHANGED TO: ")
+        console.log(state)
         storeReducer({
             type: GlobalStoreActionType.SET_STATE,
             payload: state

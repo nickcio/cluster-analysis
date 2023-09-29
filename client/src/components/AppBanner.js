@@ -23,7 +23,7 @@ export default function AppBanner() {
                 <img src={eaglesLogo} height={60} width={60}/>
             </Box>
             <Typography variant="h4" fontWeight="bold">
-                Cluster AAAAAAA
+                Cluster Analysis
             </Typography>
             <Box>
                 <IconButton 

@@ -1,6 +1,8 @@
 import { GlobalStoreContext } from '../store'
 import { useContext, useState } from 'react'
-
+import AZBorders from './geojson/AZBorders.json';
+import SCBorders from './geojson/SCBorders.json';
+import TXBorders from './geojson/TXBorders.json';
 import Box from "@mui/material/Box";
 import Grid from "@mui/material/Grid";
 import Select from "@mui/material/Select";
@@ -11,17 +13,21 @@ import Button from "@mui/material/Button";
 
 export default function StateSelectBanner() {
     const { store } = useContext(GlobalStoreContext);
-
-    let dropLabel = store.currentState != "" ? store.currentState : "Select State"
+    let curState = store.currentState !== "" ? store.currentState : ""
+    console.log("CUR STATE " + curState)
+    if (curState !== "") {
+        console.log(curState.features[0].properties.NAME)
+    }
+    let dropLabel = curState !== "" ? curState.features[0].properties.NAME : "Select State"
 
     const handleSelectAZ = () => {
-        store.setState("Arizona")
+        store.setState(AZBorders)
     }
     const handleSelectTX = () => {
-        store.setState("Texas")
+        store.setState(TXBorders)
     }
     const handleSelectSC = () => {
-        store.setState("South Carolina")
+        store.setState(SCBorders)
     }
 
     return (

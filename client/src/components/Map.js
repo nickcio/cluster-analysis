@@ -7,48 +7,84 @@ import "leaflet/dist/leaflet.css";
 import { useMap } from 'react-leaflet';
 import usStatesGeoJSON from './geojson/state-borders.json';
 import { point, polygon, multiPolygon, booleanPointInPolygon } from '@turf/turf';
-import ArizonaBorders from './geojson/ArizonaBorders.json';
+import AZBorders from './geojson/AZBorders.json';
 import SCBorders from './geojson/SCBorders.json';
-import TexasBorders from './geojson/TexasBorders.json';
+import TXBorders from './geojson/TXBorders.json';
+
+const highlightStyle = {
+    fillColor: 'blue',
+    color: 'blue',
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.3,
+};
+const mouseoverStyle = {
+    fillColor: 'darkblue',
+    color: 'blue',
+    weight: 1,
+    opacity: 1,
+    fillOpacity: 0.6,
+};
+let AZStyle = highlightStyle;
+let TXStyle = highlightStyle;
+let SCStyle = highlightStyle;
 
 
 export default function Map() {
     const { store } = useContext(GlobalStoreContext);
-    const highlightStyle = {
-        fillColor: 'purple',
-        color: 'blue',
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.3,
-    };
-
-    const AZClicked = () => {
-        store.setState("Arizona");
-    }
 
     const onClickAZ = (feature, layer) => {
-    layer.on({
-        click:AZClicked
-    });
+        const clicked = () => {
+            store.setState(AZBorders);
+        }
+        const mouseovered = () => {
+            AZStyle = mouseoverStyle;
+        }
+        const mouseoff = () => {
+            AZStyle = highlightStyle;
+        }
+        layer.on({
+            click:clicked,
+            mouseover:mouseovered,
+            mouseout:mouseoff
+        });
     }
 
-    const SCClicked = () => {
-        store.setState("South Carolina");
-    }
 
     const onClickSC = (feature, layer) => {
-    layer.on({
-        click:SCClicked
-    });
+        const clicked = () => {
+            store.setState(SCBorders);
+        }
+        const mouseovered = () => {
+            SCStyle = mouseoverStyle;
+        }
+        const mouseoff = () => {
+            SCStyle = highlightStyle;
+        }
+        layer.on({
+            click:clicked,
+            mouseover:mouseovered,
+            mouseout:mouseoff
+        });
     }
 
-    const TXClicked = () => {
-        store.setState("Texas");
-    }
+    
     
     const onClickTX = (feature, layer) => {
+        const clicked = () => {
+            store.setState(TXBorders);
+        }
+        const mouseovered = () => {
+            console.log("MOUSE ON TEXAS")
+            TXStyle = mouseoverStyle;
+        }
+        const mouseoff = () => {
+            TXStyle = highlightStyle;
+        }
         layer.on({
-        click:TXClicked
+            click:clicked,
+            mouseover:mouseovered,
+            mouseout:mouseoff
         });
     }
     
@@ -65,7 +101,7 @@ export default function Map() {
             color: '',
             weight: 2,
             opacity: 1,
-            fillOpacity: 0.0000005,
+            fillOpacity: 0.00005,
         };
     };
 
@@ -81,9 +117,9 @@ export default function Map() {
                 <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-                <GeoJSON data={ArizonaBorders} style={geoJsonStyle} onEachFeature={onClickAZ} />
-                <GeoJSON data={TexasBorders} style={geoJsonStyle} onEachFeature={onClickTX}/>
-                <GeoJSON data={SCBorders} style={geoJsonStyle} onEachFeature={onClickSC}/>
+                <GeoJSON data={AZBorders} style={AZStyle} onEachFeature={onClickAZ} />
+                <GeoJSON data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>
+                <GeoJSON data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>
             </MapContainer>
         </div>
     )
