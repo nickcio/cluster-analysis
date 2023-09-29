@@ -11,6 +11,7 @@ import AZBorders from './geojson/AZBorders.json';
 import SCBorders from './geojson/SCBorders.json';
 import TXBorders from './geojson/TXBorders.json';
 
+
 const highlightStyle = {
     fillColor: 'blue',
     color: 'blue',
@@ -29,12 +30,16 @@ let AZStyle = highlightStyle;
 let TXStyle = highlightStyle;
 let SCStyle = highlightStyle;
 
-
-export default function Map() {
+function MapComponent() {
     const { store } = useContext(GlobalStoreContext);
+    const map = useMap();
+    const arizonaPosition = [34.212,-111.929]
+    const texasPosition = [29.4590,-98.518]
+    const scPosition = [33.639,-80.948]
 
     const onClickAZ = (feature, layer) => {
         const clicked = () => {
+            map.setView(arizonaPosition, 6)
             store.setState(AZBorders);
         }
         const mouseovered = () => {
@@ -53,6 +58,7 @@ export default function Map() {
 
     const onClickSC = (feature, layer) => {
         const clicked = () => {
+            map.setView(scPosition, 7)
             store.setState(SCBorders);
         }
         const mouseovered = () => {
@@ -72,6 +78,7 @@ export default function Map() {
     
     const onClickTX = (feature, layer) => {
         const clicked = () => {
+            map.setView(texasPosition, 6)
             store.setState(TXBorders);
         }
         const mouseovered = () => {
@@ -87,9 +94,18 @@ export default function Map() {
             mouseout:mouseoff
         });
     }
+    return (
+        <div>
+            <GeoJSON data={AZBorders} style={AZStyle} onEachFeature={onClickAZ} />
+            <GeoJSON data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>
+            <GeoJSON data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>
+        </div>
+
+    );
+
+}
+export default function Map() {
     
-
-
     const geoJsonStyle = (feature) => {
         if (feature.properties.NAME === "Arizona" || feature.properties.NAME === "Texas" || feature.properties.NAME === "South Carolina") {
             
@@ -117,9 +133,7 @@ export default function Map() {
                 <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-                <GeoJSON data={AZBorders} style={AZStyle} onEachFeature={onClickAZ} />
-                <GeoJSON data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>
-                <GeoJSON data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>
+                <MapComponent></MapComponent>
             </MapContainer>
         </div>
     )
