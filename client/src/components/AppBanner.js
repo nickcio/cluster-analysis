@@ -22,15 +22,16 @@ export default function AppBanner() {
             <Box>
                 <img src={eaglesLogo} height={60} width={60}/>
             </Box>
-            <Typography variant="h4" fontWeight="bold">
+            <Typography variant="h4" fontWeight="bold" style={{top: "-1vh"}}>
                 Cluster Analysis
             </Typography>
             <Box>
                 <IconButton 
                     size="medium" 
                     sx={{bgcolor: "#544c4c", color: "white"}} 
-                    style={{ borderRadius: "15px", fontWeight:"bold"}}
+                    style={{ borderRadius: "0px", fontWeight:"bold", top: "-1vh"}}
                     onClick={handleRefreshButton}>
+                        Reset
                     <RefreshIcon sx={{color: "white", marginRight: "3px"}}></RefreshIcon>
                 </IconButton>
             </Box>
