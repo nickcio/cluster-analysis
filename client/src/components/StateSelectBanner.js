@@ -30,11 +30,11 @@ export default function StateSelectBanner() {
     let stateValue = event.target.value;
 
     if (stateValue == "Arizona") {
-      store.setState(AZBorders);
+      store.setState(AZBorders,AZDistricts);
     } else if (stateValue == "South Carolina") {
-      store.setState(SCBorders);
+      store.setState(SCBorders,SCDistricts);
     } else if (stateValue == "Texas") {
-      store.setState(TXBorders);
+      store.setState(TXBorders,TXDistricts);
     }
   };
 

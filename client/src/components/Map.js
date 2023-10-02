@@ -26,7 +26,7 @@ const highlightStyle = {
 const mouseoverStyle = {
     fillColor: 'darkblue',
     color: 'black',
-    weight: 1,
+    weight: 2,
     opacity: 1,
     fillOpacity: 0.6,
 };
@@ -45,14 +45,19 @@ function Component() {
     useEffect(() => {
         if (stateName === "Arizona") {
             map.setView(arizonaPosition, 6)
+            //AZStyle = mouseoverStyle;
         }
         else if (stateName === "South Carolina") {
             map.setView(scPosition, 7)
+            //SCStyle = mouseoverStyle;
         }
         else if (stateName === "Texas") {
-            map.setView(texasPosition, 6)
+            map.setView(texasPosition, 6);
+            //TXStyle = mouseoverStyle;
         }
     })
+
+
 }
 
 export default function Map() {
@@ -70,6 +75,7 @@ export default function Map() {
             AZStyle = mouseoverStyle;
         }
         const mouseoff = () => {
+            console.log("changes the style");
             AZStyle = highlightStyle;
         }
         layer.on({
@@ -122,9 +128,6 @@ export default function Map() {
         let stateName = store.currentState !== "" ? store.currentState.features[0].properties.NAME : "";
 
         let stateDisplay = <></>
-        let AZDisplay = <GeoJSON data={AZDistricts} style={AZStyle}/>;
-        let TXDisplay = <GeoJSON data={TXDistricts} style={TXStyle}/>;
-        let SCDisplay = <GeoJSON data={SCDistricts} style={SCStyle}/>;
 
         if (store.currentState === "") {
             stateDisplay = 
@@ -134,19 +137,34 @@ export default function Map() {
             <GeoJSON key="3" data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>;
             </>
         }
+
         switch (stateName) {
             case "Arizona":
                 console.log("RETURNING AZ")
-                return AZDisplay;
+                AZStyle = mouseoverStyle;
+                return <>
+                <GeoJSON key="4" data={AZDistricts} style={AZStyle} onEachFeature={onClickAZ} />;
+                <GeoJSON key="5" data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>;
+                <GeoJSON key="6" data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>;
+                </>;
             case "Texas":
                 console.log("RETURNING TX")
-                console.log(TXDisplay)
-                return TXDisplay;
+                TXStyle = mouseoverStyle;
+                return <>
+                <GeoJSON key="7" data={AZBorders} style={AZStyle} onEachFeature={onClickAZ} />;
+                <GeoJSON key="8" data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>;
+                <GeoJSON key="9" data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>;
+                </>;
             case "South Carolina":
                 console.log("RETURNING SC")
-                console.log(SCDisplay)
-                return SCDisplay;
+                SCStyle = mouseoverStyle;
+                return <>
+                <GeoJSON key="10" data={AZBorders} style={AZStyle} onEachFeature={onClickAZ} />;
+                <GeoJSON key="11" data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>;
+                <GeoJSON key="12" data={SCDistricts} style={SCStyle} onEachFeature={onClickSC}/>;
+                </>;
             default:
+                console.log("returning default")
                 return stateDisplay;
         }
     }
