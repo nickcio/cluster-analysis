@@ -63,7 +63,7 @@ export default function Clusters() {
         chart: {
             type: 'bubble',
             zoom: {
-                enabled: true,
+                enabled: false,
                 type: 'x',
                 autoScaleYaxis: true,  
                 zoomedArea: {
@@ -103,7 +103,7 @@ export default function Clusters() {
             data: [
             { x: 5, y: 15, z: 10 },
             { x: 12, y: 10, z: 25 },
-            { x: 20, y: 15, z: 10 },
+            { x: 20, y: 50, z: 10 },
             ],
         },
         {
@@ -117,23 +117,28 @@ export default function Clusters() {
 
 
     return (
-        <Box sx={{bgcolor: "orange"}} style={{width: "100%", height: "100%"}}>
-            <ReactApexChart options={bubbleChartOptions} series={bubbleChartData} type="bubble" height={300} stype = {{width:"100%", height:"100%"}}/>
+        <Box style={{width: "50vw", height: "85vh"}}>
+            <ReactApexChart options={bubbleChartOptions} series={bubbleChartData} type="bubble" height={"45%"} width={"99%"}/>
             <DataGrid
                 rows={rows}
                 columns={columns}
                 initialState={{
                 pagination: {
-                    paginationModel: { page: 0, pageSize: 5 },
+                    paginationModel: { page: 0, pageSize: 11 },
                 },
                 }}
-                pageSizeOptions={[5, 10]}
-                checkboxSelection
+                sx ={{height:"55%"}}
+                getRowHeight={() => 'auto'}
+                
+
             />
-            
         </Box>      
     )
 }   
+
+/*
+
+*/
 
 // /* <TableContainer component={Paper}>
 //                 <Table sx={{ width: "100%" }} aria-label="simple table">

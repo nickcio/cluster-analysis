@@ -46,7 +46,7 @@ export default function StateSelectBanner() {
       style={{ height: "8vh", display: "flex", alignItems: "center" }}
     >
       <Grid item xs={4}>
-        <FormControl style={{ width: "13vw" }}>
+        <FormControl style={{ width: "15vw" }}>
           <InputLabel id="state_select_label" style={{ fontWeight: "bold" }}>
             State
           </InputLabel>
@@ -66,21 +66,7 @@ export default function StateSelectBanner() {
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={4}>
-        <Button
-          variant="contained"
-          style={{ height: "5.5vh", width: "13vw", fontWeight: "bold" }}
-        >
-          Ensemble Details
-        </Button>
-      </Grid>
-      <Grid item xs={4}>
-        <Button
-          variant="contained"
-          style={{ height: "5.5vh", width: "13vw", fontWeight: "bold" }}
-        >
-          Distance Details
-        </Button>
+      <Grid item xs={8}>
       </Grid>
     </Grid>
   );

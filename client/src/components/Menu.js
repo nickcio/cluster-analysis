@@ -24,12 +24,11 @@ export default function Menu() {
         
     */
    
-
     return (
         <Box sx={{bgcolor: "lightgrey"}} style={{width: "60vw", height: "93vh"}}>
             <StateSelectBanner/>
-            <EnsembleSelection/>
-            <Clusters></Clusters>
+            {curState !== "" ? (<EnsembleSelection/>) : ("")}
+            <Clusters/>
         </Box>
     )
 }
