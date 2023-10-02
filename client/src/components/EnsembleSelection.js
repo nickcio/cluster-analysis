@@ -4,20 +4,21 @@ import { GlobalStoreContext } from '../store'
 
 import {Box, List, ListItem, TextField, Typography, Button} from "@mui/material";
 
+/*
+    Here we want to make a display of all the diffeent ensambles that we can open up a cluster page 
+    so make a different list of different ensambles that you can click into to view the clusters
+*/
 
 export default function EnsembleSelection() {
-
-    /*
-        Here we want to make a display of all the diffeent ensambles that we can open up a cluster page 
-        so make a different list of different ensambles that you can click into to view the clusters
-    */
     const { store } = useContext(GlobalStoreContext);
-    let curState = store.currentState !== "" ? store.currentState : ""
-    let displayName = curState !== "" ? store.currentState.features[0].properties.NAME : "NO STATE"
+
+    function handleClickEnsemble(e) {
+        store.setEnsemble("Placeholder");
+    }
     
     return (
         <Box style={{width: "50vw", height: "85vh"}}>
-            <List sx={{bgcolor: "#adadad"}} style={{width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <List sx={{bgcolor: "#b0d1eb"}} style={{width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
 
                 <ListItem sx={{bgcolor: "#d6d6d6"}} style={{width: "80%", height: "20%", borderRadius: "20px", margin: "10px", display: "flex", justifyContent: "space-between"}}>
                     <Box style={{width: "30%"}}>
@@ -33,6 +34,7 @@ export default function EnsembleSelection() {
                         variant="contained"
                         style={{ height: "5vh", width: "13vw", fontWeight: "bold", marginRight:10 }}
                         sx={{bgcolor: "#33586f"}}
+                        onClick={handleClickEnsemble}
                         >
                         Ensemble Details
                         </Button>

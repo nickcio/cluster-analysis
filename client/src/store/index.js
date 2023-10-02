@@ -3,14 +3,16 @@ import { createContext, useContext, useState } from 'react'
 export const GlobalStoreContext = createContext({});
 
 export const GlobalStoreActionType = {
-    SET_STATE: "SET_STATE"
+    SET_STATE: "SET_STATE",
+    SET_ENSEMBLE: "SET_ENSEMBLE"
 }
 
 function GlobalStoreContextProvider(props) {
     // THESE ARE ALL THE THINGS OUR DATA STORE WILL MANAGE
     const [store, setStore] = useState({
         currentState: "",
-        currentDistricts: ""
+        currentDistricts: "",
+        currentEnsemble: ""
     });
 
     const storeReducer = (action) => {
@@ -25,6 +27,12 @@ function GlobalStoreContextProvider(props) {
                     currentDistricts: payload.districts
                 });
             }
+            case GlobalStoreActionType.SET_ENSEMBLE: {
+                return setStore({
+                    ...store,
+                    currentEnsemble: payload.ensemble
+                });
+            }
             default:
                 return store;
         }
@@ -36,6 +44,16 @@ function GlobalStoreContextProvider(props) {
         storeReducer({
             type: GlobalStoreActionType.SET_STATE,
             payload: {state:state,districts:districts}
+        });
+
+    }
+
+    store.setEnsemble = async function(ensemble) {
+        console.log("ENSEMBLE CHANGED TO: ")
+        console.log(ensemble)
+        storeReducer({
+            type: GlobalStoreActionType.SET_ENSEMBLE,
+            payload: {ensemble:ensemble}
         });
 
     }

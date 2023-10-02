@@ -10,8 +10,15 @@ import Clusters from './Clusters';
 export default function Menu() {
     const { store } = useContext(GlobalStoreContext);
     let curState = store.currentState !== "" ? store.currentState : ""
+    let curEnsemble = store.currentEnsemble !== "" ? store.currentEnsemble : ""
     let displayName = curState !== "" ? store.currentState.features[0].properties.NAME : "NO STATE"
-
+    let menuDisplay = <></>
+    if (curEnsemble !== "") {
+        menuDisplay = <Clusters/>
+    }
+    else if (curState !== "") {
+        menuDisplay = <EnsembleSelection/>
+    }
     /*
     What we want to do:
         Select Screen: Over view of what we do or whatever
@@ -27,8 +34,7 @@ export default function Menu() {
     return (
         <Box sx={{bgcolor: "lightgrey"}} style={{width: "60vw", height: "93vh"}}>
             <StateSelectBanner/>
-            {curState !== "" ? (<EnsembleSelection/>) : ("")}
-            <Clusters/>
+            {menuDisplay}
         </Box>
     )
 }
