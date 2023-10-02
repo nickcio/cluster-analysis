@@ -1,4 +1,4 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { GlobalStoreContext } from '../store'
 import {MapContainer, TileLayer, Marker, Popup, GeoJSON} from "react-leaflet";
 import markerIconPng from "leaflet/dist/images/marker-icon.png"
@@ -13,6 +13,7 @@ import TXBorders from './geojson/TXBorders.json';
 import AZDistricts from "./geojson/AZDistricts.json";
 import SCDistricts from "./geojson/SCDistricts.json";
 import TXDistricts from "./geojson/TXDistricts.json";
+
 
 
 const highlightStyle = {
@@ -32,19 +33,37 @@ const mouseoverStyle = {
 let AZStyle = highlightStyle;
 let TXStyle = highlightStyle;
 let SCStyle = highlightStyle;
+const arizonaPosition = [34.212,-111.929]
+const texasPosition = [29.4590,-98.518]
+const scPosition = [33.639,-80.948]
 
-function MapComponent() {
+function Component() {
     const { store } = useContext(GlobalStoreContext);
+    let stateName = store.currentState !== "" ? store.currentState.features[0].properties.NAME : "";
     const map = useMap();
-    const arizonaPosition = [34.212,-111.929]
-    const texasPosition = [29.4590,-98.518]
-    const scPosition = [33.639,-80.948]
+
+    useEffect(() => {
+        if (stateName === "Arizona") {
+            map.setView(arizonaPosition, 6)
+        }
+        else if (stateName === "South Carolina") {
+            map.setView(scPosition, 7)
+        }
+        else if (stateName === "Texas") {
+            map.setView(texasPosition, 6)
+        }
+    })
+}
+
+export default function Map() {
+    const { store } = useContext(GlobalStoreContext);
 
     let stateName = store.currentState !== "" ? store.currentState.features[0].properties.NAME : "";
 
+
     const onClickAZ = (feature, layer) => {
         const clicked = () => {
-            map.setView(arizonaPosition, 6)
+            //map.setView(arizonaPosition, 6)
             store.setState(AZBorders,AZDistricts);
         }
         const mouseovered = () => {
@@ -63,7 +82,7 @@ function MapComponent() {
 
     const onClickSC = (feature, layer) => {
         const clicked = () => {
-            map.setView(scPosition, 7)
+            //map.setView(scPosition, 7)
             store.setState(SCBorders,SCDistricts);
         }
         const mouseovered = () => {
@@ -78,12 +97,10 @@ function MapComponent() {
             mouseout:mouseoff
         });
     }
-
-    
     
     const onClickTX = (feature, layer) => {
         const clicked = () => {
-            map.setView(texasPosition, 6)
+            //map.setView(texasPosition, 6)
             store.setState(TXBorders,TXDistricts);
         }
         const mouseovered = () => {
@@ -99,35 +116,45 @@ function MapComponent() {
             mouseout:mouseoff
         });
     }
-    let AZDisplay = <GeoJSON data={AZBorders} style={AZStyle} onEachFeature={onClickAZ} />;
-    let TXDisplay = <GeoJSON data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>;
-    let SCDisplay = <GeoJSON data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>;
-    switch (stateName) {
-        case "Arizona":
-            AZDisplay = <GeoJSON data={AZDistricts} style={AZStyle}/>;
-            break;
-        case "Texas":
-            TXDisplay = <GeoJSON data={TXDistricts} style={TXStyle}/>;
-            break;
-        case "South Carolina":
-            SCDisplay = <GeoJSON data={SCDistricts} style={SCStyle}/>;
-            break;
-        default:
-            break;
+
+
+
+
+    function ReRender() {
+
+        let stateName = store.currentState !== "" ? store.currentState.features[0].properties.NAME : "";
+
+        let stateDisplay = <></>
+        let AZDisplay = <GeoJSON data={AZDistricts} style={AZStyle}/>;
+        let TXDisplay = <GeoJSON data={TXDistricts} style={TXStyle}/>;
+        let SCDisplay = <GeoJSON data={SCDistricts} style={SCStyle}/>;
+
+        if (store.currentState === "") {
+            stateDisplay = 
+            <>
+            <GeoJSON key="1" data={AZBorders} style={AZStyle} onEachFeature={onClickAZ} />;
+            <GeoJSON key="2" data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>;
+            <GeoJSON key="3" data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>;
+            </>
+        }
+        switch (stateName) {
+            case "Arizona":
+                console.log("RETURNING AZ")
+                return AZDisplay;
+            case "Texas":
+                console.log("RETURNING TX")
+                console.log(TXDisplay)
+                return TXDisplay;
+            case "South Carolina":
+                console.log("RETURNING SC")
+                console.log(SCDisplay)
+                return SCDisplay;
+            default:
+                return stateDisplay;
+        }
     }
 
 
-    return (
-        <div>
-            {AZDisplay}
-            {TXDisplay}
-            {SCDisplay}
-        </div>
-
-    );
-
-}
-export default function Map() {
     
     const geoJsonStyle = (feature) => {
         if (feature.properties.NAME === "Arizona" || feature.properties.NAME === "Texas" || feature.properties.NAME === "South Carolina") {
@@ -156,7 +183,8 @@ export default function Map() {
                 <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"/>
-                <MapComponent></MapComponent>
+                <Component/>
+                {ReRender()}
             </MapContainer>
         </div>
     )
