@@ -25,7 +25,7 @@ const highlightStyle = {
 };
 const mouseoverStyle = {
     fillColor: 'darkblue',
-    color: 'blue',
+    color: 'black',
     weight: 1,
     opacity: 1,
     fillOpacity: 0.6,
@@ -117,9 +117,6 @@ export default function Map() {
         });
     }
 
-
-
-
     function ReRender() {
 
         let stateName = store.currentState !== "" ? store.currentState.features[0].properties.NAME : "";
@@ -155,7 +152,6 @@ export default function Map() {
     }
 
 
-    
     const geoJsonStyle = (feature) => {
         if (feature.properties.NAME === "Arizona" || feature.properties.NAME === "Texas" || feature.properties.NAME === "South Carolina") {
             
@@ -179,7 +175,7 @@ export default function Map() {
 
     return(
         <div>
-            <MapContainer center={[30.569834, -96.764915]} maxBounds={[[24.661994,-129.571321], [42.403179,-63.785237]]} zoom={5} minZoom={4} maxZoom={15} onClick={(e) => {handleMapClick(e)}}>
+            <MapContainer center={[49.569834, -96.764915]} maxBounds={[[24.661994,-129.571321], [42.403179,-63.785237]]} zoom={5} minZoom={4} maxZoom={15} onClick={(e) => {handleMapClick(e)}}>
                 <TileLayer
                 attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
                 url="https://tile.openstreetmap.org/{z}/{x}/{y}.png"/>
@@ -188,4 +184,4 @@ export default function Map() {
             </MapContainer>
         </div>
     )
-}
+    }
