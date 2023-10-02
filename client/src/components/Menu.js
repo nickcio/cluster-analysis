@@ -5,6 +5,7 @@ import StateSelectBanner from "./StateSelectBanner"
 import EnsembleSelection from "./EnsembleSelection"
 
 import Box from "@mui/material/Box";
+import Clusters from './Clusters';
 
 export default function Menu() {
     const { store } = useContext(GlobalStoreContext);
@@ -25,9 +26,10 @@ export default function Menu() {
    
 
     return (
-        <Box sx={{bgcolor: "lightgrey"}} style={{width: "60%", height: "93vh"}}>
+        <Box sx={{bgcolor: "lightgrey"}} style={{width: "60vw", height: "93vh"}}>
             <StateSelectBanner/>
             <EnsembleSelection/>
+            {/* <Clusters></Clusters> */}
         </Box>
     )
 }

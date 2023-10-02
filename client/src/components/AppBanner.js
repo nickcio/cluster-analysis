@@ -17,7 +17,7 @@ export default function AppBanner() {
   return (
     <AppBar
       sx={{ bgcolor: "#2f2f30" }}
-      style={{ height: "7vh" }}
+      style={{ height: "7vh", width: "100vw" }}
       position="static"
     >
       <Toolbar

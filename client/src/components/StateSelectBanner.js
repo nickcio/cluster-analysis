@@ -71,7 +71,7 @@ export default function StateSelectBanner() {
           variant="contained"
           style={{ height: "5.5vh", width: "13vw", fontWeight: "bold" }}
         >
-          This Is A Button
+          Ensemble Details
         </Button>
       </Grid>
       <Grid item xs={4}>
@@ -79,7 +79,7 @@ export default function StateSelectBanner() {
           variant="contained"
           style={{ height: "5.5vh", width: "13vw", fontWeight: "bold" }}
         >
-          This Is A Button 2
+          Distance Details
         </Button>
       </Grid>
     </Grid>
