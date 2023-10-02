@@ -1,5 +1,4 @@
 /* General Stuff */
-
 .App {
   text-align: center;
   height: 100%;
@@ -21,4 +20,9 @@
 .leaflet-container {
   width: 50vw;
   height: 93vh;
+}
+
+#webpage-title {
+  font-family: 'Noto Serif', serif;
+  margin: 20%;
 }
