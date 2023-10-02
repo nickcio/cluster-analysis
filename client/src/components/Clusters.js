@@ -75,18 +75,21 @@ export default function Clusters() {
                     color: '#0D47A1',
                     opacity: 0.4,
                     width: 1
-                }
+                },
                 }
             }
         },
         dataLabels: {
             enabled: false,
         },
-        colors: ['#008FFB', '#00E396', '#FEB019'],
+        colors: ['#008FFB', '#00E396', '#FEB019', '#A65FEC'],
         xaxis: {
             type: 'numeric',
             title: {
             text: 'Distance',
+            forceNiceScale: false,
+            min: 0,            
+            max: 15,
             },
         },
         yaxis: {
@@ -101,15 +104,25 @@ export default function Clusters() {
             name: 'Testing the cluster here in Arizona #1',
             label: 'Arizona Cluster #123132', 
             data: [
-            { x: 5, y: 15, z: 10 },
-            { x: 12, y: 10, z: 25 },
-            { x: 20, y: 50, z: 10 },
+            { x: 9, y: 15, z: 10 },
             ],
         },
         {
             name: 'Testing the cluster here in Arizona #2',
             data: [
             { x: 2, y: 10, z: 20 },
+            ],
+        },
+        {
+            name: 'Testing the cluster here in Arizona #3',
+            data: [
+            { x: 12, y: 30, z: 30},
+            ],
+        },
+        {
+            name: 'Testing the cluster here in Arizona #4',
+            data: [
+            { x: 5, y: 23, z: 20 },
             ],
         },
         // Add more series if needed
