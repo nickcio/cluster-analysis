@@ -24,7 +24,8 @@ function GlobalStoreContextProvider(props) {
                 return setStore({
                     ...store,
                     currentState: payload.state,
-                    currentDistricts: payload.districts
+                    currentDistricts: payload.districts,
+                    currentEnsemble:payload.currentEnsemble
                 });
             }
             case GlobalStoreActionType.SET_ENSEMBLE: {
@@ -43,7 +44,7 @@ function GlobalStoreContextProvider(props) {
         console.log(state)
         storeReducer({
             type: GlobalStoreActionType.SET_STATE,
-            payload: {state:state,districts:districts}
+            payload: {state:state,districts:districts,currentEnsemble:""}
         });
 
     }

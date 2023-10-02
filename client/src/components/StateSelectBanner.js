@@ -31,11 +31,24 @@ export default function StateSelectBanner() {
 
     if (stateValue == "Arizona") {
       store.setState(AZBorders,AZDistricts);
+      // if(store.currentEnsemble !== "")
+      // {
+      //   store.setEnsemble("");
+      // }
     } else if (stateValue == "South Carolina") {
       store.setState(SCBorders,SCDistricts);
+      // if(store.currentEnsemble !== "")
+      // {
+      //   store.setEnsemble("");
+      // }
     } else if (stateValue == "Texas") {
       store.setState(TXBorders,TXDistricts);
+      // if(store.currentEnsemble !== "")
+      // {
+      //   store.setEnsemble("");
+      // }
     }
+
   };
 
   return (
