@@ -31,7 +31,7 @@ export default function EnsembleSelection() {
                     <Box style={{width: "60%", display: "flex", justifyContent: "space-between"}}>
                         <Button
                         variant="contained"
-                        style={{ height: "5vh", width: "13vw", fontWeight: "bold" }}
+                        style={{ height: "5vh", width: "13vw", fontWeight: "bold", marginRight:10 }}
                         sx={{bgcolor: "#33586f"}}
                         >
                         Ensemble Details
@@ -60,7 +60,7 @@ export default function EnsembleSelection() {
                     <Box style={{width: "60%", display: "flex", justifyContent: "space-between"}}>
                         <Button
                         variant="contained"
-                        style={{ height: "5vh", width: "13vw", fontWeight: "bold" }}
+                        style={{ height: "5vh", width: "13vw", fontWeight: "bold", marginRight:10 }}
                         sx={{bgcolor: "#33586f"}}
                         >
                         Ensemble Details
@@ -89,7 +89,7 @@ export default function EnsembleSelection() {
                     <Box style={{width: "60%", display: "flex", justifyContent: "space-between"}}>
                         <Button
                         variant="contained"
-                        style={{ height: "5vh", width: "13vw", fontWeight: "bold" }}
+                        style={{ height: "5vh", width: "13vw", fontWeight: "bold", marginRight:10}}
                         sx={{bgcolor: "#33586f"}}
                         >
                         Ensemble Details
@@ -97,7 +97,7 @@ export default function EnsembleSelection() {
                         
                         <Button
                         variant="contained"
-                        style={{ height: "5vh", width: "13vw", fontWeight: "bold" }}
+                        style={{ height: "5vh", width: "13vw", fontWeight: "bold"}}
                         sx={{bgcolor: "#33586f"}}
                         >
                             Distance Details
@@ -118,7 +118,7 @@ export default function EnsembleSelection() {
                     <Box style={{width: "60%", display: "flex", justifyContent: "space-between"}}>
                         <Button
                         variant="contained"
-                        style={{ height: "5vh", width: "13vw", fontWeight: "bold" }}
+                        style={{ height: "5vh", width: "13vw", fontWeight: "bold", marginRight:10}}
                         sx={{bgcolor: "#33586f"}}
                         >
                         Ensemble Details
@@ -127,35 +127,6 @@ export default function EnsembleSelection() {
                         <Button
                         variant="contained"
                         style={{ height: "5vh", width: "13vw", fontWeight: "bold" }}
-                        sx={{bgcolor: "#33586f"}}
-                        >
-                            Distance Details
-                        </Button>
-                    </Box>
-                </ListItem>
-                
-                <ListItem sx={{bgcolor: "#d6d6d6"}} style={{width: "80%", height: "20%", borderRadius: "20px", margin: "10px", display: "flex", justifyContent: "space-between"}}>
-                    <Box style={{width: "30%"}}>
-                        <Typography variant="h5" fontWeight="bold" sx={{color: "black"}}>
-                            Ensemble 5
-                        </Typography>
-                        <Typography variant="h7" fontWeight="bold" sx={{color: "black"}}>
-                            2,549 District Plans
-                        </Typography>
-                    </Box>
-
-                    <Box style={{width: "70%", display: "flex", flexDirection: "column", justifyContent: "space-between"}}>
-                        <Button
-                        variant="contained"
-                        style={{ height: "4vh", width: "13vw", fontWeight: "bold", marginBotton: "1px"}}
-                        sx={{bgcolor: "#33586f", marginBotton: "1px"}}
-                        >
-                        Ensemble Details
-                        </Button>
-                        
-                        <Button
-                        variant="contained"
-                        style={{ height: "4vh", width: "13vw", fontWeight: "bold" }}
                         sx={{bgcolor: "#33586f"}}
                         >
                             Distance Details

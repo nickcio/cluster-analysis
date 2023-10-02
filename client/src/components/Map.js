@@ -136,7 +136,7 @@ export default function Map() {
 
     const districtAZ = (feature, layer) => {
         const clicked = () => {
-            //send info to change the district
+            console.log(feature);
         }
         const mouseovered = (e) => {
             const layer = e.target;
