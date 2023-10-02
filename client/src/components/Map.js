@@ -30,6 +30,13 @@ const mouseoverStyle = {
     opacity: 1,
     fillOpacity: 0.6,
 };
+const districtStyle = {
+    fillColor: 'red',
+    color: 'black',
+    weight: 2,
+    opacity: 1,
+    fillOpacity: 0.6,
+}
 let AZStyle = highlightStyle;
 let TXStyle = highlightStyle;
 let SCStyle = highlightStyle;
@@ -71,12 +78,13 @@ export default function Map() {
             //map.setView(arizonaPosition, 6)
             store.setState(AZBorders,AZDistricts);
         }
-        const mouseovered = () => {
-            AZStyle = mouseoverStyle;
+        const mouseovered = (e) => {
+            const layer = e.target;
+            layer.setStyle(mouseoverStyle)
         }
-        const mouseoff = () => {
-            console.log("changes the style");
-            AZStyle = highlightStyle;
+        const mouseoff = (e) => {
+            const layer = e.target;
+            layer.setStyle(highlightStyle)
         }
         layer.on({
             click:clicked,
@@ -91,11 +99,13 @@ export default function Map() {
             //map.setView(scPosition, 7)
             store.setState(SCBorders,SCDistricts);
         }
-        const mouseovered = () => {
-            SCStyle = mouseoverStyle;
+        const mouseovered = (e) => {
+            const layer = e.target;
+            layer.setStyle(mouseoverStyle)
         }
-        const mouseoff = () => {
-            SCStyle = highlightStyle;
+        const mouseoff = (e) => {
+            const layer = e.target;
+            layer.setStyle(highlightStyle)
         }
         layer.on({
             click:clicked,
@@ -109,12 +119,70 @@ export default function Map() {
             //map.setView(texasPosition, 6)
             store.setState(TXBorders,TXDistricts);
         }
-        const mouseovered = () => {
-            console.log("MOUSE ON TEXAS")
-            TXStyle = mouseoverStyle;
+        const mouseovered = (e) => {
+            const layer = e.target;
+            layer.setStyle(mouseoverStyle)
         }
-        const mouseoff = () => {
-            TXStyle = highlightStyle;
+        const mouseoff = (e) => {
+            const layer = e.target;
+            layer.setStyle(highlightStyle)
+        }
+        layer.on({
+            click:clicked,
+            mouseover:mouseovered,
+            mouseout:mouseoff
+        });
+    }
+
+    const districtAZ = (feature, layer) => {
+        const clicked = () => {
+            //send info to change the district
+        }
+        const mouseovered = (e) => {
+            const layer = e.target;
+            layer.setStyle(districtStyle)
+        }
+        const mouseoff = (e) => {
+            const layer = e.target;
+            layer.setStyle(mouseoverStyle)
+        }
+        layer.on({
+            click:clicked,
+            mouseover:mouseovered,
+            mouseout:mouseoff
+        });
+    }
+
+    const districtTX = (feature, layer) => {
+        const clicked = () => {
+            //send info to change the district
+        }
+        const mouseovered = (e) => {
+            const layer = e.target;
+            layer.setStyle(districtStyle)
+        }
+        const mouseoff = (e) => {
+            const layer = e.target;
+            layer.setStyle(mouseoverStyle)
+        }
+        layer.on({
+            click:clicked,
+            mouseover:mouseovered,
+            mouseout:mouseoff
+        });
+    }
+
+    const districtSC = (feature, layer) => {
+        const clicked = () => {
+            //send info to change the district
+        }
+        const mouseovered = (e) => {
+            const layer = e.target;
+            layer.setStyle(districtStyle)
+        }
+        const mouseoff = (e) => {
+            const layer = e.target;
+            layer.setStyle(mouseoverStyle)
         }
         layer.on({
             click:clicked,
@@ -143,7 +211,7 @@ export default function Map() {
                 console.log("RETURNING AZ")
                 AZStyle = mouseoverStyle;
                 return <>
-                <GeoJSON key="4" data={AZDistricts} style={AZStyle} onEachFeature={onClickAZ} />;
+                <GeoJSON key="4" data={AZDistricts} style={AZStyle} onEachFeature={districtAZ} />;
                 <GeoJSON key="5" data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>;
                 <GeoJSON key="6" data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>;
                 </>;
@@ -152,7 +220,7 @@ export default function Map() {
                 TXStyle = mouseoverStyle;
                 return <>
                 <GeoJSON key="7" data={AZBorders} style={AZStyle} onEachFeature={onClickAZ} />;
-                <GeoJSON key="8" data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>;
+                <GeoJSON key="8" data={TXBorders} style={TXStyle} onEachFeature={districtTX}/>;
                 <GeoJSON key="9" data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>;
                 </>;
             case "South Carolina":
@@ -161,7 +229,7 @@ export default function Map() {
                 return <>
                 <GeoJSON key="10" data={AZBorders} style={AZStyle} onEachFeature={onClickAZ} />;
                 <GeoJSON key="11" data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>;
-                <GeoJSON key="12" data={SCDistricts} style={SCStyle} onEachFeature={onClickSC}/>;
+                <GeoJSON key="12" data={SCDistricts} style={SCStyle} onEachFeature={districtSC}/>;
                 </>;
             default:
                 console.log("returning default")
