@@ -133,6 +133,35 @@ export default function EnsembleSelection() {
                         </Button>
                     </Box>
                 </ListItem>
+                
+                <ListItem sx={{bgcolor: "#d6d6d6"}} style={{width: "80%", height: "20%", borderRadius: "20px", margin: "10px", display: "flex", justifyContent: "space-between"}}>
+                    <Box style={{width: "30%"}}>
+                        <Typography variant="h5" fontWeight="bold" sx={{color: "black"}}>
+                            Ensemble 5
+                        </Typography>
+                        <Typography variant="h7" fontWeight="bold" sx={{color: "black"}}>
+                            2,549 District Plans
+                        </Typography>
+                    </Box>
+
+                    <Box style={{width: "60%", display: "flex", justifyContent: "space-between"}}>
+                        <Button
+                        variant="contained"
+                        style={{ height: "5vh", width: "13vw", fontWeight: "bold", marginRight:10}}
+                        sx={{bgcolor: "#33586f"}}
+                        >
+                        Ensemble Details
+                        </Button>
+                        
+                        <Button
+                        variant="contained"
+                        style={{ height: "5vh", width: "13vw", fontWeight: "bold" }}
+                        sx={{bgcolor: "#33586f"}}
+                        >
+                            Distance Details
+                        </Button>
+                    </Box>
+                </ListItem>
             </List>
             
         </Box>
