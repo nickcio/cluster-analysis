@@ -29,7 +29,7 @@ export default function Menu() {
         <Box sx={{bgcolor: "lightgrey"}} style={{width: "60vw", height: "93vh"}}>
             <StateSelectBanner/>
             <EnsembleSelection/>
-            {/* <Clusters></Clusters> */}
+            <Clusters></Clusters>
         </Box>
     )
 }
