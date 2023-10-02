@@ -10,6 +10,9 @@ import { point, polygon, multiPolygon, booleanPointInPolygon } from '@turf/turf'
 import AZBorders from './geojson/AZBorders.json';
 import SCBorders from './geojson/SCBorders.json';
 import TXBorders from './geojson/TXBorders.json';
+import AZDistricts from "./geojson/AZDistricts.json";
+import SCDistricts from "./geojson/SCDistricts.json";
+import TXDistricts from "./geojson/TXDistricts.json";
 
 
 const highlightStyle = {
@@ -37,10 +40,12 @@ function MapComponent() {
     const texasPosition = [29.4590,-98.518]
     const scPosition = [33.639,-80.948]
 
+    let stateName = store.currentState !== "" ? store.currentState.features[0].properties.NAME : "";
+
     const onClickAZ = (feature, layer) => {
         const clicked = () => {
             map.setView(arizonaPosition, 6)
-            store.setState(AZBorders);
+            store.setState(AZBorders,AZDistricts);
         }
         const mouseovered = () => {
             AZStyle = mouseoverStyle;
@@ -59,7 +64,7 @@ function MapComponent() {
     const onClickSC = (feature, layer) => {
         const clicked = () => {
             map.setView(scPosition, 7)
-            store.setState(SCBorders);
+            store.setState(SCBorders,SCDistricts);
         }
         const mouseovered = () => {
             SCStyle = mouseoverStyle;
@@ -79,7 +84,7 @@ function MapComponent() {
     const onClickTX = (feature, layer) => {
         const clicked = () => {
             map.setView(texasPosition, 6)
-            store.setState(TXBorders);
+            store.setState(TXBorders,TXDistricts);
         }
         const mouseovered = () => {
             console.log("MOUSE ON TEXAS")
@@ -94,11 +99,29 @@ function MapComponent() {
             mouseout:mouseoff
         });
     }
+    let AZDisplay = <GeoJSON data={AZBorders} style={AZStyle} onEachFeature={onClickAZ} />;
+    let TXDisplay = <GeoJSON data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>;
+    let SCDisplay = <GeoJSON data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>;
+    switch (stateName) {
+        case "Arizona":
+            AZDisplay = <GeoJSON data={AZDistricts} style={AZStyle}/>;
+            break;
+        case "Texas":
+            TXDisplay = <GeoJSON data={TXDistricts} style={TXStyle}/>;
+            break;
+        case "South Carolina":
+            SCDisplay = <GeoJSON data={SCDistricts} style={SCStyle}/>;
+            break;
+        default:
+            break;
+    }
+
+
     return (
         <div>
-            <GeoJSON data={AZBorders} style={AZStyle} onEachFeature={onClickAZ} />
-            <GeoJSON data={TXBorders} style={TXStyle} onEachFeature={onClickTX}/>
-            <GeoJSON data={SCBorders} style={SCStyle} onEachFeature={onClickSC}/>
+            {AZDisplay}
+            {TXDisplay}
+            {SCDisplay}
         </div>
 
     );

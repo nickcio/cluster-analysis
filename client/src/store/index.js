@@ -10,6 +10,7 @@ function GlobalStoreContextProvider(props) {
     // THESE ARE ALL THE THINGS OUR DATA STORE WILL MANAGE
     const [store, setStore] = useState({
         currentState: "",
+        currentDistricts: ""
     });
 
     const storeReducer = (action) => {
@@ -20,7 +21,8 @@ function GlobalStoreContextProvider(props) {
             case GlobalStoreActionType.SET_STATE: {
                 return setStore({
                     ...store,
-                    currentState: payload,
+                    currentState: payload.state,
+                    currentDistricts: payload.districts
                 });
             }
             default:
@@ -28,12 +30,12 @@ function GlobalStoreContextProvider(props) {
         }
     }
 
-    store.setState = async function(state) {
+    store.setState = async function(state,districts) {
         console.log("STATE CHANGED TO: ")
         console.log(state)
         storeReducer({
             type: GlobalStoreActionType.SET_STATE,
-            payload: state
+            payload: {state:state,districts:districts}
         });
 
     }
