@@ -8,7 +8,7 @@ import { DataGrid } from '@mui/x-data-grid';
 
 
 const columns = [
-    { field: 'id', headerName: 'District', width: 60 },
+    { field: 'id', headerName: 'District Plan', width: 80 },
     { field: 'vap', headerName: 'Voting Age Pop.', type: 'number', width: 140 },
     { field: 'pop', headerName: 'African-American Pop.', type: 'number', width: 160 },
     { field: 'size', headerName: 'Size (km²)', type: 'number', width: 100 },

@@ -69,6 +69,7 @@ export default function EnsembleSelection() {
                         variant="contained"
                         style={{ height: "5vh", width: "13vw", fontWeight: "bold", marginRight:10 }}
                         sx={{bgcolor: "#33586f"}}
+                        onClick={handleClickEnsemble}
                         >
                         Ensemble Details
                         </Button>
@@ -77,6 +78,7 @@ export default function EnsembleSelection() {
                         variant="contained"
                         style={{ height: "5vh", width: "13vw", fontWeight: "bold" }}
                         sx={{bgcolor: "#33586f"}}
+                        onClick={handleClickDistance}
                         >
                             Distance Details
                         </Button>
@@ -98,6 +100,7 @@ export default function EnsembleSelection() {
                         variant="contained"
                         style={{ height: "5vh", width: "13vw", fontWeight: "bold", marginRight:10}}
                         sx={{bgcolor: "#33586f"}}
+                        onClick={handleClickEnsemble}
                         >
                         Ensemble Details
                         </Button>
@@ -106,6 +109,7 @@ export default function EnsembleSelection() {
                         variant="contained"
                         style={{ height: "5vh", width: "13vw", fontWeight: "bold"}}
                         sx={{bgcolor: "#33586f"}}
+                        onClick={handleClickDistance}
                         >
                             Distance Details
                         </Button>
@@ -127,6 +131,7 @@ export default function EnsembleSelection() {
                         variant="contained"
                         style={{ height: "5vh", width: "13vw", fontWeight: "bold", marginRight:10}}
                         sx={{bgcolor: "#33586f"}}
+                        onClick={handleClickEnsemble}
                         >
                         Ensemble Details
                         </Button>
@@ -135,6 +140,7 @@ export default function EnsembleSelection() {
                         variant="contained"
                         style={{ height: "5vh", width: "13vw", fontWeight: "bold" }}
                         sx={{bgcolor: "#33586f"}}
+                        onClick={handleClickDistance}
                         >
                             Distance Details
                         </Button>
@@ -156,6 +162,7 @@ export default function EnsembleSelection() {
                         variant="contained"
                         style={{ height: "5vh", width: "13vw", fontWeight: "bold", marginRight:10}}
                         sx={{bgcolor: "#33586f"}}
+                        onClick={handleClickEnsemble}
                         >
                         Ensemble Details
                         </Button>
@@ -164,6 +171,7 @@ export default function EnsembleSelection() {
                         variant="contained"
                         style={{ height: "5vh", width: "13vw", fontWeight: "bold" }}
                         sx={{bgcolor: "#33586f"}}
+                        onClick={handleClickDistance}
                         >
                             Distance Details
                         </Button>
