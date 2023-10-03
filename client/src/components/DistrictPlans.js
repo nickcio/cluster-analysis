@@ -8,40 +8,36 @@ import { DataGrid } from '@mui/x-data-grid';
 
 
 const columns = [
-    { field: 'name', headerName: 'Name', width: 20 },
+    { field: 'id', headerName: 'District', width: 60 },
     { field: 'pop', headerName: 'Pop.', type: 'number', width: 130 },
     { field: 'vap', headerName: 'Voting Age Pop.', type: 'number', width: 140 },
-    { field: 'size', headerName: 'Size (km²)', type: 'number', width: 140 },
+    { field: 'size', headerName: 'Size (km²)', type: 'number', width: 100 },
     {
-      field: 'ratio',
+      field: 'dens',
       headerName: 'Pop. Density',
+      description: 'Population density per square kilometer',
       type: 'number',
-      width: 90,
+      width: 130,
     },
     {
-      field: 'aaod',
-      headerName: 'AAOD',
-      description: 'African-American Opportunity Districts',
+      field: 'income',
+      headerName: 'Avg. Income USD',
+      description: 'Average Income in USD',
       type: 'number',
-      width: 90,
-      valueGetter: (params) =>
-        `${params.row.firstName || ''} ${params.row.lastName || ''}`,
+      width: 140,
     },
   ];
   
-  const rows = [
-    { id: 1, lastName: 'Snow', firstName: 'Jon', age: 35 },
-    { id: 2, lastName: 'Lannister', firstName: 'Cersei', age: 42 },
-    { id: 3, lastName: 'Lannister', firstName: 'Jaime', age: 45 },
-    { id: 4, lastName: 'Stark', firstName: 'Arya', age: 16 },
-    { id: 5, lastName: 'Targaryen', firstName: 'Daenerys', age: null },
-    { id: 6, lastName: 'Melisandre', firstName: null, age: 150 },
-    { id: 7, lastName: 'Clifford', firstName: 'Ferrara', age: 44 },
-    { id: 8, lastName: 'Frances', firstName: 'Rossini', age: 36 },
-    { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
-  ];
 
+  const rows = [];
 
+  for (let i = 1; i < 25; i++) {
+    let pop = Math.floor(Math.random()*100000+1000000)+Math.floor(Math.random()*100000000)
+    let size = Math.floor(Math.random()*100000+5000)
+    let income = Math.floor(Math.random()*100000+50000)
+    let row = {id: String(i), pop:pop, vap:Math.floor(pop*0.78), size:size, dens:pop/size, income:income}
+    rows.push(row)
+  }
   
     
 export default function Plans() {

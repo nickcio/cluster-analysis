@@ -16,6 +16,8 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Button from "@mui/material/Button";
 
+let curStateLabel = "Please Select A State"
+
 export default function StateSelectBanner() {
   const { store } = useContext(GlobalStoreContext);
   let curState = store.currentState !== "" ? store.currentState : "";
@@ -30,21 +32,23 @@ export default function StateSelectBanner() {
 
   const handleChange = (event) => {
     let stateValue = event.target.value;
-
     if (stateValue == "Arizona") {
       store.setState(AZBorders,AZDistricts);
+      curStateLabel = "Arizona State Assembly District Plan"
       // if(store.currentEnsemble !== "")
       // {
       //   store.setEnsemble("");
       // }
     } else if (stateValue == "South Carolina") {
       store.setState(SCBorders,SCDistricts);
+      curStateLabel = "South Carolina State Senate District Plan"
       // if(store.currentEnsemble !== "")
       // {
       //   store.setEnsemble("");
       // }
     } else if (stateValue == "Texas") {
       store.setState(TXBorders,TXDistricts);
+      curStateLabel = "Texas Federal Congressional District Plan"
       // if(store.currentEnsemble !== "")
       // {
       //   store.setEnsemble("");
@@ -82,6 +86,7 @@ export default function StateSelectBanner() {
         </FormControl>
       </Grid>
       <Grid item xs={8}>
+        {curStateLabel}
       </Grid>
     </Grid>
   );
