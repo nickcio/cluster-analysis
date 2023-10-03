@@ -15,6 +15,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
 
 let curStateLabel = "Please Select A State"
 
@@ -28,27 +29,43 @@ export default function StateSelectBanner() {
 
   let dropLabel =
     curState !== "" ? curState.features[0].properties.NAME : "Select State";
+  if (dropLabel === "Arizona") {
+    curStateLabel = <Typography fontWeight="bold" fontSize={20}>
+                      Arizona State Assembly District Plan
+                    </Typography>
+  }
+  else if (dropLabel === "South Carolina") {
+    curStateLabel = <Typography fontWeight="bold" fontSize={20}>
+                      South Carolina State Senate District Plan
+                    </Typography> 
+  }
+  else if (dropLabel === "Texas") {
+    curStateLabel = <Typography fontWeight="bold" fontSize={20}>
+                      Texas Federal Congressional District Plan
+                    </Typography> 
+  }
+
   console.log(`Drop Label: ${dropLabel}`);
 
   const handleChange = (event) => {
     let stateValue = event.target.value;
     if (stateValue == "Arizona") {
       store.setState(AZBorders,AZDistricts);
-      curStateLabel = "Arizona State Assembly District Plan"
+      
       // if(store.currentEnsemble !== "")
       // {
       //   store.setEnsemble("");
       // }
     } else if (stateValue == "South Carolina") {
       store.setState(SCBorders,SCDistricts);
-      curStateLabel = "South Carolina State Senate District Plan"
+      
       // if(store.currentEnsemble !== "")
       // {
       //   store.setEnsemble("");
       // }
     } else if (stateValue == "Texas") {
       store.setState(TXBorders,TXDistricts);
-      curStateLabel = "Texas Federal Congressional District Plan"
+      
       // if(store.currentEnsemble !== "")
       // {
       //   store.setEnsemble("");
