@@ -103,7 +103,7 @@ export default function StateSelectBanner() {
           </Select>
         </FormControl>
       </Grid>
-      <Grid item xs={8}>
+      <Grid item xs={8} style={{ fontSize: 20, fontWeight: "500" }}>
         {curStateLabel}
       </Grid>
     </Grid>

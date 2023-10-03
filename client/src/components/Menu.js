@@ -9,6 +9,8 @@ import Clusters from './Clusters';
 import DistanceMeasure from './DistanceMeasure';
 import DistrictPlans from './DistrictPlans';
 
+import eaglesLogo from "./images/logo.png";
+
 export default function Menu() {
     const { store } = useContext(GlobalStoreContext);
     let curState = store.currentState !== "" ? store.currentState : ""
@@ -16,6 +18,7 @@ export default function Menu() {
     let curCluster = store.currentCluster !== "" ? store.currentCluster : ""
     let curDistance = store.currentDistance !== "" ? store.currentDistance : ""
     let displayName = curState !== "" ? store.currentState.features[0].properties.NAME : "NO STATE"
+
     let menuDisplay = <></>
     if (curCluster !== "") {
         menuDisplay = <DistrictPlans/>
@@ -33,6 +36,21 @@ export default function Menu() {
         menuDisplay = <EnsembleSelection/>
         console.log("Inside the Ensemble if statement")
     }
+    else {
+        menuDisplay = 
+        <Box
+            sx={{width: "50vw", height: "85vh"}}
+            style={{display: "flex", alignItems: "center", justifyContent: "center"}}
+        >
+            <Box
+                component="img"
+                sx={{height: 400, width: 600}}
+                style={{opacity: 0.2, left: 5000, top: 200}}
+                alt="Eagles Logo"
+                src={eaglesLogo}
+            />
+        </Box>
+    }
     /*
     What we want to do:
         Select Screen: Over view of what we do or whatever
@@ -46,7 +64,7 @@ export default function Menu() {
     */
    
     return (
-        <Box sx={{bgcolor: "lightgrey"}} style={{width: "50vw", height: "93vh"}}>
+        <Box sx={{bgcolor: "#e5eef3"}} style={{width: "50vw", height: "93vh"}}>
             <StateSelectBanner/>
             {menuDisplay}
         </Box>

@@ -1,16 +1,19 @@
+import React, { useContext, useState } from "react";
+import { GlobalStoreContext } from "../store";
 import AppBar from "@mui/material/AppBar";
 import Toolbar from "@mui/material/Toolbar";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
-import RefreshIcon from '@mui/icons-material/Replay';
+import RefreshIcon from "@mui/icons-material/Replay";
 
 import eaglesLogo from "./images/logo.png";
 
 export default function AppBanner() {
+  const { store } = useContext(GlobalStoreContext);
   // Placeholder, for now it refreshes the page but it should probably be that only the gui components revert
   const handleRefreshButton = () => {
-    window.location.reload();
+    store.setState("", "");
   };
 
   return (
@@ -35,8 +38,8 @@ export default function AppBanner() {
         <Box>
           <IconButton
             size="medium"
-            sx={{color: "white" }}
-            style={{fontWeight: "bold" }}
+            sx={{ color: "white" }}
+            style={{ fontWeight: "bold" }}
             onClick={handleRefreshButton}
           >
             <RefreshIcon sx={{ color: "white" }}></RefreshIcon>
