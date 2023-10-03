@@ -27,3 +27,7 @@
   font-family: 'Noto Serif', serif;
   margin: 20%;
 }
+
+.MuiDataGrid-row.Mui-odd {
+  background-color: aliceblue;
+}

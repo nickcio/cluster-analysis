@@ -8,10 +8,10 @@ import { DataGrid } from '@mui/x-data-grid';
 
 
 const columns = [
-    { field: 'id', headerName: 'ID', width: 20 },
-    { field: 'clusterSize', headerName: 'Cluster Size', type: 'number', width: 130 },
-    { field: 'demDistricts', headerName: 'Democratic Districts', type: 'number', width: 140 },
-    { field: 'repDistricts', headerName: 'Republican Districts', type: 'number', width: 140 },
+    { field: 'id', headerName: 'Cluster #', width: 70 },
+    { field: 'clusterSize', headerName: 'Cluster Size', type: 'number', width: 100 },
+    { field: 'demDistricts', headerName: '% Democratic', type: 'number', width: 140 },
+    { field: 'repDistricts', headerName: '% Republican', type: 'number', width: 140 },
     {
       field: 'ratio',
       headerName: 'R:D Ratio',
@@ -20,15 +20,15 @@ const columns = [
     },
     {
       field: 'aaod',
-      headerName: 'AAOD',
-      description: 'African-American Opportunity Districts',
+      headerName: '% AA',
+      description: '% African-American',
       type: 'number',
       width: 90,
     },
     {
       field: 'hod',
-      headerName: 'HOD',
-      description: 'Hispanic Opportunity Districts',
+      headerName: '% H',
+      description: '% Hispanic',
       type: 'number',
       width: 90,
     },
@@ -43,15 +43,21 @@ const columns = [
     let rat = rep/dem
     let aaod = Math.floor(dem*Math.random())
     let hod = Math.floor(dem*Math.random())
-    let row = {id: String(i), clusterSize:size, demDistricts:dem, repDistricts:rep, ratio:rat, aaod:aaod, hod:hod}
+    let row = {id: String(i), clusterSize:size, demDistricts:dem/size*100, repDistricts:rep/size*100, ratio:rat, aaod:aaod/size*100, hod:hod/size*100}
     rows.push(row)
   }
-
-  
     
 export default function Clusters() {
+  const { store } = useContext(GlobalStoreContext);
+  const handleEvent = (params, event, details, ) => {
+    store.setCluster("Cluster");
+  };
 
-
+  const postRowStyle = (record,index) => {
+    console.log("POST ROW STYLE! " + {record} + " " + {index})
+    console.log({record})
+    //return backgroundColor: record.id % 2 == 0 ? 'black' : 'white',
+  };
     /*
        Here we make the table for the cluster data with the scatter plot above where when we open it opns the individualized district
        plans within the cluster
@@ -163,7 +169,10 @@ export default function Clusters() {
                 }}
                 sx ={{height:"55%"}}
                 getRowHeight={() => 'auto'}
-                
+                onRowClick={handleEvent}
+                getRowClassName={(params) =>
+                  params.indexRelativeToCurrentPage % 2 === 0 ? 'Mui-even' : 'Mui-odd'
+                }
 
             />
         </Box>      
