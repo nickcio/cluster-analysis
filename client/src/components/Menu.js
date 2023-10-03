@@ -7,19 +7,14 @@ import EnsembleSelection from "./EnsembleSelection"
 import Box from "@mui/material/Box";
 import Clusters from './Clusters';
 import DistanceMeasure from './DistanceMeasure';
-import DistrictPlans from './DistrictPlans';
 
 export default function Menu() {
     const { store } = useContext(GlobalStoreContext);
     let curState = store.currentState !== "" ? store.currentState : ""
     let curEnsemble = store.currentEnsemble !== "" ? store.currentEnsemble : ""
-    let curCluster = store.currentCluster !== "" ? store.currentCluster : ""
     let displayName = curState !== "" ? store.currentState.features[0].properties.NAME : "NO STATE"
     let menuDisplay = <></>
-    if (curCluster !== "") {
-        menuDisplay = <DistrictPlans/>
-    }
-    else if (curEnsemble !== "") {
+    if (curEnsemble !== "") {
         menuDisplay = <Clusters/>
     }
     else if (curState !== "") {

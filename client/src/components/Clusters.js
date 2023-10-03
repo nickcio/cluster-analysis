@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { GlobalStoreContext } from '../store'
-import BubbleChart from './BubbleChart';
+
 import ReactApexChart from 'react-apexcharts';
 import {Box, List, ListItem, TextField, Table, TableBody, TableCell, TableContainer, TableHead,
         TableRow, Paper} from '@mui/material';
@@ -36,19 +36,6 @@ const columns = [
   
   const rows = [];
 
-  for(let i = 1; i < 25; i++) {
-    let size = Math.floor(Math.random()*500+10)
-    let dem = size*Math.random()
-    let rep = size-dem
-    let rat = rep/dem
-    let aaod = Math.floor(dem*Math.random())
-    let hod = Math.floor(dem*Math.random())
-    let row = {id: String(i), clusterSize:size, demDistricts:dem, repDistricts:rep, ratio:rat, aaod:aaod, hod:hod}
-    rows.push(row)
-  }
-
-  
-    
 export default function Clusters() {
 
 
@@ -91,52 +78,55 @@ export default function Clusters() {
         dataLabels: {
             enabled: false,
         },
-        colors: ['#008FFB', '#00E396', '#FEB019', '#A65FEC'],
+        colors: ['white', '#008FFB', '#00E396', '#FEB019', '#A65FEC', 'white'],
         xaxis: {
             type: 'numeric',
             title: {
-            text: 'Distance',
             forceNiceScale: false,
             min: 0,            
             max: 15,
             },
         },
         yaxis: {
-            title: {
-            text: 'State Range',
-            },
         },
         };
     
         const bubbleChartData = [
         {
-            name: 'Testing the cluster here in Arizona #1',
+            name: "",
+            data: [
+            { x: 0, y: 0, z: 0 },
+            ],
+        },
+        {
+            name: 'Cluster #1',
             label: 'Arizona Cluster #123132', 
             data: [
-            { x: 9, y: 15, z: 10 },
-            { x: 9, y: 2, z: 100 },
-            { x: 4, y: 12, z: 300 },
+            { x: 4, y: 12, z: 500 },
             ],
         },
         {
-            name: 'Testing the cluster here in Arizona #2',
+            name: 'Cluster #2',
             data: [
-            { x: 2, y: 10, z: 20 },
-            { x: 2, y: 5, z: 300 },
+            { x: 7, y: 5, z: 300 },
             ],
         },
         {
-            name: 'Testing the cluster here in Arizona #3',
+            name: 'Cluster #3',
             data: [
-            { x: 12, y: 30, z: 30},
             { x: 12, y: 10, z: 250},
             ],
         },
         {
-            name: 'Testing the cluster here in Arizona #4',
+            name: 'Cluster #4',
             data: [
-            { x: 5, y: 23, z: 20 },
-            { x: 5, y: 12, z: 200 },
+            { x: 8, y: 6, z: 200 },
+            ],
+        },
+        {
+            name: "",
+            data: [
+            { x: 15, y: 15, z: 0 },
             ],
         },
         // Add more series if needed
@@ -145,11 +135,7 @@ export default function Clusters() {
 
     return (
         <Box style={{width: "50vw", height: "85vh", }} sx={{bgcolor: "white"}}>
-            <Box style={{width: "50vw", height: "35vh", }}>
-                 <BubbleChart/>
-            </Box>
-            
-            {/* <ReactApexChart options={bubbleChartOptions} series={bubbleChartData} type="bubble" height={"45%"} width={"99%"}/> */}
+            <ReactApexChart options={bubbleChartOptions} series={bubbleChartData} type="bubble" height={"45%"} width={"99%"}/>
             <DataGrid
                 rows={rows}
                 columns={columns}
