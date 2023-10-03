@@ -6,6 +6,7 @@ import EnsembleSelection from "./EnsembleSelection"
 
 import Box from "@mui/material/Box";
 import Clusters from './Clusters';
+import DistanceMeasure from './DistanceMeasure';
 
 export default function Menu() {
     const { store } = useContext(GlobalStoreContext);
@@ -32,9 +33,10 @@ export default function Menu() {
     */
    
     return (
-        <Box sx={{bgcolor: "lightgrey"}} style={{width: "60vw", height: "93vh"}}>
+        <Box sx={{bgcolor: "lightgrey"}} style={{width: "50vw", height: "93vh"}}>
             <StateSelectBanner/>
             {menuDisplay}
+            <DistanceMeasure/>
         </Box>
     )
 }

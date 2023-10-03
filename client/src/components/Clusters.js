@@ -8,21 +8,22 @@ import { DataGrid } from '@mui/x-data-grid';
 
 
 const columns = [
-    { field: 'id', headerName: 'ID', width: 70 },
-    { field: 'firstName', headerName: 'First name', width: 130 },
-    { field: 'lastName', headerName: 'Last name', width: 130 },
+    { field: 'id', headerName: 'ID', width: 20 },
+    { field: 'clusterSize', headerName: 'Cluster Size', type: 'number', width: 130 },
+    { field: 'demDistricts', headerName: 'Democratic Districts', type: 'number', width: 140 },
+    { field: 'repDistricts', headerName: 'Republican Districts', type: 'number', width: 140 },
     {
-      field: 'age',
-      headerName: 'Age',
+      field: 'ratio',
+      headerName: 'R:D Ratio',
       type: 'number',
       width: 90,
     },
     {
-      field: 'fullName',
-      headerName: 'Full name',
-      description: 'This column has a value getter and is not sortable.',
-      sortable: false,
-      width: 160,
+      field: 'aaod',
+      headerName: 'AAOD',
+      description: 'African-American Opportunity Districts',
+      type: 'number',
+      width: 90,
       valueGetter: (params) =>
         `${params.row.firstName || ''} ${params.row.lastName || ''}`,
     },
@@ -82,48 +83,55 @@ export default function Clusters() {
         dataLabels: {
             enabled: false,
         },
-        colors: ['#008FFB', '#00E396', '#FEB019', '#A65FEC'],
+        colors: ['white', '#008FFB', '#00E396', '#FEB019', '#A65FEC', 'white'],
         xaxis: {
             type: 'numeric',
             title: {
-            text: 'Distance',
             forceNiceScale: false,
             min: 0,            
             max: 15,
             },
         },
         yaxis: {
-            title: {
-            text: 'State Range',
-            },
         },
         };
     
         const bubbleChartData = [
         {
-            name: 'Testing the cluster here in Arizona #1',
+            name: "",
+            data: [
+            { x: 0, y: 0, z: 0 },
+            ],
+        },
+        {
+            name: 'Cluster #1',
             label: 'Arizona Cluster #123132', 
             data: [
-            { x: 9, y: 2, z: 100 },
-            { x: 4, y: 12, z: 300 },
+            { x: 4, y: 12, z: 500 },
             ],
         },
         {
-            name: 'Testing the cluster here in Arizona #2',
+            name: 'Cluster #2',
             data: [
-            { x: 2, y: 5, z: 300 },
+            { x: 7, y: 5, z: 300 },
             ],
         },
         {
-            name: 'Testing the cluster here in Arizona #3',
+            name: 'Cluster #3',
             data: [
             { x: 12, y: 10, z: 250},
             ],
         },
         {
-            name: 'Testing the cluster here in Arizona #4',
+            name: 'Cluster #4',
             data: [
-            { x: 5, y: 12, z: 200 },
+            { x: 8, y: 6, z: 200 },
+            ],
+        },
+        {
+            name: "",
+            data: [
+            { x: 15, y: 15, z: 0 },
             ],
         },
         // Add more series if needed
@@ -131,14 +139,14 @@ export default function Clusters() {
 
 
     return (
-        <Box style={{width: "50vw", height: "85vh"}}>
+        <Box style={{width: "50vw", height: "85vh", }} sx={{bgcolor: "white"}}>
             <ReactApexChart options={bubbleChartOptions} series={bubbleChartData} type="bubble" height={"45%"} width={"99%"}/>
             <DataGrid
                 rows={rows}
                 columns={columns}
                 initialState={{
                 pagination: {
-                    paginationModel: { page: 0, pageSize: 11 },
+                    paginationModel: { page: 0, pageSize: 10},
                 },
                 }}
                 sx ={{height:"55%"}}

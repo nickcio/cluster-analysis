@@ -5,6 +5,7 @@ import EnsembleSelection from "./EnsembleSelection"
 import Clusters from "./Clusters"
 import Body from "./Body";
 import StateSelectBanner from "./StateSelectBanner"
+import DistanceMeasure from "./DistanceMeasure"
 
 export {
     AppBanner,
@@ -13,5 +14,6 @@ export {
     EnsembleSelection,
     Clusters,
     Body,
-    StateSelectBanner
+    StateSelectBanner,
+    DistanceMeasure
 }
