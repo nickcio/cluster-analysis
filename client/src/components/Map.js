@@ -135,6 +135,9 @@ export default function Map() {
     }
 
     const districtAZ = (feature, layer) => {
+        if (feature.properties && feature.properties.LONGNAME) {
+            layer.bindPopup(feature.properties.LONGNAME);
+        }
         const clicked = () => {
             console.log(feature);
         }
@@ -154,6 +157,9 @@ export default function Map() {
     }
 
     const districtTX = (feature, layer) => {
+        if (feature.properties && feature.properties.LONGNAME) {
+            layer.bindPopup(feature.properties.LONGNAME);
+        }
         const clicked = () => {
             //send info to change the district
         }
@@ -173,6 +179,10 @@ export default function Map() {
     }
 
     const districtSC = (feature, layer) => {
+        console.log(feature.properties, feature.properties.DISTRICT, feature);
+        if (feature.properties && feature.properties.DISTRICT) {
+            layer.bindPopup("District " + feature.properties.DISTRICT);
+        }
         const clicked = () => {
             //send info to change the district
         }

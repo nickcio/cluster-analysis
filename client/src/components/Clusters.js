@@ -104,25 +104,26 @@ export default function Clusters() {
             name: 'Testing the cluster here in Arizona #1',
             label: 'Arizona Cluster #123132', 
             data: [
-            { x: 9, y: 15, z: 10 },
+            { x: 9, y: 2, z: 100 },
+            { x: 4, y: 12, z: 300 },
             ],
         },
         {
             name: 'Testing the cluster here in Arizona #2',
             data: [
-            { x: 2, y: 10, z: 20 },
+            { x: 2, y: 5, z: 300 },
             ],
         },
         {
             name: 'Testing the cluster here in Arizona #3',
             data: [
-            { x: 12, y: 30, z: 30},
+            { x: 12, y: 10, z: 250},
             ],
         },
         {
             name: 'Testing the cluster here in Arizona #4',
             data: [
-            { x: 5, y: 23, z: 20 },
+            { x: 5, y: 12, z: 200 },
             ],
         },
         // Add more series if needed
