@@ -79,7 +79,7 @@ export default function StateSelectBanner() {
     <Grid
       container
       spacing={0}
-      sx={{ bgcolor: "white", borderBottom: "solid black 1px" }}
+      sx={{ bgcolor: "white" }}
       style={{ height: "8vh", display: "flex", alignItems: "center" }}
     >
       <Grid item xs={4}>
