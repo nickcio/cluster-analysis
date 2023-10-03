@@ -17,11 +17,12 @@ import InputLabel from "@mui/material/InputLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 
-let curStateLabel = "Please Select A State"
+//let curStateLabel = "Please Select A State"
 
 export default function StateSelectBanner() {
   const { store } = useContext(GlobalStoreContext);
   let curState = store.currentState !== "" ? store.currentState : "";
+  let curStateLabel = "Please Select A State"
   console.log("CUR STATE " + curState);
   if (curState !== "") {
     console.log(curState.features[0].properties.NAME);

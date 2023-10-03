@@ -15,6 +15,10 @@ export default function EnsembleSelection() {
     function handleClickEnsemble(e) {
         store.setEnsemble("Placeholder");
     }
+    function handleClickDistance(e) {
+        store.setDistance("Placeholder");
+    }
+    //<DistanceMeasure/>
     
     return (
         <Box style={{width: "50vw", height: "85vh"}}>
@@ -43,6 +47,7 @@ export default function EnsembleSelection() {
                         variant="contained"
                         style={{ height: "5vh", width: "13vw", fontWeight: "bold" }}
                         sx={{bgcolor: "#33586f"}}
+                        onClick={handleClickDistance}
                         >
                             Distance Details
                         </Button>

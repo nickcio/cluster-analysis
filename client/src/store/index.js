@@ -5,7 +5,8 @@ export const GlobalStoreContext = createContext({});
 export const GlobalStoreActionType = {
     SET_STATE: "SET_STATE",
     SET_ENSEMBLE: "SET_ENSEMBLE",
-    SET_CLUSTER: "SET_CLUSTER"
+    SET_CLUSTER: "SET_CLUSTER",
+    SET_DISTANCE: "SET_DISTANCE"
 }
 
 function GlobalStoreContextProvider(props) {
@@ -14,7 +15,8 @@ function GlobalStoreContextProvider(props) {
         currentState: "",
         currentDistricts: "",
         currentEnsemble: "",
-        currentCluster: ""
+        currentCluster: "",
+        currentDistance: ""
     });
 
     const storeReducer = (action) => {
@@ -28,7 +30,8 @@ function GlobalStoreContextProvider(props) {
                     currentState: payload.state,
                     currentDistricts: payload.districts,
                     currentEnsemble:payload.ensemble,
-                    currentCluster:payload.cluster
+                    currentCluster:payload.cluster,
+                    currentDistance:payload.distance
                 });
             }
             case GlobalStoreActionType.SET_ENSEMBLE: {
@@ -44,6 +47,12 @@ function GlobalStoreContextProvider(props) {
                     currentCluster: payload.cluster
                 });
             }
+            case GlobalStoreActionType.SET_DISTANCE: {
+                return setStore({
+                    ...store,
+                    currentDistance: payload.distance
+                });
+            }
             default:
                 return store;
         }
@@ -54,7 +63,7 @@ function GlobalStoreContextProvider(props) {
         console.log(state)
         storeReducer({
             type: GlobalStoreActionType.SET_STATE,
-            payload: {state:state,districts:districts,ensemble:"",cluster:""}
+            payload: {state:state,districts:districts,ensemble:"",cluster:"",distance:""}
         });
 
     }
@@ -64,7 +73,16 @@ function GlobalStoreContextProvider(props) {
         console.log(ensemble)
         storeReducer({
             type: GlobalStoreActionType.SET_ENSEMBLE,
-            payload: {ensemble:ensemble,cluster:""}
+            payload: {ensemble:ensemble,cluster:"",distance:""}
+        });
+    }
+
+    store.setDistance = async function(distance) {
+        console.log("Distance CHANGED TO: ")
+        console.log(distance)
+        storeReducer({
+            type: GlobalStoreActionType.SET_DISTANCE,
+            payload: {distance:distance}
         });
 
     }
@@ -74,7 +92,7 @@ function GlobalStoreContextProvider(props) {
         console.log(cluster)
         storeReducer({
             type: GlobalStoreActionType.SET_CLUSTER,
-            payload: {cluster:cluster}
+            payload: {cluster:cluster,distance:""}
         });
 
     }

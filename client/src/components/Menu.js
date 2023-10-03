@@ -14,16 +14,24 @@ export default function Menu() {
     let curState = store.currentState !== "" ? store.currentState : ""
     let curEnsemble = store.currentEnsemble !== "" ? store.currentEnsemble : ""
     let curCluster = store.currentCluster !== "" ? store.currentCluster : ""
+    let curDistance = store.currentDistance !== "" ? store.currentDistance : ""
     let displayName = curState !== "" ? store.currentState.features[0].properties.NAME : "NO STATE"
     let menuDisplay = <></>
     if (curCluster !== "") {
         menuDisplay = <DistrictPlans/>
+        console.log("Inside the Menu if statement")
+    }
+    else if(curDistance !== "") {
+        menuDisplay = <DistanceMeasure/>
+        console.log("Inside the Distance if statement" + {curDistance})
     }
     else if (curEnsemble !== "") {
         menuDisplay = <Clusters/>
+        console.log("Inside the Clusters if statement")
     }
     else if (curState !== "") {
         menuDisplay = <EnsembleSelection/>
+        console.log("Inside the Ensemble if statement")
     }
     /*
     What we want to do:
@@ -41,7 +49,6 @@ export default function Menu() {
         <Box sx={{bgcolor: "lightgrey"}} style={{width: "50vw", height: "93vh"}}>
             <StateSelectBanner/>
             {menuDisplay}
-            <DistanceMeasure/>
         </Box>
     )
 }

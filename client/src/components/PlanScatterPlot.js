@@ -31,6 +31,12 @@ function PlanScatterPlot() {
               backgroundColor: 'rgba(12, 12, 12, 0.6)',
               borderColor: 'rgba(12, 12, 13, 1)'
             },
+            {
+                label: 'Current Plan',
+                data: [{x:15,y:15}],
+                backgroundColor: 'rgba(255, 0, 0, 0.6)',
+                borderColor: 'rgba(255, 0, 0, 1)'
+            },
           ],
         },
         options: {
