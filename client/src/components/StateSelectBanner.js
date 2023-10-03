@@ -15,9 +15,9 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-
-let curStateLabel = "Please Select A State"
+import Typography from '@mui/material/Typography';
+import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Link from '@mui/material/Link';
 
 export default function StateSelectBanner() {
   const { store } = useContext(GlobalStoreContext);
@@ -74,6 +74,10 @@ export default function StateSelectBanner() {
 
   };
 
+  console.log(store);
+
+  let breadcrumbs = [...store.pathToCurrent];
+  breadcrumbs.pop();
   return (
     <Grid
       container
@@ -102,6 +106,19 @@ export default function StateSelectBanner() {
           </Select>
         </FormControl>
       </Grid>
+      <Breadcrumbs aria-label="breadcrumb">
+        {breadcrumbs.map((item, index) => (
+          <Link
+            key={index}
+            underline="hover"
+            color="inherit"
+            href={item.link}
+          >
+            {item.label}
+          </Link>
+        ))}
+        <Typography color="text.primary">{store.pathToCurrent[store.pathToCurrent.length - 1].label}</Typography>
+      </Breadcrumbs>
       <Grid item xs={8}>
         {curStateLabel}
       </Grid>

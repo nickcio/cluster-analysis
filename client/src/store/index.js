@@ -5,7 +5,7 @@ export const GlobalStoreContext = createContext({});
 export const GlobalStoreActionType = {
     SET_STATE: "SET_STATE",
     SET_ENSEMBLE: "SET_ENSEMBLE",
-    SET_CLUSTER: "SET_CLUSTER"
+    UPDATE_PATH: "UPDATE_PATH"
 }
 
 function GlobalStoreContextProvider(props) {
@@ -14,7 +14,7 @@ function GlobalStoreContextProvider(props) {
         currentState: "",
         currentDistricts: "",
         currentEnsemble: "",
-        currentCluster: ""
+        pathToCurrent: [{label:'Home', link:'/'}]
     });
 
     const storeReducer = (action) => {
@@ -27,21 +27,21 @@ function GlobalStoreContextProvider(props) {
                     ...store,
                     currentState: payload.state,
                     currentDistricts: payload.districts,
-                    currentEnsemble:payload.ensemble,
-                    currentCluster:payload.cluster
+                    currentEnsemble:payload.currentEnsemble,
+                    pathToCurrent: payload.pathToCurrent
                 });
             }
             case GlobalStoreActionType.SET_ENSEMBLE: {
                 return setStore({
                     ...store,
                     currentEnsemble: payload.ensemble,
-                    currentCluster: payload.cluster
+                    pathToCurrent: payload.pathToCurrent
                 });
             }
-            case GlobalStoreActionType.SET_CLUSTER: {
+            case GlobalStoreActionType.UPDATE_PATH: {
                 return setStore({
                     ...store,
-                    currentCluster: payload.cluster
+                    pathToCurrent: payload
                 });
             }
             default:
@@ -52,9 +52,11 @@ function GlobalStoreContextProvider(props) {
     store.setState = async function(state,districts) {
         console.log("STATE CHANGED TO: ")
         console.log(state)
+        const payload_path = store.pathToCurrent;
+        payload_path.push({label:state.features[0].properties.NAME, link:"/state"});
         storeReducer({
             type: GlobalStoreActionType.SET_STATE,
-            payload: {state:state,districts:districts,ensemble:"",cluster:""}
+            payload: {state:state,districts:districts,currentEnsemble:"", pathToCurrent:payload_path}
         });
 
     }
@@ -62,21 +64,22 @@ function GlobalStoreContextProvider(props) {
     store.setEnsemble = async function(ensemble) {
         console.log("ENSEMBLE CHANGED TO: ")
         console.log(ensemble)
+        const payload_path = store.pathToCurrent;
+        payload_path.push({label:"Ensemble 1", link:"/state/ensemble"});
         storeReducer({
             type: GlobalStoreActionType.SET_ENSEMBLE,
-            payload: {ensemble:ensemble,cluster:""}
+            payload: {ensemble:ensemble, pathToCurrent:payload_path}
         });
 
     }
 
-    store.setCluster = async function(cluster) {
-        console.log("CLUSTER CHANGED TO: ")
-        console.log(cluster)
+    store.updatePath = async function(pathAddition) {
+        const payload = store.pathToCurrent;
+        payload.push(pathAddition);
         storeReducer({
-            type: GlobalStoreActionType.SET_CLUSTER,
-            payload: {cluster:cluster}
+            type: GlobalStoreActionType.UPDATE_PATH,
+            payload: payload
         });
-
     }
 
     return (
