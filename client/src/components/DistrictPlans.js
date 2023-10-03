@@ -9,8 +9,8 @@ import { DataGrid } from '@mui/x-data-grid';
 
 const columns = [
     { field: 'id', headerName: 'District', width: 60 },
-    { field: 'pop', headerName: 'Pop.', type: 'number', width: 130 },
     { field: 'vap', headerName: 'Voting Age Pop.', type: 'number', width: 140 },
+    { field: 'pop', headerName: 'African-American Pop.', type: 'number', width: 160 },
     { field: 'size', headerName: 'Size (km²)', type: 'number', width: 100 },
     {
       field: 'dens',
@@ -35,7 +35,7 @@ const columns = [
     let pop = Math.floor(Math.random()*100000+1000000)+Math.floor(Math.random()*100000000)
     let size = Math.floor(Math.random()*100000+5000)
     let income = Math.floor(Math.random()*100000+50000)
-    let row = {id: String(i), pop:pop, vap:Math.floor(pop*0.78), size:size, dens:pop/size, income:income}
+    let row = {id: String(i), pop:Math.floor(pop*Math.random()), vap:Math.floor(pop*0.78), size:size, dens:pop/size, income:income}
     rows.push(row)
   }
   
@@ -154,7 +154,9 @@ export default function Plans() {
                 }}
                 sx ={{height:"55%"}}
                 getRowHeight={() => 'auto'}
-                
+                getRowClassName={(params) =>
+                  params.indexRelativeToCurrentPage % 2 === 0 ? 'Mui-even' : 'Mui-odd'
+                }
 
             />
         </Box>      

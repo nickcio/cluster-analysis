@@ -28,27 +28,33 @@ function BubbleChart() {
           datasets: [
             {
               label: 'Cluster #1',
-              data: [{x:Math.random()*25+2,y:Math.random()*25+5,r:Math.random()*17+5}],
+              data: [{x:Math.random()*25+20,y:Math.random()*125+15,r:Math.random()*17+5}],
               backgroundColor: 'rgba(175, 92, 132, 0.6)',
               borderColor: 'rgba(175, 92, 132, 1)'
             },
             {
               label: 'Cluster #2',
-              data: [{x:Math.random()*25+2,y:Math.random()*25+5,r:Math.random()*55+5}],
+              data: [{x:Math.random()*25+50,y:Math.random()*25+155,r:Math.random()*55+5}],
               backgroundColor: 'rgba(92, 175, 132, 0.6)',
               borderColor: 'rgba(92, 175, 132, 1)'
             },
             {
               label: 'Cluster #3',
-              data: [{x:Math.random()*25+2,y:Math.random()*25+5,r:Math.random()*25+20}],
+              data: [{x:Math.random()*25+20,y:Math.random()*125+150,r:Math.random()*25+20}],
               backgroundColor: 'rgba(62, 75, 172, 0.6)',
               borderColor: 'rgba(62, 75, 172, 1)'
             },
             {
               label: 'Cluster #4',
-              data: [{x:Math.random()*25+2,y:Math.random()*25+5,r:Math.random()*17+5}],
+              data: [{x:Math.random()*25+70,y:Math.random()*125+70,r:Math.random()*17+5}],
               backgroundColor: 'rgba(75, 200, 233, 0.6)',
               borderColor: 'rgba(75, 200, 233, 1)'
+            },
+            {
+              label: 'Cluster #5',
+              data: [{x:Math.random()*25+25,y:Math.random()*25+25,r:Math.random()*17+5}],
+              backgroundColor: 'rgba(205, 200, 33, 0.6)',
+              borderColor: 'rgba(205, 200, 33, 1)'
             },
           ],
         },
@@ -57,12 +63,20 @@ function BubbleChart() {
           maintainAspectRatio: false,
           scales: {
             y: {
+              title: {
+                display: true,
+                text: "# of districts w/ African-American pop. > 50%"
+              },
               suggestedMin: 0, // Set the minimum value for the y-axis
-              suggestedMax: 30
+              suggestedMax: 300
             },
             x: {
+              title: {
+                display: true,
+                text: "Avg. African-American pop. %"
+              },
                 suggestedMin: 0, // Set the minimum value for the y-axis
-                suggestedMax: 30
+                suggestedMax: 100
               },
           },
         },

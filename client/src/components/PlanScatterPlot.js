@@ -44,10 +44,18 @@ function PlanScatterPlot() {
           maintainAspectRatio: false,
           scales: {
             y: {
+              title: {
+                display: true,
+                label: "Avg. Household Income"
+              },
               suggestedMin: 0, // Set the minimum value for the y-axis
               suggestedMax: 30
             },
             x: {
+              title: {
+                display: true,
+                label: "% African-American Pop."
+              },
                 suggestedMin: 0, // Set the minimum value for the y-axis
                 suggestedMax: 30
               },

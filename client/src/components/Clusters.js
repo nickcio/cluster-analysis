@@ -18,70 +18,57 @@ import {
 import { DataGrid } from "@mui/x-data-grid";
 
 const columns = [
-  { field: "id", headerName: "ID", width: 20 },
-  {
-    field: "clusterSize",
-    headerName: "Cluster Size",
-    type: "number",
-    width: 130,
-  },
-  {
-    field: "demDistricts",
-    headerName: "Democratic Districts",
-    type: "number",
-    width: 140,
-  },
-  {
-    field: "repDistricts",
-    headerName: "Republican Districts",
-    type: "number",
-    width: 140,
-  },
-  {
-    field: "ratio",
-    headerName: "R:D Ratio",
-    type: "number",
-    width: 90,
-  },
-  {
-    field: "aaod",
-    headerName: "AAOD",
-    description: "African-American Opportunity Districts",
-    type: "number",
-    width: 90,
-  },
-  {
-    field: "hod",
-    headerName: "HOD",
-    description: "Hispanic Opportunity Districts",
-    type: "number",
-    width: 90,
-  },
-];
+    { field: 'id', headerName: 'Cluster #', width: 70 },
+    { field: 'clusterSize', headerName: 'Cluster Size', type: 'number', width: 100 },
+    { field: 'demDistricts', headerName: '% Democratic', type: 'number', width: 140 },
+    { field: 'repDistricts', headerName: '% Republican', type: 'number', width: 140 },
+    {
+      field: 'ratio',
+      headerName: 'R:D Ratio',
+      type: 'number',
+      width: 90,
+    },
+    {
+      field: 'aaod',
+      headerName: '% AA',
+      description: '% African-American',
+      type: 'number',
+      width: 90,
+    },
+    {
+      field: 'hod',
+      headerName: '% H',
+      description: '% Hispanic',
+      type: 'number',
+      width: 90,
+    },
+  ];
+  
+  const rows = [];
 
-const rows = [];
-
-for (let i = 1; i < 25; i++) {
-  let size = Math.floor(Math.random() * 500 + 10);
-  let dem = size * Math.random();
-  let rep = size - dem;
-  let rat = rep / dem;
-  let aaod = Math.floor(dem * Math.random());
-  let hod = Math.floor(dem * Math.random());
-  let row = {
-    id: String(i),
-    clusterSize: size,
-    demDistricts: dem,
-    repDistricts: rep,
-    ratio: rat,
-    aaod: aaod,
-    hod: hod,
-  };
-  rows.push(row);
-}
-
+  for(let i = 1; i < 25; i++) {
+    let size = Math.floor(Math.random()*500+10)
+    let dem = size*Math.random()
+    let rep = size-dem
+    let rat = rep/dem
+    let aaod = Math.floor(dem*Math.random())
+    let hod = Math.floor(dem*Math.random())
+    let row = {id: String(i), clusterSize:size, demDistricts:dem/size*100, repDistricts:rep/size*100, ratio:rat, aaod:aaod/size*100, hod:hod/size*100}
+    rows.push(row)
+  }
+    
 export default function Clusters() {
-  /*
+  const { store } = useContext(GlobalStoreContext);
+  const handleEvent = (params, event, details, ) => {
+    store.setCluster("Cluster");
+  };
+
+  const postRowStyle = (record,index) => {
+    console.log("POST ROW STYLE! " + {record} + " " + {index})
+    console.log({record})
+    //return backgroundColor: record.id % 2 == 0 ? 'black' : 'white',
+  };
+    /*
        Here we make the table for the cluster data with the scatter plot above where when we open it opns the individualized district
        plans within the cluster
 
@@ -133,46 +120,30 @@ export default function Clusters() {
   //     },
   //     };
 
-  //     const bubbleChartData = [
-  //     {
-  //         name: "",
-  //         data: [
-  //         { x: 0, y: 0, z: 0 },
-  //         ],
-  //     },
-  //     {
-  //         name: 'Cluster #1',
-  //         label: 'Arizona Cluster #123132',
-  //         data: [
-  //         { x: 4, y: 12, z: 500 },
-  //         ],
-  //     },
-  //     {
-  //         name: 'Cluster #2',
-  //         data: [
-  //         { x: 7, y: 5, z: 300 },
-  //         ],
-  //     },
-  //     {
-  //         name: 'Cluster #3',
-  //         data: [
-  //         { x: 12, y: 10, z: 250},
-  //         ],
-  //     },
-  //     {
-  //         name: 'Cluster #4',
-  //         data: [
-  //         { x: 8, y: 6, z: 200 },
-  //         ],
-  //     },
-  //     {
-  //         name: "",
-  //         data: [
-  //         { x: 15, y: 15, z: 0 },
-  //         ],
-  //     },
-  //     // Add more series if needed
-  //     ];
+    return (
+        <Box style={{width: "50vw", height: "85vh", }} sx={{bgcolor: "white"}}>
+            <Box style={{width: "50vw", height: "35vh", }}>
+                 <BubbleChart/>
+            </Box>
+            
+            {/* <ReactApexChart options={bubbleChartOptions} series={bubbleChartData} type="bubble" height={"45%"} width={"99%"}/> */}
+            <DataGrid
+                rows={rows}
+                columns={columns}
+                initialState={{
+                pagination: {
+                    paginationModel: { page: 0, pageSize: 10},
+                },
+                }}
+                sx ={{height:"55%"}}
+                getRowHeight={() => 'auto'}
+                onRowClick={handleEvent}
+                getRowClassName={(params) =>
+                  params.indexRelativeToCurrentPage % 2 === 0 ? 'Mui-even' : 'Mui-odd'
+                }
+                />
+            </Box>
+    );
 
   return (
     <Box style={{ width: "50vw", height: "85vh" }} sx={{ bgcolor: "white" }}>
