@@ -64,7 +64,7 @@ export default function Menu() {
     */
    
     return (
-        <Box sx={{bgcolor: "#e5eef3"}} style={{width: "50vw", height: "93vh"}}>
+        <Box sx={{bgcolor: "#e5eef3", borderLeft: "solid black 1px"}} style={{width: "50vw", height: "93vh"}}>
             <StateSelectBanner/>
             {menuDisplay}
         </Box>

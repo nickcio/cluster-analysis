@@ -79,7 +79,7 @@ export default function StateSelectBanner() {
     <Grid
       container
       spacing={0}
-      sx={{ bgcolor: "white" }}
+      sx={{ bgcolor: "white", borderBottom: "solid black 1px" }}
       style={{ height: "8vh", display: "flex", alignItems: "center" }}
     >
       <Grid item xs={4}>
@@ -93,6 +93,7 @@ export default function StateSelectBanner() {
             value={dropLabel}
             label="State"
             onChange={handleChange}
+            style={{ fontWeight: "bold" }}
           >
             {dropLabel === "Select State" && (
               <MenuItem value={"Select State"}>Select State</MenuItem>

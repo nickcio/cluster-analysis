@@ -21,7 +21,7 @@ import { DataGrid } from "@mui/x-data-grid";
 // Info for the Optimal Transport Distance
 
 const columns = [
-  { field: "id", headerName: "ID", width: 20 },
+  { field: "id", headerName: "Cluster #", width: 70 },
   {
     field: "D1",
     headerName: "To D1",
@@ -141,7 +141,7 @@ for (let i = 0; i < 25; i++) {
   let D16 = Math.random();
 
   let row = {
-    id: String(i),
+    id: String(i + 1),
     D1: D1,
     D2: D2,
     D3: D3,
@@ -165,7 +165,7 @@ for (let i = 0; i < 25; i++) {
 // Info for the Sum of Squares Metric
 
 const columns2 = [
-  { field: "id", headerName: "ID", width: 20 },
+  { field: "id", headerName: "Cluster #", width: 70 },
   {
     field: "D1",
     headerName: "D1",
@@ -285,7 +285,7 @@ for (let i = 0; i < 25; i++) {
   let D16 = Math.random();
 
   let row2 = {
-    id: String(i),
+    id: String(i + 1),
     D1: D1,
     D2: D2,
     D3: D3,
@@ -319,11 +319,14 @@ export default function DistanceMeasure() {
         columns={columns}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
+            paginationModel: { page: 0, pageSize: 11 },
           },
         }}
-        sx={{ height: "38.5vh" }}
+        sx={{ height: "38.5vh", fontSize: "1.5vh", fontWeight: 550 }}
         getRowHeight={() => "auto"}
+        getRowClassName={(params) =>
+          params.indexRelativeToCurrentPage % 2 === 0 ? 'Mui-even' : 'Mui-odd'
+        }
       />
       <Box>
         <Typography variant="h5" fontWeight="bold" sx={{ bgcolor: "#33586f", color: "white" }} style={{ height: "4vh",  display: "flex", alignItems: "center", justifyContent: "center"}}>
@@ -335,11 +338,14 @@ export default function DistanceMeasure() {
         columns={columns2}
         initialState={{
           pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
+            paginationModel: { page: 0, pageSize: 11 },
           },
         }}
-        sx={{ height: "38.5vh" }}
+        sx={{ height: "38.5vh", fontSize: "1.5vh", fontWeight: 550 }}
         getRowHeight={() => "auto"}
+        getRowClassName={(params) =>
+          params.indexRelativeToCurrentPage % 2 === 0 ? 'Mui-even' : 'Mui-odd'
+        }
       />
     </Box>
   );

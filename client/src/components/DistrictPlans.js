@@ -149,10 +149,10 @@ export default function Plans() {
                 columns={columns}
                 initialState={{
                 pagination: {
-                    paginationModel: { page: 0, pageSize: 10},
+                    paginationModel: { page: 0, pageSize: 15},
                 },
                 }}
-                sx ={{height:"55%"}}
+                sx ={{height:"55%", fontSize: "1.5vh", fontWeight: 550}}
                 getRowHeight={() => 'auto'}
                 getRowClassName={(params) =>
                   params.indexRelativeToCurrentPage % 2 === 0 ? 'Mui-even' : 'Mui-odd'

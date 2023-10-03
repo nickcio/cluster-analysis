@@ -132,10 +132,10 @@ export default function Clusters() {
                 columns={columns}
                 initialState={{
                 pagination: {
-                    paginationModel: { page: 0, pageSize: 10},
+                    paginationModel: { page: 0, pageSize: 15},
                 },
                 }}
-                sx ={{height:"55%"}}
+                sx ={{height:"55%", fontSize: "1.5vh", fontWeight: 550}}
                 getRowHeight={() => 'auto'}
                 onRowClick={handleEvent}
                 getRowClassName={(params) =>
@@ -144,27 +144,6 @@ export default function Clusters() {
                 />
             </Box>
     );
-
-  return (
-    <Box style={{ width: "50vw", height: "85vh" }} sx={{ bgcolor: "white" }}>
-      <Box style={{ width: "50vw", height: "35vh" }}>
-        <BubbleChart />
-      </Box>
-
-      {/* <ReactApexChart options={bubbleChartOptions} series={bubbleChartData} type="bubble" height={"45%"} width={"99%"}/> */}
-      <DataGrid
-        rows={rows}
-        columns={columns}
-        initialState={{
-          pagination: {
-            paginationModel: { page: 0, pageSize: 10 },
-          },
-        }}
-        sx={{ height: "55%" }}
-        getRowHeight={() => "auto"}
-      />
-    </Box>
-  );
 }
 
 /*
