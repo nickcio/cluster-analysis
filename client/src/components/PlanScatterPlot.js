@@ -60,7 +60,7 @@ function PlanScatterPlot() {
               title: {
                 display: true,
                 label: "Avg. Household Income",
-                text: "# of districts w/ African-American pop. > 50%"
+                text: "Avg. Household Income"
               },
               suggestedMin: 0, // Set the minimum value for the y-axis
               suggestedMax: 30
@@ -69,7 +69,7 @@ function PlanScatterPlot() {
               title: {
                 display: true,
                 label: "% African-American Pop.",
-                text: "Avg. African-American pop. %"
+                text: "% African-American Pop."
                 
               },
                 suggestedMin: 0, // Set the minimum value for the y-axis
