@@ -18,7 +18,7 @@ export default function EnsembleSelection() {
     
     return (
         <Box style={{width: "50vw", height: "85vh"}}>
-            <List sx={{bgcolor: "#b0d1eb"}} style={{width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
+            <List sx={{bgcolor: "#e5eef3"}} style={{width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center"}}>
 
                 <ListItem sx={{bgcolor: "#d6d6d6"}} style={{width: "80%", height: "20%", borderRadius: "20px", margin: "10px", display: "flex", justifyContent: "space-between"}}>
                     <Box style={{width: "30%"}}>
