@@ -23,8 +23,8 @@ const columns = [
     { field: 'demDistricts', headerName: '% Democratic', type: 'number', width: 140 },
     { field: 'repDistricts', headerName: '% Republican', type: 'number', width: 140 },
     {
-      field: 'ratio',
-      headerName: 'R:D Ratio',
+      field: 'wp',
+      headerName: '% White',
       type: 'number',
       width: 90,
     },
@@ -37,7 +37,7 @@ const columns = [
     },
     {
       field: 'hod',
-      headerName: '% H',
+      headerName: '% Hisp.',
       description: '% Hispanic',
       type: 'number',
       width: 90,
@@ -50,10 +50,10 @@ const columns = [
     let size = Math.floor(Math.random()*500+10)
     let dem = size*Math.random()
     let rep = size-dem
-    let rat = rep/dem
+    let wp = Math.random()*40
     let aaod = Math.floor(dem*Math.random())
     let hod = Math.floor(dem*Math.random())
-    let row = {id: String(i), clusterSize:size, demDistricts:dem/size*100, repDistricts:rep/size*100, ratio:rat, aaod:aaod/size*100, hod:hod/size*100}
+    let row = {id: String(i), clusterSize:size, demDistricts:dem/size*100, repDistricts:rep/size*100, wp:wp, aaod:aaod/size*100, hod:hod/size*100}
     rows.push(row)
   }
     
