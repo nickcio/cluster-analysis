@@ -5,10 +5,17 @@ function PlanScatterPlot() {
   const chartRef = useRef(null);
   const chartInstance = useRef(null);
   let fakeData = [{x:1,y:1}]
-      for (let i = 0; i < 1000; i++) {
+      for (let i = 0; i < 700; i++) {
         let x = Math.random()*30
         let y = Math.random()*29.9+0.1
         fakeData.push({x,y})
+      }
+
+  let fakeData2 = [{x:1,y:1}]
+      for (let i = 0; i < 300; i++) {
+        let x = Math.random()*30
+        let y = Math.random()*29.9+0.1
+        fakeData2.push({x,y})
       }
     
   useEffect(() => {
@@ -28,15 +35,21 @@ function PlanScatterPlot() {
             {
                 label: 'District Plans',
               data: fakeData,
-              backgroundColor: 'rgba(12, 12, 12, 0.6)',
-              borderColor: 'rgba(12, 12, 13, 1)'
+              backgroundColor: 'rgba(12, 12, 230, 0.6)',
+              borderColor: 'rgba(12, 12, 230, 1)'
             },
             {
                 label: 'Current Plan',
                 data: [{x:15,y:15}],
-                backgroundColor: 'rgba(255, 0, 0, 0.6)',
-                borderColor: 'rgba(255, 0, 0, 1)'
+                backgroundColor: 'rgba(160, 255, 100, 0.6)',
+                borderColor: 'rgba(10, 25, 25, 1)'
             },
+            {
+              label: 'Unavailable Plans',
+            data: fakeData2,
+            backgroundColor: 'rgba(200, 20, 20, 0.3)',
+            borderColor: 'rgba(200, 20, 20, 0.6)'
+          },
           ],
         },
         options: {
