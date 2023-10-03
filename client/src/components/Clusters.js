@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { GlobalStoreContext } from '../store'
-
+import BubbleChart from './BubbleChart';
 import ReactApexChart from 'react-apexcharts';
 import {Box, List, ListItem, TextField, Table, TableBody, TableCell, TableContainer, TableHead,
         TableRow, Paper} from '@mui/material';
@@ -41,6 +41,9 @@ const columns = [
     { id: 9, lastName: 'Roxie', firstName: 'Harvey', age: 65 },
   ];
 
+
+  
+    
 export default function Clusters() {
 
 
@@ -60,87 +63,91 @@ export default function Clusters() {
 		Etc
     */
 
-    const bubbleChartOptions = {
-        chart: {
-            type: 'bubble',
-            zoom: {
-                enabled: false,
-                type: 'x',
-                autoScaleYaxis: true,  
-                zoomedArea: {
-                fill: {
-                        color: '#90CAF9',
-                    opacity: 0.4
-                },
-                stroke: {
-                    color: '#0D47A1',
-                    opacity: 0.4,
-                    width: 1
-                },
-                }
-            }
-        },
-        dataLabels: {
-            enabled: false,
-        },
-        colors: ['white', '#008FFB', '#00E396', '#FEB019', '#A65FEC', 'white'],
-        xaxis: {
-            type: 'numeric',
-            title: {
-            forceNiceScale: false,
-            min: 0,            
-            max: 15,
-            },
-        },
-        yaxis: {
-        },
-        };
+    // const bubbleChartOptions = {
+    //     chart: {
+    //         type: 'bubble',
+    //         zoom: {
+    //             enabled: false,
+    //             type: 'x',
+    //             autoScaleYaxis: true,  
+    //             zoomedArea: {
+    //             fill: {
+    //                     color: '#90CAF9',
+    //                 opacity: 0.4
+    //             },
+    //             stroke: {
+    //                 color: '#0D47A1',
+    //                 opacity: 0.4,
+    //                 width: 1
+    //             },
+    //             }
+    //         }
+    //     },
+    //     dataLabels: {
+    //         enabled: false,
+    //     },
+    //     colors: ['white', '#008FFB', '#00E396', '#FEB019', '#A65FEC', 'white'],
+    //     xaxis: {
+    //         type: 'numeric',
+    //         title: {
+    //         forceNiceScale: false,
+    //         min: 0,            
+    //         max: 15,
+    //         },
+    //     },
+    //     yaxis: {
+    //     },
+    //     };
     
-        const bubbleChartData = [
-        {
-            name: "",
-            data: [
-            { x: 0, y: 0, z: 0 },
-            ],
-        },
-        {
-            name: 'Cluster #1',
-            label: 'Arizona Cluster #123132', 
-            data: [
-            { x: 4, y: 12, z: 500 },
-            ],
-        },
-        {
-            name: 'Cluster #2',
-            data: [
-            { x: 7, y: 5, z: 300 },
-            ],
-        },
-        {
-            name: 'Cluster #3',
-            data: [
-            { x: 12, y: 10, z: 250},
-            ],
-        },
-        {
-            name: 'Cluster #4',
-            data: [
-            { x: 8, y: 6, z: 200 },
-            ],
-        },
-        {
-            name: "",
-            data: [
-            { x: 15, y: 15, z: 0 },
-            ],
-        },
-        // Add more series if needed
-        ];
-
+    //     const bubbleChartData = [
+    //     {
+    //         name: "",
+    //         data: [
+    //         { x: 0, y: 0, z: 0 },
+    //         ],
+    //     },
+    //     {
+    //         name: 'Cluster #1',
+    //         label: 'Arizona Cluster #123132', 
+    //         data: [
+    //         { x: 4, y: 12, z: 500 },
+    //         ],
+    //     },
+    //     {
+    //         name: 'Cluster #2',
+    //         data: [
+    //         { x: 7, y: 5, z: 300 },
+    //         ],
+    //     },
+    //     {
+    //         name: 'Cluster #3',
+    //         data: [
+    //         { x: 12, y: 10, z: 250},
+    //         ],
+    //     },
+    //     {
+    //         name: 'Cluster #4',
+    //         data: [
+    //         { x: 8, y: 6, z: 200 },
+    //         ],
+    //     },
+    //     {
+    //         name: "",
+    //         data: [
+    //         { x: 15, y: 15, z: 0 },
+    //         ],
+    //     },
+    //     // Add more series if needed
+    //     ];
+   
 
     return (
         <Box style={{width: "50vw", height: "85vh", }} sx={{bgcolor: "white"}}>
-            <ReactApexChart options={bubbleChartOptions} series={bubbleChartData} type="bubble" height={"45%"} width={"99%"}/>
+            <Box style={{width: "50vw", height: "35vh", }}>
+                 <BubbleChart/>
+            </Box>
+            
+            {/* <ReactApexChart options={bubbleChartOptions} series={bubbleChartData} type="bubble" height={"45%"} width={"99%"}/> */}
             <DataGrid
                 rows={rows}
                 columns={columns}

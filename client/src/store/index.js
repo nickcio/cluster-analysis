@@ -4,7 +4,8 @@ export const GlobalStoreContext = createContext({});
 
 export const GlobalStoreActionType = {
     SET_STATE: "SET_STATE",
-    SET_ENSEMBLE: "SET_ENSEMBLE"
+    SET_ENSEMBLE: "SET_ENSEMBLE",
+    SET_CLUSTER: "SET_CLUSTER"
 }
 
 function GlobalStoreContextProvider(props) {
@@ -12,7 +13,8 @@ function GlobalStoreContextProvider(props) {
     const [store, setStore] = useState({
         currentState: "",
         currentDistricts: "",
-        currentEnsemble: ""
+        currentEnsemble: "",
+        currentCluster: ""
     });
 
     const storeReducer = (action) => {
@@ -25,13 +27,21 @@ function GlobalStoreContextProvider(props) {
                     ...store,
                     currentState: payload.state,
                     currentDistricts: payload.districts,
-                    currentEnsemble:payload.currentEnsemble
+                    currentEnsemble:payload.ensemble,
+                    currentCluster:payload.cluster
                 });
             }
             case GlobalStoreActionType.SET_ENSEMBLE: {
                 return setStore({
                     ...store,
-                    currentEnsemble: payload.ensemble
+                    currentEnsemble: payload.ensemble,
+                    currentCluster: payload.cluster
+                });
+            }
+            case GlobalStoreActionType.SET_CLUSTER: {
+                return setStore({
+                    ...store,
+                    currentCluster: payload.cluster
                 });
             }
             default:
@@ -44,7 +54,7 @@ function GlobalStoreContextProvider(props) {
         console.log(state)
         storeReducer({
             type: GlobalStoreActionType.SET_STATE,
-            payload: {state:state,districts:districts,currentEnsemble:""}
+            payload: {state:state,districts:districts,ensemble:"",cluster:""}
         });
 
     }
@@ -54,7 +64,17 @@ function GlobalStoreContextProvider(props) {
         console.log(ensemble)
         storeReducer({
             type: GlobalStoreActionType.SET_ENSEMBLE,
-            payload: {ensemble:ensemble}
+            payload: {ensemble:ensemble,cluster:""}
+        });
+
+    }
+
+    store.setCluster = async function(cluster) {
+        console.log("CLUSTER CHANGED TO: ")
+        console.log(cluster)
+        storeReducer({
+            type: GlobalStoreActionType.SET_CLUSTER,
+            payload: {cluster:cluster}
         });
 
     }
