@@ -21,7 +21,7 @@ public class Controller {
 
     @GetMapping("/api/data")
     public ResponseEntity<String> getData() {
-        String data = "hello";
+        String data = "Sever Message. Go Eagles";
         return ResponseEntity.ok().contentType(MediaType.APPLICATION_JSON)
                 .body(data); // OK (200) status code
     }
