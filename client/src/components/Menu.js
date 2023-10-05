@@ -1,10 +1,9 @@
 import React, { useContext, useState } from 'react'
 import { GlobalStoreContext } from '../store'
-
+import ServerTest from './ServerTest'
 import StateSelectBanner from "./StateSelectBanner"
 import EnsembleSelection from "./EnsembleSelection"
-
-import Box from "@mui/material/Box";
+import {Box, Button} from "@mui/material";
 import Clusters from './Clusters';
 import DistanceMeasure from './DistanceMeasure';
 import DistrictPlans from './DistrictPlans';
@@ -48,7 +47,10 @@ export default function Menu() {
                 style={{opacity: 0.2, left: 5000, top: 200}}
                 alt="Eagles Logo"
                 src={eaglesLogo}
-            />
+            >
+            </Box>
+            {/* <Button onClick={<ServerTest></ServerTest>}> The button is here</Button> */}
+            <ServerTest></ServerTest>
         </Box>
     }
     /*

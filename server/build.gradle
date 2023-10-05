@@ -18,7 +18,6 @@ repositories {
 }
 
 dependencies {
-
 	implementation 'org.springframework.boot:spring-boot-starter-web:3.0.4'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test:3.0.4'
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
@@ -30,8 +29,14 @@ dependencies {
 	compileOnly 'org.projectlombok:lombok:1.18.26'
 	annotationProcessor 'org.projectlombok:lombok:1.18.26'
 
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'org.springframework:spring-web'
+
+
+
 }
 
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
