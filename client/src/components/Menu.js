@@ -8,6 +8,8 @@ import Clusters from './Clusters';
 import DistanceMeasure from './DistanceMeasure';
 import DistrictPlans from './DistrictPlans';
 
+import ServerTest from './ServerTest'; // ! TEMP FOR SERVER STUFF
+
 import eaglesLogo from "./images/logo.png";
 
 export default function Menu() {
@@ -36,6 +38,7 @@ export default function Menu() {
         console.log("Inside the Ensemble if statement")
     }
     else {
+<<<<<<< Updated upstream
         menuDisplay = 
         <Box
             sx={{width: "50vw", height: "85vh"}}
@@ -52,6 +55,21 @@ export default function Menu() {
             {/* <Button onClick={<ServerTest></ServerTest>}> The button is here</Button> */}
             <ServerTest></ServerTest>
         </Box>
+=======
+        menuDisplay = <ServerTest/>
+        // <Box
+        //     sx={{width: "50vw", height: "85vh"}}
+        //     style={{display: "flex", alignItems: "center", justifyContent: "center"}}
+        // >
+        //     <Box
+        //         component="img"
+        //         sx={{height: 400, width: 600}}
+        //         style={{opacity: 0.2, left: 5000, top: 200}}
+        //         alt="Eagles Logo"
+        //         src={eaglesLogo}
+        //     />
+        // </Box>
+>>>>>>> Stashed changes
     }
     /*
     What we want to do:

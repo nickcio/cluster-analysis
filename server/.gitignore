@@ -1,9 +1,16 @@
 HELP.md
+<<<<<<< Updated upstream
 .gradle
 build/
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/
+=======
+target/
+!.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+>>>>>>> Stashed changes
 
 ### STS ###
 .apt_generated
@@ -13,18 +20,24 @@ build/
 .settings
 .springBeans
 .sts4-cache
+<<<<<<< Updated upstream
 bin/
 !**/src/main/**/bin/
 !**/src/test/**/bin/
+=======
+>>>>>>> Stashed changes
 
 ### IntelliJ IDEA ###
 .idea
 *.iws
 *.iml
 *.ipr
+<<<<<<< Updated upstream
 out/
 !**/src/main/**/out/
 !**/src/test/**/out/
+=======
+>>>>>>> Stashed changes
 
 ### NetBeans ###
 /nbproject/private/
@@ -32,6 +45,12 @@ out/
 /dist/
 /nbdist/
 /.nb-gradle/
+<<<<<<< Updated upstream
+=======
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+>>>>>>> Stashed changes
 
 ### VS Code ###
 .vscode/
