@@ -18,6 +18,7 @@ public class Controller {
     @GetMapping("/thisIsATestGetRequest")
     public String getSomething() {
         log.info("Hello World!!!!");
+        log.info("Hello World 2!!!");
         return "Hello World!!!!";
     }
 
