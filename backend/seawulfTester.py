@@ -27,7 +27,7 @@ import pandas
 import geopandas as gpd
 
 # PART 1: The preprocessed file we have isn't in a graph format that gerrychain uses, so import geopandas and create a graph from the json as seen below
-gdf = gpd.read_file("/content/azprecinctsandrew.json")
+gdf = gpd.read_file("/azprecinctstest.json")
 graph = Graph.from_geodataframe(gdf)
 gdf.head()
 
