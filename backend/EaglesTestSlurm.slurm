@@ -5,6 +5,7 @@
 #SBATCH --partition=short-40core
 #SBATCH --job-name=Eagles_test
 #SBATCH --output=testing.txt
+#SBATCH --error=error.txt 
 #SBATCH --mail-user=brandy.ma@stonybrook.edu
 #SBATCH --mail-type=BEGIN,END
 
