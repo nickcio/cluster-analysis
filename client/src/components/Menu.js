@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react'
 import { GlobalStoreContext } from '../store'
-import ServerTest from './ServerTest'
+//import ServerTest from './ServerTest'
 import StateSelectBanner from "./StateSelectBanner"
 import EnsembleSelection from "./EnsembleSelection"
 import {Box, Button} from "@mui/material";
@@ -38,10 +38,9 @@ export default function Menu() {
         console.log("Inside the Ensemble if statement")
     }
     else {
-<<<<<<< Updated upstream
         menuDisplay = 
         <Box
-            sx={{width: "50vw", height: "85vh"}}
+            sx={{width: "55vw", height: "85vh"}}
             style={{display: "flex", alignItems: "center", justifyContent: "center"}}
         >
             <Box
@@ -52,25 +51,9 @@ export default function Menu() {
                 src={eaglesLogo}
             >
             </Box>
-            {/* <Button onClick={<ServerTest></ServerTest>}> The button is here</Button> */}
-            <ServerTest></ServerTest>
+
         </Box>
-=======
-        menuDisplay = <ServerTest/>
-        // <Box
-        //     sx={{width: "50vw", height: "85vh"}}
-        //     style={{display: "flex", alignItems: "center", justifyContent: "center"}}
-        // >
-        //     <Box
-        //         component="img"
-        //         sx={{height: 400, width: 600}}
-        //         style={{opacity: 0.2, left: 5000, top: 200}}
-        //         alt="Eagles Logo"
-        //         src={eaglesLogo}
-        //     />
-        // </Box>
->>>>>>> Stashed changes
-    }
+    };
     /*
     What we want to do:
         Select Screen: Over view of what we do or whatever
@@ -84,7 +67,7 @@ export default function Menu() {
     */
    
     return (
-        <Box sx={{bgcolor: "#e5eef3"}} style={{width: "50vw", height: "93vh"}}>
+        <Box sx={{bgcolor: "#e5eef3"}} style={{width: "60vw", height: "93vh"}}>
             <StateSelectBanner/>
             {menuDisplay}
         </Box>

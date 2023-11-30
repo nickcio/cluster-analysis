@@ -2,13 +2,6 @@ import React, { useRef, useEffect, useContext } from 'react';
 import Chart from 'chart.js/auto';
 import { GlobalStoreContext } from '../store'
 
-import AZBorders from "./geojson/AZBorders.json";
-import SCBorders from "./geojson/SCBorders.json";
-import TXBorders from "./geojson/TXBorders.json";
-import AZDistricts from "./geojson/AZDistricts.json";
-import SCDistricts from "./geojson/SCDistricts.json";
-import TXDistricts from "./geojson/TXDistricts.json";
-
 function BubbleChart() {
   const { store } = useContext(GlobalStoreContext);
   const chartRef = useRef(null);

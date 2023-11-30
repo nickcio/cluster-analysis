@@ -121,8 +121,8 @@ export default function Clusters() {
   //     };
 
     return (
-        <Box style={{width: "50vw", height: "85vh", }} sx={{bgcolor: "white"}}>
-            <Box style={{width: "50vw", height: "35vh", }}>
+        <Box style={{width: "55vw", height: "85vh", }} sx={{bgcolor: "white"}}>
+            <Box style={{width: "55vw", height: "35vh", }}>
                  <BubbleChart/>
             </Box>
             

@@ -16,10 +16,8 @@
   width: 100vw
 }
 
-/* Important Map Thing */
-
 .leaflet-container {
-  width: 50vw;
+  width: 40vw;
   height: 93vh;
 }
 
