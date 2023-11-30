@@ -16,11 +16,13 @@ import FormControl from "@mui/material/FormControl";
 import InputLabel from "@mui/material/InputLabel";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
-//let curStateLabel = "Please Select A State"
+import { useNavigate } from 'react-router-dom';
+import { Outlet } from 'react-router-dom';
+import Map from './Map';
 
 export default function StateSelectBanner() {
   const { store } = useContext(GlobalStoreContext);
+  const navigate = useNavigate();
   let curState = store.currentState !== "" ? store.currentState : "";
   let curStateLabel = "Please Select A State"
   console.log("CUR STATE " + curState);
@@ -46,36 +48,25 @@ export default function StateSelectBanner() {
                     </Typography> 
   }
 
-  console.log(`Drop Label: ${dropLabel}`);
-
   const handleChange = (event) => {
     let stateValue = event.target.value;
     if (stateValue == "Arizona") {
       store.setState(AZBorders,AZDistricts);
-      
-      // if(store.currentEnsemble !== "")
-      // {
-      //   store.setEnsemble("");
-      // }
     } else if (stateValue == "South Carolina") {
       store.setState(SCBorders,SCDistricts);
-      
-      // if(store.currentEnsemble !== "")
-      // {
-      //   store.setEnsemble("");
-      // }
-    } else if (stateValue == "Texas") {
+    } 
+    else if (stateValue == "Texas") {
       store.setState(TXBorders,TXDistricts);
-      
-      // if(store.currentEnsemble !== "")
-      // {
-      //   store.setEnsemble("");
-      // }
     }
-
+    navigate(`/state/${event.target.value}`);
   };
 
   return (
+    <Box sx={{display: "flex", flexDirection: "row"}} style={{height: "93vh", width: "100vw"}}>
+      <Box>
+        <Map></Map>
+      </Box>
+      <Outlet/>
     <Grid
       container
       spacing={0}
@@ -108,5 +99,6 @@ export default function StateSelectBanner() {
         {curStateLabel}
       </Grid>
     </Grid>
+    </Box>
   );
 }

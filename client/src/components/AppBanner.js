@@ -6,14 +6,18 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import IconButton from "@mui/material/IconButton";
 import RefreshIcon from "@mui/icons-material/Replay";
+import { useNavigate } from 'react-router-dom';
 
 import eaglesLogo from "./images/logo.png";
 
 export default function AppBanner() {
   const { store } = useContext(GlobalStoreContext);
+  const navigate = useNavigate();
   // Placeholder, for now it refreshes the page but it should probably be that only the gui components revert
   const handleRefreshButton = () => {
     store.setState("", "");
+    navigate(`/`);
+    
   };
 
   return (

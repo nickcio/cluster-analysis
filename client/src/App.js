@@ -1,16 +1,30 @@
 import './App.css';
 import { GlobalStoreContextProvider } from './store'
-import Map from './components/Map';
 import AppBanner from './components/AppBanner';
 import Menu from './components/Menu';
-import Body from './components/Body';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import StateSelection from './components/StateSelection';
+import StateDetails from './components/StateDetails';
+import EnsembleDetails from './components/EnsembleDetails';
+import DistanceDetails from './components/DistanceDetails';
+import ClusterDetails from './components/ClusterDetails'; 
+import DistrictPlanDetails from './components/DistrictPlanDetails';
 
 function App() {
   return (
     <div className="App">
       <GlobalStoreContextProvider>
+        <Router>
         <AppBanner/>
-        <Body/>
+          <Routes>
+            <Route path="/" element={<StateSelection />} />
+            <Route path="/state/:stateId" element={<StateDetails />}/>
+            <Route path="/state/:stateId/ensemble/:ensembleId" element={<EnsembleDetails />}/>
+            <Route path="/state/:stateId/ensemble/:ensembleId/cluster/:clusterId" element={<ClusterDetails />}/>
+            <Route path="/state/:stateId/ensemble/:ensembleId/cluster/:clusterId/plan/:planId" element={<DistrictPlanDetails />} />
+            <Route path="/state/:stateId/ensemble/:ensembleId/distance" element={<DistanceDetails />} />
+          </Routes>
+        </Router>
       </GlobalStoreContextProvider>
     </div>
   );
