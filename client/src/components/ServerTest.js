@@ -14,6 +14,11 @@ export default function ServerTest() {
     averageIncome: "",
   });
 
+  const [districtData, setDistrictData] = useState({
+      state: 1,
+      ensembleID: 1
+  });
+
   const handleFormChange = (e) => {
     const { name, value } = e.target;
     setFormData((prevState) => ({
@@ -40,6 +45,36 @@ export default function ServerTest() {
         console.error("Error:", error);
       });
   }
+
+  const testGetRequestNew = (e) => {
+    e.preventDefault();
+    //console.log("State Data:", districtData.state," EnsembleID: ", districtData.ense);
+    
+   
+    fetch("http://localhost:8080/clusterList", {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        return response.JSON();
+      })
+      .then((data) => {
+        console.log("Data from the backend: ", data.JSON);
+        setText("Data from the backend: " + data)
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  }
+
+
+
+
 
   const testPostRequest = async (e) => {
     e.preventDefault();

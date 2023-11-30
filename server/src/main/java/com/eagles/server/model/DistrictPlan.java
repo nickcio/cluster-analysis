@@ -26,6 +26,8 @@ public class DistrictPlan {
         this.averageIncome = averageIncome;
     }
 
+
+
     @Override
     public String toString() {
         return "DistrictPlan{" +
