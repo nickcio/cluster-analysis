@@ -10,7 +10,6 @@ import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 const ClusterChart = ({ data }) => {
     const navigate = useNavigate();
     const location = useLocation();
-    const [, forceRerender] = useState();
     const value = useContext(data);
 
     const [xAxisKey, setXAxisKey] = useState('average_plan');
@@ -18,7 +17,7 @@ const ClusterChart = ({ data }) => {
 
     console.log("data", data);
 
-    const axisKeys = ["id", "average_distance", "average_opportunity_districts", "average_plan", "average_rep_dem_split", "num_district_plans"];
+    const axisKeys = ["id", "average_distance", "average_opportunity_districts", "average_plan", "average_rep_split", "average_dem_split", "num_district_plans"];
 
     const handleXAxisChange = (event) => {
         setXAxisKey(event.target.value);

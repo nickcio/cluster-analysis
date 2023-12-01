@@ -1,19 +1,24 @@
 import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const ClusterTable = ({ data }) => {
+      const navigate = useNavigate();
+      const location = useLocation();
 
       const columns = [
         { field: 'id', headerName: 'ID', width: 70, headerAlign: 'left', align: 'left' },
-        { field: 'average_distance', headerName: 'Avg Distance', width: 110, headerAlign: 'left', align: 'left' },
-        { field: 'average_opportunity_districts', headerName: 'Avg Opportunity Districts', type: 'number', width: 110, headerAlign: 'left', align: 'left' },
-        { field: 'average_plan', headerName: 'Avg Plan', type: 'number', width: 110, headerAlign: 'left', align: 'left' },
-        { field: 'average_rep_dem_split', headerName: 'Avg R/D Split', type: 'number', width: 110, headerAlign: 'left', align: 'left' },
-        { field: 'num_district_plans', headerName: 'Number District Plans', type: 'string', width: 110, headerAlign: 'left', align: 'left' },
+        { field: 'average_distance', headerName: 'Avg Distance', width: 95, headerAlign: 'left', align: 'left' },
+        { field: 'average_opportunity_districts', headerName: 'Avg Opportunity Districts', type: 'number', width: 95, headerAlign: 'left', align: 'left' },
+        { field: 'average_plan', headerName: 'Avg Plan', type: 'number', width: 95, headerAlign: 'left', align: 'left' },
+        { field: 'average_rep_split', headerName: 'Rep Split', type: 'number', width: 95, headerAlign: 'left', align: 'left' },
+        { field: 'average_dem_split', headerName: 'Dem Split', type: 'number', width: 95, headerAlign: 'left', align: 'left' },
+        { field: 'num_district_plans', headerName: 'Number District Plans', type: 'string', width: 95, headerAlign: 'left', align: 'left' },
       ];
 
       function handleClick(e) {
-        console.log(e.row.name);
+        console.log("the cluster id",e.row.id);
+        navigate(`${location.pathname}/cluster/${e.row.id}`);
       }
     
       return (

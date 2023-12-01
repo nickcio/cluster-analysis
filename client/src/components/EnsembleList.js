@@ -27,6 +27,8 @@ const EnsembleList = ({ stateId, ensembles }) => {
   ensembles.map((ensemble, index) => (
     console.log(ensemble)
   ));
+
+  
   return (
     <Box>
     <List component="nav" aria-label="ensemble options" sx={{ width: '100%' }}>
@@ -38,7 +40,7 @@ const EnsembleList = ({ stateId, ensembles }) => {
                 <Button component={Link} to={`/state/${ensemble.state}/ensemble/${index + 1}`} variant="outlined" sx={{ marginRight: '8px' }}>
                     Ensemble Details
                 </Button>
-                <Button variant="outlined" href={ensemble.distance}>
+                <Button component={Link} to={`/state/${ensemble.state}/ensemble/${index + 1}/distance`} variant="outlined">
                     Distance Details
                 </Button>
                 </Box>
