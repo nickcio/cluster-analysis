@@ -40,46 +40,19 @@ public class Cluster {
         this.ensemble_id = ensemble_id;
         this.id = id;
     }
+    //Getters
+    public String get_id() {return _id;}
+    public String getCluster_id(){return cluster_id;}
+    public int getNum_district_plans(){return num_district_plans;}
+    public Map<String,DistrictPlan>getDistrict_plans(){return district_plans;}
+    public List<Integer>getCentroid(){return centroid;}
+    public int getAverage_distance(){return average_distance;}
+    public int getAverage_plan(){return average_plan;}
+    public List<Integer> getAverage_rep_dem_split(){return this.average_rep_dem_split;}
+    public int getAverage_opportunity_districts(){return this.average_opportunity_districts;}
 
-    public String get_id() {
-        return _id;
-    }
-
-    public String getCluster_id(){
-        return cluster_id;
-    }
-    public int getNum_district_plans(){
-        return num_district_plans;
-    }
-    public Map<String,DistrictPlan>getDistrict_plans(){
-        return district_plans;
-    }
-    public List<Integer>getCentroid(){
-        return centroid;
-    }
-    public int getAverage_distance(){
-        return average_distance;
-    }
-    public int getAverage_plan(){
-        return average_plan;
-    }
-    public List<Integer> getAverage_rep_dem_split(){
-        return this.average_rep_dem_split;
-    }
-    public int getAverage_opportunity_districts(){
-        return this.average_opportunity_districts;
-    }
-    public String getState(){
-        return this.state;
-    }
-    public int getEnsemble_id(){
-        return this.ensemble_id;
-    }
-    public int getId(){
-        return this.id;
-    }
+    public String getState(){return this.state;}
+    public int getEnsemble_id(){return this.ensemble_id;}
+    public int getId(){return this.id;}
 }
 
-/*
-
- */

@@ -1,10 +1,8 @@
 package com.eagles.server.dao;
 
-import com.eagles.server.model.Cluster;
 import com.eagles.server.model.DistrictPlan;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.data.mongodb.repository.Query;
-
 import java.util.List;
 
 public interface DistrictPlansRepository extends MongoRepository<DistrictPlan, String> {

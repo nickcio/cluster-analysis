@@ -50,74 +50,22 @@ public class DistrictPlan {
         this.ensemble_id = ensemble_id;
         this.cluster_id = cluster_id;
     }
+    //Getters
+    public String getId() {return id;}
+    public String getPlan_id() {return plan_id;}
+    public String getGeojson_id() {return geojson_id;}
+    public String getDem_percentages() {return dem_percentages;}
+    public String getRep_percentages() {return rep_percentages;}
+    public Map<String, String> getDistrict_winners() {return district_winners;}
+    public Map<String, Integer> getRep_dem_splits() {return rep_dem_splits;}
+    public List<Integer> getOpportunity_districts() {return opportunity_districts;}
+    public Map<String, Integer> getPopulation_data() {return population_data;}
+    public Map<String, String> getArea_data() {return area_data;}
+    public int getTotal_area() {return total_area;}
+    public int getAvailability() {return availability;}
+    public String getState() {return state;}
+    public int getEnsemble_id() {return ensemble_id;}
+    public int getCluster_id() {return cluster_id;}
 
-    public String getId() {
-        return id;
-    }
-
-    public String getPlan_id() {
-        return plan_id;
-    }
-    public String getGeojson_id() {
-        return geojson_id;
-    }
-    public String getDem_percentages() {
-        return dem_percentages;
-    }
-
-    public String getRep_percentages() {
-        return rep_percentages;
-    }
-
-    public Map<String, String> getDistrict_winners() {
-        return district_winners;
-    }
-
-    public Map<String, Integer> getRep_dem_splits() {
-        return rep_dem_splits;
-    }
-
-    public List<Integer> getOpportunity_districts() {
-        return opportunity_districts;
-    }
-
-    public Map<String, Integer> getPopulation_data() {
-        return population_data;
-    }
-
-    public Map<String, String> getArea_data() {
-        return area_data;
-    }
-
-    public int getTotal_area() {
-        return total_area;
-    }
-
-    public int getAvailability() {
-        return availability;
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public int getEnsemble_id() {
-        return ensemble_id;
-    }
-
-    public int getCluster_id() {
-        return cluster_id;
-    }
-//    @Override
-//    public String toString() {
-//        return "DistrictPlan{" +
-//                "numberOfDistricts=" + numberOfDistricts +
-//                ", whitePopulation=" + whitePopulation +
-//                ", africanAmericanPopulation=" + africanAmericanPopulation +
-//                ", hispanicPopulation=" + hispanicPopulation +
-//                ", asianPopulation=" + asianPopulation +
-//                ", averageIncome=" + averageIncome +
-//                '}';
-//    }
 }
 
