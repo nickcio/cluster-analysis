@@ -1,23 +1,25 @@
 import { Scatter } from 'react-chartjs-2';
 import 'chart.js/auto';
 import { GlobalStoreContext } from '../store'
-import React, { useState } from 'react';
+import React, { useState, useEffect, useContext} from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 
 
-const ClusterChart = ({ data, SizeKey }) => {
+const ClusterChart = ({ data }) => {
     const navigate = useNavigate();
     const location = useLocation();
+    const [, forceRerender] = useState();
+    const value = useContext(data);
 
-    const [xAxisKey, setXAxisKey] = useState('percentDemocratic');
-    const [yAxisKey, setYAxisKey] = useState('percentRepublican');
+    const [xAxisKey, setXAxisKey] = useState('average_plan');
+    const [yAxisKey, setYAxisKey] = useState('num_district_plans');
 
-    // Get all possible keys for the axes, assuming all data objects have the same keys
-    const axisKeys = Object.keys(data[0]).filter(key => key !== 'name' && key !== 'clusterSize');
+    console.log("data", data);
 
-    // Handlers for changing axis keys
+    const axisKeys = ["id", "average_distance", "average_opportunity_districts", "average_plan", "average_rep_dem_split", "num_district_plans"];
+
     const handleXAxisChange = (event) => {
         setXAxisKey(event.target.value);
     };
@@ -34,7 +36,7 @@ const ClusterChart = ({ data, SizeKey }) => {
             x: item[xAxisKey],
             y: item[yAxisKey],
         })),
-        pointRadius: data.map(item => Math.sqrt(item.clusterSize) * 0.9),
+        pointRadius: data.map(item => Math.sqrt(item.num_district_plans) * 0.45),
         backgroundColor: 'rgba(75,192,192,1)',
         },
     ],

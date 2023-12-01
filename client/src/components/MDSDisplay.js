@@ -10,8 +10,8 @@ const MdsDisplay = ({ clusterData }) => {
       {
         label: 'Clusters',
         data: clusterData.map(cluster => ({
-          x: cluster.percentDemocratic,
-          y: Math.sqrt(cluster.percentDemocratic)
+          x: cluster.average_distance,
+          y: Math.sqrt(cluster.num_district_plans)
         })),
         backgroundColor: 'rgba(255, 99, 132, 1)',
       }

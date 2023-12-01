@@ -12,7 +12,7 @@ public class Cluster {
     @Id
     private String _id;
     private String cluster_id;
-    private String num_district_plans;
+    private int num_district_plans;
     private Map<String, DistrictPlan> district_plans;
     private List<Integer> centroid;
     private int average_distance;
@@ -21,11 +21,12 @@ public class Cluster {
     private int average_opportunity_districts;
     private String state;
     private int ensemble_id;
+    private int id;
 
-    public Cluster(String _id, String cluster_id, String num_district_plans,
+    public Cluster(String _id, String cluster_id, int num_district_plans,
                     Map<String, DistrictPlan>district_plans, List<Integer> centroid,
                    int average_distance, int average_plan, int average_rep_dem_split, int average_opportunity_districts,
-                   String state, int ensemble_id) {
+                   String state, int ensemble_id, int id) {
         this._id = _id;
         this.cluster_id = cluster_id;
         this.num_district_plans = num_district_plans;
@@ -37,6 +38,7 @@ public class Cluster {
         this.average_opportunity_districts = average_opportunity_districts;
         this.state = state;
         this.ensemble_id = ensemble_id;
+        this.id = id;
     }
 
     public String get_id() {
@@ -46,7 +48,7 @@ public class Cluster {
     public String getCluster_id(){
         return cluster_id;
     }
-    public String getNum_district_plans(){
+    public int getNum_district_plans(){
         return num_district_plans;
     }
     public Map<String,DistrictPlan>getDistrict_plans(){
@@ -72,6 +74,9 @@ public class Cluster {
     }
     public int getEnsemble_id(){
         return this.ensemble_id;
+    }
+    public int getId(){
+        return this.id;
     }
 }
 

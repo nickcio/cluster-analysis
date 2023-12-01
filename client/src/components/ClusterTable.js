@@ -2,13 +2,14 @@ import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
 const ClusterTable = ({ data }) => {
-    const columns = [
-        { field: 'id', headerName: 'ID', width: 100, height: 20},
-        { field: 'name', headerName: 'Cluster Name', width: 100, height: 20},
-        { field: 'percentDemocratic', headerName: '% Dem', type: 'number', width: 100, height: 20},
-        { field: 'percentRepublican', headerName: '% Rep', type: 'number', width: 100, height: 20},
-        { field: 'clusterSize', headerName: 'Cluster Size', type: 'number', width: 100, height: 20},
-        { field: 'otherPercentage', headerName: 'Other Percentage', type: 'number', width: 100, height: 20},
+
+      const columns = [
+        { field: 'id', headerName: 'ID', width: 70, headerAlign: 'left', align: 'left' },
+        { field: 'average_distance', headerName: 'Avg Distance', width: 110, headerAlign: 'left', align: 'left' },
+        { field: 'average_opportunity_districts', headerName: 'Avg Opportunity Districts', type: 'number', width: 110, headerAlign: 'left', align: 'left' },
+        { field: 'average_plan', headerName: 'Avg Plan', type: 'number', width: 110, headerAlign: 'left', align: 'left' },
+        { field: 'average_rep_dem_split', headerName: 'Avg R/D Split', type: 'number', width: 110, headerAlign: 'left', align: 'left' },
+        { field: 'num_district_plans', headerName: 'Number District Plans', type: 'string', width: 110, headerAlign: 'left', align: 'left' },
       ];
 
       function handleClick(e) {

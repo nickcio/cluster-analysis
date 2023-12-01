@@ -35,7 +35,7 @@ const EnsembleList = ({ stateId, ensembles }) => {
             <ListItem sx={{ display: 'flex', justifyContent: 'space-between' }}>
                 <ListItemText primary={ensemble.name} />
                 <Box>
-                <Button component={Link} to={`/state/${ensemble.state}/ensemble/${index}`} variant="outlined" sx={{ marginRight: '8px' }}>
+                <Button component={Link} to={`/state/${ensemble.state}/ensemble/${index + 1}`} variant="outlined" sx={{ marginRight: '8px' }}>
                     Ensemble Details
                 </Button>
                 <Button variant="outlined" href={ensemble.distance}>
