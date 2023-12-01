@@ -11,8 +11,6 @@ import java.util.List;
 @Setter
 @Document
 public class DistrictPlan {
-
-
     @Id
     private String id;
     private String plan_id;
