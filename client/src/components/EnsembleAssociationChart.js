@@ -5,7 +5,9 @@ import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 const LineChartComponent = ({ ensembles }) => {
-  const sortedEnsembles = ensembles.sort((a, b) => parseInt(a.numberOfDP.replace(/,/g, '')) - parseInt(b.numberOfDP.replace(/,/g, '')));
+  const sortedEnsembles = ensembles.slice().sort((a, b) => 
+      parseInt(a.numberOfDP.replace(/,/g, '')) - parseInt(b.numberOfDP.replace(/,/g, ''))
+      );
 
   const data = {
     datasets: [

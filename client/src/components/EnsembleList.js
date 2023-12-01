@@ -27,6 +27,8 @@ const EnsembleList = ({ stateId, ensembles }) => {
   ensembles.map((ensemble, index) => (
     console.log(ensemble)
   ));
+
+  
   return (
     <Box>
     <List component="nav" aria-label="ensemble options" sx={{ width: '100%' }}>
