@@ -1,6 +1,8 @@
 package com.eagles.server.controller;
 
+import com.eagles.server.model.Cluster;
 import com.eagles.server.model.DistrictPlan;
+import com.eagles.server.service.ClusterService;
 import com.eagles.server.service.DistrictPlanService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -16,10 +18,12 @@ import java.util.List;
 public class Controller {
     private final DistrictPlanService districtPlanService;
     private final EnsembleService ensembleService;
+    private final ClusterService clusterService;
 
-    public Controller(DistrictPlanService districtPlanService, EnsembleService ensembleService) {
+    public Controller(DistrictPlanService districtPlanService, EnsembleService ensembleService, ClusterService clusterService) {
         this.districtPlanService = districtPlanService;
         this.ensembleService = ensembleService;
+        this.clusterService = clusterService;
     }
 
     @GetMapping("/thisIsATestGetRequest")
@@ -29,12 +33,12 @@ public class Controller {
         return "Hello World!!!!";
     }
 
-    @PostMapping("/thisIsATestPostRequest")
-    public DistrictPlan postSomething(@RequestBody DistrictPlan plan) {
-        log.info("Goodbye World!!!!");
-        log.info(plan.toString());
-        return districtPlanService.saveDistrictPlan(plan);
-    }
+//    @PostMapping("/thisIsATestPostRequest")
+//    public DistrictPlan postSomething(@RequestBody DistrictPlan plan) {
+//        log.info("Goodbye World!!!!");
+//        log.info(plan.toString());
+//        return districtPlanService.saveDistrictPlan(plan);
+//    }
 
     @GetMapping("/thisIsATest")
     public String testMethod() {
@@ -52,6 +56,17 @@ public class Controller {
     public List<Ensemble> retrieveEnsembles(@RequestParam(name = "state", required = false) String state) {
         log.info("Retrieving ensembles for state: {}", state);
         return ensembleService.getEnsemblesByState(state);
+    }
+
+    @GetMapping("/retrieveClusters")
+    public List<Cluster> retrieveCluster(@RequestParam(name = "state", required = false) String state) {
+        log.info("Retrieving cluster info ", state);
+        return clusterService.getAllClusters();
+    }
+    @GetMapping("/retrievePlans")
+    public List<DistrictPlan> retrievePlans(@RequestParam(name = "state", required = false) String state) {
+        log.info("Retrieving cluster info ", state);
+        return districtPlanService.getAllDistrictPlan();
     }
 
 
