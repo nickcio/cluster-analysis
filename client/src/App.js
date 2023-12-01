@@ -3,7 +3,7 @@ import { GlobalStoreContextProvider } from './store'
 import AppBanner from './components/AppBanner';
 import Menu from './components/Menu';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import StateSelection from './components/StateSelection';
+import Body from './components/Body';
 import StateDetails from './components/StateDetails';
 import EnsembleDetails from './components/EnsembleDetails';
 import DistanceDetails from './components/DistanceDetails';
@@ -17,7 +17,7 @@ function App() {
         <Router>
         <AppBanner/>
           <Routes>
-            <Route path="/" element={<StateSelection />} />
+            <Route path="/" element={<Body />} />
             <Route path="/state/:stateId" element={<StateDetails />}/>
             <Route path="/state/:stateId/ensemble/:ensembleId" element={<EnsembleDetails />}/>
             <Route path="/state/:stateId/ensemble/:ensembleId/cluster/:clusterId" element={<ClusterDetails />}/>
