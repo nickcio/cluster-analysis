@@ -8,8 +8,11 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+<<<<<<< Updated upstream
 import java.util.Objects;
 
+=======
+>>>>>>> Stashed changes
 
 @Service
 public class ClusterService {
@@ -24,10 +27,15 @@ public class ClusterService {
         return clusterPlanRepository.findById(id).orElse(null);
     }
 
+<<<<<<< Updated upstream
     // Method to get all clusters
     public List<Cluster> getAllClusters() {
+=======
+    public List<Cluster> getAllClusters(){
+>>>>>>> Stashed changes
         return clusterPlanRepository.findAll();
     }
+
 
 
 }

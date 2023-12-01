@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Getter
 public class Cluster {
@@ -16,14 +17,14 @@ public class Cluster {
     private String name;
     private int id;
     private double percentWhite;
-    private double percentAA;
+    private double percentaa;
     private double percentHispanic;
     private double percentDemo;
     private double percentRepub;
     private int size;
 
 
-    private ArrayList<DistrictPlan> data;
+    private ArrayList<Objects> data;
 
     /*
     "percent white": 47.665,
@@ -33,13 +34,14 @@ public class Cluster {
     "percent republic": 41.224,
     "cluster size": 310,
      */
-    public Cluster(String name, int id, double percentWhite, double percentAA,
+    public Cluster(String name, int id, double percentWhite, double percentaa,
                    double percentHispanic, double percentDemo, double percentRepub,
-                   int size, ArrayList<DistrictPlan> data) {
+                   int size, ArrayList<Objects> data) {
         this.name = name;
         this.id = id;
         this.percentWhite = percentWhite;
-        this.percentAA = percentAA;
+        this.percentaa = percentaa;
+        this.percentHispanic = percentHispanic;
         this.percentDemo = percentDemo;
         this.percentRepub = percentRepub;
         this.size = size;
