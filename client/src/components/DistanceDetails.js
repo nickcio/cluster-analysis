@@ -24,6 +24,7 @@ const DistanceDetails = () => {
     <Box sx={{display: "flex", flexDirection: "row"}} style={{height: "93vh", width: "100vw"}}>
       <Box>
         <Map></Map>
+        <DistanceMatrix distanceData={distanceMatrix}></DistanceMatrix>
       </Box>
       <DistanceMatrix distanceData={distanceMatrix}></DistanceMatrix>
 
