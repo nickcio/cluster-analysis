@@ -41,9 +41,18 @@ public class Controller {
         return "Testing";
     }
 
+//    @GetMapping("/retrieveEnsembles")
+//    public List<Ensemble> retrieveEnsembles() {
+//        log.info("Retrieving ensembles");
+//        return ensembleService.getAllEnsembles();
+//    }
+
+
     @GetMapping("/retrieveEnsembles")
-    public List<Ensemble> retrieveEnsembles() {
-        log.info("Retrieving ensembles");
-        return ensembleService.getAllEnsembles();
+    public List<Ensemble> retrieveEnsembles(@RequestParam(name = "state", required = false) String state) {
+        log.info("Retrieving ensembles for state: {}", state);
+        return ensembleService.getEnsemblesByState(state);
     }
+
+
 }

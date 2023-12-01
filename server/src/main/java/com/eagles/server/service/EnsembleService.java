@@ -19,5 +19,18 @@ public class EnsembleService {
     public List<Ensemble> getAllEnsembles() {
         return ensembleRepository.findAll();
     }
+
+
+
+    public List<Ensemble> getEnsemblesByState(String state) {
+        if (state != null && !state.isEmpty()) {
+            // Implement the logic to filter ensembles by state
+            // This could involve calling a custom method in your repository that finds ensembles by state
+            return ensembleRepository.findByState(state);
+        } else {
+            // If no state is provided, return all ensembles
+            return ensembleRepository.findAll();
+        }
+    }
 }
 
