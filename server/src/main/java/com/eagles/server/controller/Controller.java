@@ -64,9 +64,11 @@ public class Controller {
         return clusterService.getClustersByStateAndEnsemble_Id(state, ensemble_id);
     }
     @GetMapping("/retrievePlans")
-    public List<DistrictPlan> retrievePlans(@RequestParam(name = "state", required = false) String state) {
+    public List<DistrictPlan> retrievePlans(@RequestParam(name = "state", required = false) String state,
+                                            @RequestParam(name = "ensemble_id", required = false) Integer ensemble_id,
+                                            @RequestParam(name = "cluster_id", required = false) Integer cluster_id) {
         log.info("Retrieving cluster info ", state);
-        return districtPlanService.getAllDistrictPlan();
+        return districtPlanService.getDistrictBy(state,ensemble_id,cluster_id);
     }
 
 

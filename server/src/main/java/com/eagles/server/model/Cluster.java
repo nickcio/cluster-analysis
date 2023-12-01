@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.mapping.Field;
 
 import java.util.List;
 import java.util.Map;
-@Document(collection = "Clusters")
+@Document(collection = "Cluster")
 public class Cluster {
     @Id
     private String _id;
