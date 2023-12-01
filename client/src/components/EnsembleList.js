@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -21,13 +21,22 @@ import Paper from '@mui/material/Paper';
 import { Link } from 'react-router-dom';
 
 const EnsembleList = () => {
-  const ensembles = [
-    { name: 'Ensemble 1', state: 'Arizona', details: '/ensemble1/details', distance: '/ensemble1/distance', info: {numberOfClusters: "N/A", numberOfDP: "N/A", clusterVariance: "N/A"}},
-    { name: 'Ensemble 2', state: 'Arizona', details: '/ensemble2/details', distance: '/ensemble2/distance', info: {numberOfClusters: "N/A", numberOfDP: "N/A", clusterVariance: "N/A"}},
-    { name: 'Ensemble 3', state: 'Arizona', details: '/ensemble5/details', distance: '/ensemble5/distance', info: {numberOfClusters: "N/A", numberOfDP: "N/A", clusterVariance: "N/A"}},
-  ];
+    const [ensembles, setEnsembles] = useState([]);
+    let state = "Arizona";
 
-  console.log("RERENDERING ENSEMBLE LIST");
+    useEffect(() => {
+      fetch('http://localhost:8080/retrieveEnsembles?state=' + state)
+        .then(response => response.json())
+        .then(data => {
+          setEnsembles(data);
+        })
+        .catch(error => console.error('Error:', error));
+    }, []);
+
+  console.log("RERENDERING ENSEMBLE LIST", ensembles);
+  ensembles.map((ensemble, index) => (
+    console.log(ensemble)
+  ));
   return (
     <List component="nav" aria-label="ensemble options" sx={{ width: '100%' }}>
         {ensembles.map((ensemble, index) => (
@@ -58,7 +67,7 @@ const EnsembleList = () => {
                     <TableRow>
                         <TableCell align="center">Number of Clusters</TableCell>
                         <TableCell align="center">Number of District Plans</TableCell>
-                        <TableCell align="center">Cluster Variance</TableCell>
+                        <TableCell align="center">Avg. Cluster Variance</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -66,9 +75,9 @@ const EnsembleList = () => {
                         key={ensemble.name}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                        <TableCell align="center">{ensemble.info.numberOfClusters}</TableCell>
-                        <TableCell align="center">{ensemble.info.numberOfDP}</TableCell>
-                        <TableCell align="center">{ensemble.info.clusterVariance}</TableCell>
+                        <TableCell align="center">{ensemble.numberOfClusters}</TableCell>
+                        <TableCell align="center">{ensemble.numberOfDP}</TableCell>
+                        <TableCell align="center">{ensemble.clusterVariance}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

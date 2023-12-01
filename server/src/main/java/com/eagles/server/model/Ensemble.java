@@ -2,47 +2,45 @@ package com.eagles.server.model;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.data.mongodb.core.mapping.Field;
 
 @Document(collection = "ArizonaEnsembles")
 public class Ensemble {
     @Id
     private String id;
 
-    @Field("ensembleID")
-    private int ensembleId;
-    @Field("clusters")
-    private String clusterAmt;
-    @Field("district plans")
-    private String plans;
-
-    @Field("cluster variance")
-    private String varience;
-    @Field("state")
+    private int ensembleID;
+    private String name;
+    private String numberOfClusters;
+    private String numberOfDP;
+    private String clusterVariance;
     private String state;
+
+    // Getters
     public String getId() {
         return id;
     }
 
-    public int getEnsembleId() {
-        return ensembleId;
+    public int getEnsembleID() {
+        return ensembleID;
     }
 
-
-
-    public String getPlans() {
-        return plans;
+    public String getName() {
+        return name;
     }
 
-    public String getVarience() {
-        return varience;
+    public String getNumberOfClusters() {
+        return numberOfClusters;
     }
 
-    public String getClusters() {
-        return clusterAmt;
+    public String getNumberOfDP() {
+        return numberOfDP;
     }
+
+    public String getClusterVariance() {
+        return clusterVariance;
+    }
+
     public String getState() {
         return state;
     }
-
 }
