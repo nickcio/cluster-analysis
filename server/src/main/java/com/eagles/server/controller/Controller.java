@@ -9,28 +9,18 @@ import com.eagles.server.service.ClusterService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
 @Slf4j
 public class Controller {
     private final DistrictPlanService districtPlanService;
-<<<<<<< Updated upstream
     private final ClusterService clusterService;
     //private final EnsembleService testEnsemble;
     public Controller(DistrictPlanService service, ClusterService cService) {
         //, EnsembleService testEnsembles
         this.districtPlanService = service;
         this.clusterService = cService;
-=======
-    private ClusterService clusterService;
-    //private final EnsembleService testEnsemble;
-    public Controller(DistrictPlanService service, ClusterService clusterService) {
-        //, EnsembleService testEnsembles
-        this.districtPlanService = service;
-        this.clusterService = clusterService;
->>>>>>> Stashed changes
 //        this.testEnsemble = testEnsembles;
     }
 
@@ -44,25 +34,11 @@ public class Controller {
 
     @GetMapping("/clusterList")
     public List<Cluster> getClusterList() {
-<<<<<<< Updated upstream
 
         return clusterService.getAllClusters();
     }
 
 
-=======
-        List<Cluster> clusters = clusterService.getAllClusters();
-
-
-
-        return clusterService.getAllClusters();
-    }
-
-//    @GetMapping("/cluster")
-//    public Cluster getCluster(int id){
-//
-//    }
->>>>>>> Stashed changes
 
 
     @PostMapping("/thisIsATestPostRequest")
