@@ -8,23 +8,40 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 
+@Getter
 public class Cluster {
 
 
     @Id
     private String name;
     private int id;
-    private double percentD;
-    private double percentR;
+    private double percentWhite;
+    private double percentAA;
+    private double percentHispanic;
+    private double percentDemo;
+    private double percentRepub;
     private int size;
+
 
     private ArrayList<DistrictPlan> data;
 
-    public Cluster(String name, int id, double percentD, double percentR, int size, ArrayList<DistrictPlan> data) {
+    /*
+    "percent white": 47.665,
+    "percent aa": 2.001,
+    "percent hispanic": 15.059,
+    "percent demo": 58.776,
+    "percent republic": 41.224,
+    "cluster size": 310,
+     */
+    public Cluster(String name, int id, double percentWhite, double percentAA,
+                   double percentHispanic, double percentDemo, double percentRepub,
+                   int size, ArrayList<DistrictPlan> data) {
         this.name = name;
         this.id = id;
-        this.percentD = percentD;
-        this.percentR = percentR;
+        this.percentWhite = percentWhite;
+        this.percentAA = percentAA;
+        this.percentDemo = percentDemo;
+        this.percentRepub = percentRepub;
         this.size = size;
         this.data = data;
     }
