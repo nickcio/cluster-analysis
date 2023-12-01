@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useParams} from 'react';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -21,18 +21,7 @@ import StateSelectBanner from "./StateSelection"
 
 import { Link } from 'react-router-dom';
 
-const EnsembleList = () => {
-    const [ensembles, setEnsembles] = useState([]);
-    let state = "Arizona";
-
-    useEffect(() => {
-      fetch('http://localhost:8080/retrieveEnsembles?state=' + state)
-        .then(response => response.json())
-        .then(data => {
-          setEnsembles(data);
-        })
-        .catch(error => console.error('Error:', error));
-    }, []);
+const EnsembleList = ({ stateId, ensembles }) => {
 
   console.log("RERENDERING ENSEMBLE LIST", ensembles);
   ensembles.map((ensemble, index) => (
@@ -40,7 +29,6 @@ const EnsembleList = () => {
   ));
   return (
     <Box>
-    <StateSelectBanner/>
     <List component="nav" aria-label="ensemble options" sx={{ width: '100%' }}>
         {ensembles.map((ensemble, index) => (
             <React.Fragment key={ensemble.name}>

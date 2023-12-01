@@ -22,7 +22,7 @@ const ClusterTable = ({ data }) => {
                 columns={columns}
                 initialState={{
                 pagination: {
-                    paginationModel: { page: 0, pageSize: 15},
+                    paginationModel: { page: 0, pageSize: 11},
                 },
                 }}
                 sx ={{height:"55%", fontSize: "1.5vh", fontWeight: 550}}

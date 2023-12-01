@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Map from './Map';
 import {Box, Typography, Button} from "@mui/material";
@@ -12,10 +11,20 @@ import DialogTitle from '@mui/material/DialogTitle';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import FormControl from '@mui/material/FormControl';
+import InputLabel from '@mui/material/InputLabel';
+
 
 const ClusterDetails = () => {
   let { stateId, ensembleId, clusterId } = useParams();
   const [open, setOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState(''); 
+
+  const handleChange = (event) => {
+    setSelectedPlan(event.target.value);
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -24,14 +33,6 @@ const ClusterDetails = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  useEffect(() => {
-    var leafletContainers = document.querySelectorAll('.leaflet-container');
-    leafletContainers.forEach(function(container) {
-      console.log(container);
-      container.style.height = '50vh';
-    });
-  }, []);
 
   
   const districtPlans = [
@@ -65,7 +66,15 @@ const ClusterDetails = () => {
         <Box sx={{ flex: '1 1 auto' }}>
           <DistrictPlansTable data={districtPlans} />
         </Box>
-        <Box sx={{display: "flex",  position:'fixed', top:'93%', left: '67%', justifyContent: "space-around"}}>
+      </Box>
+    );
+};
+
+export default ClusterDetails;
+
+
+/**
+ * <Box sx={{display: "flex",  position:'fixed', top:'93%', left: '67%', justifyContent: "space-around"}}>
           <Button variant="outlined"
             onClick={handleClickOpen}
             sx={{
@@ -98,9 +107,4 @@ const ClusterDetails = () => {
                 </Button>
               </DialogActions>
             </Dialog>
-        </Box>
-      </Box>
-    );
-};
-
-export default ClusterDetails;
+ */
