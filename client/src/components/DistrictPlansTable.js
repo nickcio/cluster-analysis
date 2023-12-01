@@ -17,7 +17,7 @@ const DistrictPlansTable = ({ data }) => {
     }
 
     return (
-        <div style={{ height: 530, width: '46%', position:'fixed', top:485, left:755 }}>
+        <div style={{ height: 530, width: '46%', position:'fixed', top:'60%', left:'53%' }}>
             <DataGrid
                 rows={data}
                 columns={columns}

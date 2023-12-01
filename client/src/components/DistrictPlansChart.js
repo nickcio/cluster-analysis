@@ -100,10 +100,10 @@ const DistrictPlansChart = ({ data }) => {
 
     return (
         <div>
-            <div style={{ height: '50vh', width: '50vw', top:90, left:710, position:'fixed'}}>
+            <div style={{ height: '50vh', width: '50vw', top:'12%', left:'50%', position:'fixed'}}>
                 <Scatter data={chartData} options={chartOptions} />
             </div>
-            <FormControl variant="standard" sx={{ marginLeft: 10, top:70, left:720, position:'fixed', minWidth: 120 }}>
+            <FormControl variant="standard" sx={{ marginLeft: 10, top:'10%', left:'50%', position:'fixed', minWidth: 120 }}>
                 <InputLabel id="x-axis-select-label">X Axis</InputLabel>
                 <Select
                     labelId="x-axis-select-label"
@@ -118,7 +118,7 @@ const DistrictPlansChart = ({ data }) => {
                     ))}
                 </Select>
             </FormControl>
-            <FormControl variant="standard" sx={{ marginLeft: 10, top:70, left:1100, position:'fixed', minWidth: 120 }}>
+            <FormControl variant="standard" sx={{ marginLeft: 10, top:'10%', left:'80%', position:'fixed', minWidth: 120 }}>
                 <InputLabel id="y-axis-select-label">Y Axis</InputLabel>
                 <Select
                     labelId="y-axis-select-label"
