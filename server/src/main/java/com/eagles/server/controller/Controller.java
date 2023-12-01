@@ -15,11 +15,12 @@ import java.util.List;
 @Slf4j
 public class Controller {
     private final DistrictPlanService districtPlanService;
-
+    private final ClusterService clusterService;
     //private final EnsembleService testEnsemble;
-    public Controller(DistrictPlanService service) {
+    public Controller(DistrictPlanService service, ClusterService cService) {
         //, EnsembleService testEnsembles
         this.districtPlanService = service;
+        this.clusterService = cService;
 //        this.testEnsemble = testEnsembles;
     }
 
@@ -31,13 +32,13 @@ public class Controller {
     }
 
 
-//    @GetMapping("/clusterList")
-//    public List<Cluster> getClusterList() {
-//
-//        return testEnsemble.getClusters();
-//    }
+    @GetMapping("/clusterList")
+    public List<Cluster> getClusterList() {
 
-    @GetMapping("/cluster")
+        return clusterService.getAllClusters();
+    }
+
+
 
 
     @PostMapping("/thisIsATestPostRequest")
