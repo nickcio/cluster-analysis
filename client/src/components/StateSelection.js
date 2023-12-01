@@ -18,7 +18,6 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
-import Map from './Map';
 
 export default function StateSelectBanner() {
   const { store } = useContext(GlobalStoreContext);
@@ -32,6 +31,7 @@ export default function StateSelectBanner() {
 
   let dropLabel =
     curState !== "" ? curState.features[0].properties.NAME : "Select State";
+  
   if (dropLabel === "Arizona") {
     curStateLabel = <Typography fontWeight="bold" fontSize={20}>
                       Arizona State Assembly District Plan
@@ -62,11 +62,7 @@ export default function StateSelectBanner() {
   };
 
   return (
-    <Box sx={{display: "flex", flexDirection: "row"}} style={{height: "93vh", width: "100vw"}}>
-      <Box className='map-container' sx={{height:'93vh'}}>
-        <Map></Map>
-      </Box>
-      <Outlet/>
+    <Box sx={{display: "flex", flexDirection: "row"}} style={{width: "50vw"}}>
     <Grid
       container
       spacing={0}
@@ -74,7 +70,7 @@ export default function StateSelectBanner() {
       style={{ height: "8vh", display: "flex", alignItems: "center" }}
     >
       <Grid item xs={4}>
-        <FormControl style={{ width: "15vw" }}>
+        <FormControl style={{ width: "15vw"}}>
           <InputLabel id="state_select_label" style={{ fontWeight: "bold" }}>
             State
           </InputLabel>
@@ -84,7 +80,7 @@ export default function StateSelectBanner() {
             value={dropLabel}
             label="State"
             onChange={handleChange}
-            style={{ fontWeight: "bold" }}
+            style={{ fontWeight: "bold",}}
           >
             {dropLabel === "Select State" && (
               <MenuItem value={"Select State"}>Select State</MenuItem>

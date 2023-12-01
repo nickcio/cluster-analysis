@@ -17,6 +17,7 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import StateSelectBanner from "./StateSelection"
 
 import { Link } from 'react-router-dom';
 
@@ -38,6 +39,8 @@ const EnsembleList = () => {
     console.log(ensemble)
   ));
   return (
+    <Box>
+    <StateSelectBanner/>
     <List component="nav" aria-label="ensemble options" sx={{ width: '100%' }}>
         {ensembles.map((ensemble, index) => (
             <React.Fragment key={ensemble.name}>
@@ -88,6 +91,7 @@ const EnsembleList = () => {
             </React.Fragment>
         ))}
         </List>
+    </Box>
   );
 };
 
