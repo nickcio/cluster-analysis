@@ -2,24 +2,12 @@
     "Cluster": 0,
             "name": "Cluster 0",
             "id": 0,
-            "percent white": [
-                47.665
-            ],
-            "percent aa": [
-                2.001
-            ],
-            "percent hispanic": [
-                15.059
-            ],
-            "percent demo": [
-                58.776
-            ],
-            "percent republic": [
-                41.224
-            ],
-            "cluster size": [
-                310
-            ],
+            "percent white": 47.665,
+            "percent aa": 2.001,
+            "percent hispanic": 15.059,
+            "percent demo": 58.776,
+            "percent republic": 41.224,
+            "cluster size":310,
             "data": [
                 {
                     "district plans": [
