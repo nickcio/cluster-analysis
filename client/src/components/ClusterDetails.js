@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import Map from './Map';
 import {Box, Typography, Button} from "@mui/material";
@@ -23,6 +24,15 @@ const ClusterDetails = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  useEffect(() => {
+    var leafletContainers = document.querySelectorAll('.leaflet-container');
+    leafletContainers.forEach(function(container) {
+      console.log(container);
+      container.style.height = '50vh';
+    });
+  }, []);
+
   
   const districtPlans = [
     {"id":1, "District Plan": 1, "Voting Age Pop.": 78317223, "African-American Pop.": 2387393, "Size (km2)": 62951, "Pop. Density": 1594.998, "Avg. Income USD": 79056, "Availabity": 0},
@@ -44,7 +54,7 @@ const ClusterDetails = () => {
     return (
       <Box sx={{ display: "flex", flexDirection: "column", height: "93vh", width: "100vw" }}>
         <Box sx={{ flex: '1 1 auto' }}>
-          <Map />
+          <Map/>
         </Box>
         <Typography variant="h7" component="h5" gutterBottom sx={{ width: "100%", position:'fixed', left:'22%', margin: 2 }}>
           Cluster {clusterId} Details

@@ -69,10 +69,12 @@ function Component() {
     } else {
       map.setView(mainPosition, 5);
     }
+
+
   });
 }
 
-export default function Map() {
+export default function Map(specifiedCenter) {
   const { store } = useContext(GlobalStoreContext);
 
   let stateName =

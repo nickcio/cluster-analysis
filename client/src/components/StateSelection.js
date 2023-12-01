@@ -63,7 +63,7 @@ export default function StateSelectBanner() {
 
   return (
     <Box sx={{display: "flex", flexDirection: "row"}} style={{height: "93vh", width: "100vw"}}>
-      <Box>
+      <Box className='map-container' sx={{height:'93vh'}}>
         <Map></Map>
       </Box>
       <Outlet/>
