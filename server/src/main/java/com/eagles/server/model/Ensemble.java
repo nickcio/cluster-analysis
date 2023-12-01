@@ -13,7 +13,6 @@ public class Ensemble {
     private String numberOfDP;
     private String clusterVariance;
     private String state;
-
     public Ensemble(String id, int ensembleID, String name, String numberOfClusters, String numberOfDP, String clusterVariance, String state) {
         this.id = id;
         this.ensembleID = ensembleID;
@@ -22,7 +21,6 @@ public class Ensemble {
         this.numberOfDP = numberOfDP;
         this.clusterVariance = clusterVariance;
         this.state = state;
-
     }
     // Getters
     public String getId() {
