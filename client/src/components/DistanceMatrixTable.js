@@ -17,7 +17,7 @@ const DistanceMatrix = ({distanceData }) => {
 
     return (
         <div style={{ height: '80%'}}>
-           Distance Matrix
+        Distance Matrix
           <DataGrid
                 rows={rows}
                 columns={columns}

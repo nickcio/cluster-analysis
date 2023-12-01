@@ -2,15 +2,17 @@ import React from 'react';
 import { DataGrid } from '@mui/x-data-grid';
 
 const DistrictPlansTable = ({ data }) => {
+    
     const columns = [
-        { field: 'District Plan', headerName: 'District Plan', width: 70, height: 20 },
-        { field: 'Voting Age Pop.', headerName: 'Voting Age Pop.', width: 100, height: 20, type: 'number' },
-        { field: 'African-American Pop.', headerName: 'African-American Pop.', width: 100, height: 20, type: 'number' },
-        { field: 'Size (km2)', headerName: 'Size (km²)', width: 100, height: 20, type: 'number' },
-        { field: 'Pop. Density', headerName: 'Pop. Density', width: 100, height: 20, type: 'number' },
-        { field: 'Avg. Income USD', headerName: 'Avg. Income USD', width: 100, height: 20, type: 'number' },
-        { field: 'Availabity', headerName: 'Availability', width: 70, height: 20, type: 'number' }
-    ];
+        { field: 'id', headerName: 'ID', width: 50, type: 'number' },
+        { field: 'availability', headerName: 'Availability', width: 50, type: 'number' },
+        { field: 'area_data', headerName: 'Size (km²)', width: 90, type: 'number' },
+        { field: 'dem_percentages', headerName: 'Dem. %', width: 90, type: 'number' },
+        { field: 'african_american_pop', headerName: 'African-American Pop.', width: 90, type: 'number' },
+        { field: 'white_population', headerName: 'White Population', width: 90, type: 'number' },
+        { field: 'hispanic_population', headerName: 'Hispanic Population', width: 90, type: 'number' },
+        { field: 'rep_percentages', headerName: 'Rep. %', width: 90, type: 'number' }
+    ];    
 
     function handleClick(e) {
         console.log(`District Plan ${e.row['District Plan']}`);
