@@ -17,7 +17,7 @@ public class Cluster {
     private List<Integer> centroid;
     private int average_distance;
     private int average_plan;
-    private int average_rep_dem_split;
+    private List<Integer> average_rep_dem_split;
     private int average_opportunity_districts;
     private String state;
     private int ensemble_id;
@@ -25,7 +25,7 @@ public class Cluster {
 
     public Cluster(String _id, String cluster_id, int num_district_plans,
                     Map<String, DistrictPlan>district_plans, List<Integer> centroid,
-                   int average_distance, int average_plan, int average_rep_dem_split, int average_opportunity_districts,
+                   int average_distance, int average_plan, List<Integer> average_rep_dem_split, int average_opportunity_districts,
                    String state, int ensemble_id, int id) {
         this._id = _id;
         this.cluster_id = cluster_id;
@@ -63,7 +63,7 @@ public class Cluster {
     public int getAverage_plan(){
         return average_plan;
     }
-    public int getAverage_rep_dem_split(){
+    public List<Integer> getAverage_rep_dem_split(){
         return this.average_rep_dem_split;
     }
     public int getAverage_opportunity_districts(){
