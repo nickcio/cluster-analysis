@@ -8,10 +8,10 @@ const DistrictPlansChart = ({ data }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [xAxisKey, setXAxisKey] = useState('Voting Age Pop.');
-    const [yAxisKey, setYAxisKey] = useState('African-American Pop.');
+    const [xAxisKey, setXAxisKey] = useState('area_data');
+    const [yAxisKey, setYAxisKey] = useState('dem_percentages');
 
-    const axisKeys = Object.keys(data[0]).filter(key => key !== 'District Plan' && key !== 'Size (km2)');
+    const axisKeys = ["id", "area_data", "availability", "dem_percentages", "african_american_pop", "white_population", "hispanic_population", "rep_percentages"];
 
     const handleXAxisChange = (event) => {
         setXAxisKey(event.target.value);
@@ -41,7 +41,7 @@ const DistrictPlansChart = ({ data }) => {
         const setting = availabilitySettings[availability];
         return {
             label: setting.label,
-            data: data.filter(item => item.Availabity.toString() === availability).map(item => ({
+            data: data.filter(item => item.availability.toString() === availability).map(item => ({
                 x: item[xAxisKey],
                 y: item[yAxisKey],
             })),
