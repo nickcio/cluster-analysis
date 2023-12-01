@@ -16,7 +16,7 @@ const ClusterTable = ({ data }) => {
       }
     
       return (
-        <div style={{ height: 570, width: '46%', position:'fixed', top:500, left:755}}>
+        <div style={{ height: 570, width: '46%', position:'fixed', top:'60%', left:'53%'}}>
           <DataGrid
                 rows={data}
                 columns={columns}
