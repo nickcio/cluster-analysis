@@ -5,6 +5,7 @@ import Map from './Map';
 import Box from "@mui/material/Box";
 import ClusterChart from './ClusterChart';
 import ClusterTable from './ClusterTable';
+import MdsDisplay from './MDSDisplay';
 
 const EnsembleDetails = () => {
   let { stateId, ensembleId } = useParams();
@@ -36,8 +37,9 @@ const EnsembleDetails = () => {
 
   return (
     <Box sx={{display: "flex", flexDirection: "row"}} style={{height: "93vh", width: "100vw"}}>
-      <Box>
+      <Box sx={{padding:2}}>
         <Map></Map>
+        <MdsDisplay clusterData={clusterData}></MdsDisplay>
       </Box>
       <ClusterChart 
         data={clusterData} 
