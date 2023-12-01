@@ -1,6 +1,17 @@
 {
     "ensemble":{
         "ensembleID": 1,
-        "summary":"hello"
+        "summary":{
+            "clusters": "10",
+            "district plans": "10,000",
+            "cluster vairence":".52"
+        }
     }
 }
+
+
+
+
+
+
+
