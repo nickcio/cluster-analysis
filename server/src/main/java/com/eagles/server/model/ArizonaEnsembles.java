@@ -35,6 +35,7 @@ public class ArizonaEnsembles {
         this._id = _id;
         this.num_district_plans = num_district_plans;
         this.num_clusters = num_clusters;
+        this.clusters = clusters;
         this.optimal_transport_distance_matrix = optimal_transport_distance_matrix;
         this.average_optimal_transport_distance = average_optimal_transport_distance;
         this.hamming_distance_matrix = hamming_distance_matrix;

@@ -30,9 +30,9 @@ public class Controller {
         return ensembleService.getEnsemblesByState(state);
     }
     @GetMapping("/retrieveClusters")
-    public List<Cluster> retrieveCluster(@RequestParam(name = "state", required = false) String state, @RequestParam(name = "ensemble_id", required = false) Integer ensemble_id) {
-        //log.info("Retrieving cluster info; state:", state, " esemble_id: ", ensemble_id);
-        return clusterService.getClustersByStateAndEnsemble_Id(state, ensemble_id);
+    public List<Object> retrieveCluster(@RequestParam(name = "state", required = false) String state, @RequestParam(name = "ensemble_id", required = false) String ensemble_id) {
+        log.info("Retrieving cluster info; state:", state, " esemble_id: ", ensemble_id);
+        return ensembleService.getEnsembleClusters(state, ensemble_id);
     }
     @GetMapping("/retrievePlans")
     public List<DistrictPlan> retrievePlans(@RequestParam(name = "state", required = false) String state,
