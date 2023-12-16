@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class EnsembleService {
@@ -27,13 +28,13 @@ public class EnsembleService {
 
     //Here we can find all the shit for the different states when a state is passed in
     public List<Object> getEnsemblesByState(String state) {
-        if (state != null && !state.isEmpty() && state == "Arizona") {
+        if (Objects.equals(state, "Arizona")) {
             // Implement the logic to filter ensembles by state
             // This could involve calling a custom method in your repository that finds ensembles by state
             return new ArrayList<Object>(getAllArizonaEnsemble());
         } else {
             // If no state is provided, return all ensembles
-            return new ArrayList<Object>(getAllArizonaEnsemble());
+            return new ArrayList<Object>();
         }
     }
 }
