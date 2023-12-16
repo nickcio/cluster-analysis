@@ -3,7 +3,7 @@ package com.eagles.server.service;
 import com.eagles.server.dao.ClusterRepository;
 import com.eagles.server.model.Cluster;
 
-import com.eagles.server.model.Ensemble;
+//import com.eagles.server.model.Ensemble;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
