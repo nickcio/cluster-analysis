@@ -5,6 +5,8 @@ import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useMap } from "react-leaflet";
+import { useNavigate } from 'react-router-dom';
+
 import usStatesGeoJSON from "./geojson/state-borders.json";
 import {
   point,
@@ -50,6 +52,7 @@ const mainPosition = [32, -96];
 
 function Component() {
   const { store } = useContext(GlobalStoreContext);
+  
   let stateName =
     store.currentState !== ""
       ? store.currentState.features[0].properties.NAME
@@ -76,6 +79,7 @@ function Component() {
 
 export default function Map(specifiedCenter) {
   const { store } = useContext(GlobalStoreContext);
+  const navigate = useNavigate();
 
   let stateName =
     store.currentState !== ""
@@ -84,7 +88,7 @@ export default function Map(specifiedCenter) {
 
   const onClickAZ = (feature, layer) => {
     const clicked = () => {
-      //map.setView(arizonaPosition, 6)
+      navigate(`/state/Arizona`);
       store.setState(AZBorders, AZDistricts);
     };
     const mouseovered = (e) => {
@@ -104,7 +108,7 @@ export default function Map(specifiedCenter) {
 
   const onClickSC = (feature, layer) => {
     const clicked = () => {
-      //map.setView(scPosition, 7)
+      navigate(`/state/South%20Carolina`);
       store.setState(SCBorders, SCDistricts);
     };
     const mouseovered = (e) => {

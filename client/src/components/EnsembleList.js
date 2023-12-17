@@ -23,24 +23,19 @@ import { Link } from 'react-router-dom';
 
 const EnsembleList = ({ stateId, ensembles }) => {
 
-  console.log("RERENDERING ENSEMBLE LIST", ensembles);
-  ensembles.map((ensemble, index) => (
-    console.log(ensemble)
-  ));
-
-  
+  console.log("Ensembles in ENSEMBLE LIST COMPONENET", ensembles)
   return (
-    <Box>
+    <Box sx={{ height: '83vh', overflowY: 'auto' }}>
     <List component="nav" aria-label="ensemble options" sx={{ width: '100%' }}>
         {ensembles.map((ensemble, index) => (
-            <React.Fragment key={ensemble.name}>
+            <React.Fragment key={"Ensemble " + ensemble.id}>
             <ListItem sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                <ListItemText primary={ensemble.name} />
+                <ListItemText primary={"Ensemble " + ensemble.id} />
                 <Box>
-                <Button component={Link} to={`/state/${ensemble.state}/ensemble/${index + 1}`} variant="outlined" sx={{ marginRight: '8px' }}>
+                <Button component={Link} to={`/state/${stateId}/ensemble/${ensemble.backendId}`} variant="outlined" sx={{ marginRight: '8px' }}>
                     Ensemble Details
                 </Button>
-                <Button component={Link} to={`/state/${ensemble.state}/ensemble/${index + 1}/distance`} variant="outlined">
+                <Button component={Link} to={`/state/${stateId}/ensemble/${index + 1}/distance`} variant="outlined">
                     Distance Details
                 </Button>
                 </Box>
@@ -55,12 +50,14 @@ const EnsembleList = ({ stateId, ensembles }) => {
                 </AccordionSummary>
                 <AccordionDetails>
                 <TableContainer component={Paper}>
-                <Table sx={{ minWidth: 650 }} aria-label="ensemble summary table">
+                <Table sx={{ minWidth: 450 }} aria-label="ensemble summary table">
                     <TableHead>
                     <TableRow>
                         <TableCell align="center">Number of Clusters</TableCell>
                         <TableCell align="center">Number of District Plans</TableCell>
-                        <TableCell align="center">Avg. Cluster Variance</TableCell>
+                        <TableCell align="center">Avg. Euclidean Distance</TableCell>
+                        <TableCell align="center">Avg. Hamming Distance</TableCell>
+                        <TableCell align="center">Avg. Optimal Transport</TableCell>
                     </TableRow>
                     </TableHead>
                     <TableBody>
@@ -68,9 +65,36 @@ const EnsembleList = ({ stateId, ensembles }) => {
                         key={ensemble.name}
                         sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         >
-                        <TableCell align="center">{ensemble.numberOfClusters}</TableCell>
-                        <TableCell align="center">{ensemble.numberOfDP}</TableCell>
-                        <TableCell align="center">{ensemble.clusterVariance}</TableCell>
+                        <TableCell align="center">{ensemble.num_clusters}</TableCell>
+                        <TableCell align="center">{ensemble.num_district_plans}</TableCell>
+                        <TableCell align="center">{ensemble.avg_euclidean_distance.toFixed(3)}</TableCell>
+                        <TableCell align="center">{ensemble.hamming_distance.toFixed(3)}</TableCell>
+                        <TableCell align="center">{ensemble.optimal_transport_distance.toFixed(3)}</TableCell>
+                        </TableRow>
+                    </TableBody>
+                </Table>
+                </TableContainer>
+                <TableContainer component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="ensemble summary table">
+                    <TableHead>
+                    <TableRow>
+                        <TableCell align="center">Avg. Dem Votes %</TableCell>
+                        <TableCell align="center">Avg. Rep Votes %</TableCell>
+                        <TableCell align="center">Avg. Margin of Victory</TableCell>
+                        <TableCell align="center">Avg. Oppurunity Districts</TableCell>
+                        <TableCell align="center">Avg. Population Margin</TableCell>
+                    </TableRow>
+                    </TableHead>
+                    <TableBody>
+                        <TableRow
+                        key={ensemble.name}
+                        sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                        <TableCell align="center">{ensemble.dem_votes_percent.toFixed(3)}</TableCell>
+                        <TableCell align="center">{ensemble.average_rep_votes_percent.toFixed(3)}</TableCell>
+                        <TableCell align="center">{ensemble.margin_of_victory.toFixed(3)}</TableCell>
+                        <TableCell align="center">{ensemble.opportunity_districts.toFixed(3)}</TableCell>
+                        <TableCell align="center">{ensemble.population_margin.toFixed(3)}</TableCell>
                         </TableRow>
                     </TableBody>
                 </Table>

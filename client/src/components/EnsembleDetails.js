@@ -42,14 +42,9 @@ const EnsembleDetails = () => {
   }, []); 
 
 
-  const simplifiedClusters = clusters.map(cluster => ({
-    id: cluster.id,
+  const simplifiedClusters = clusters.map((cluster, index) => ({
+    id: index,
     average_distance: cluster.average_distance,
-    average_opportunity_districts: cluster.average_opportunity_districts,
-    average_plan: cluster.average_plan,
-    average_rep_split: cluster.average_rep_dem_split[0],
-    average_dem_split: cluster.average_rep_dem_split[1],
-    num_district_plans: cluster.num_district_plans
   }));
 
   

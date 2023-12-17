@@ -62,18 +62,18 @@ const EnsembleAssociationTable = ({ ensembles }) => {
             </TableCell>
             <TableCell align="right">
               <TableSortLabel
-                active={orderBy === 'numberOfClusters'}
-                direction={orderBy === 'numberOfClusters' ? order : 'asc'}
-                onClick={() => handleSort('numberOfClusters')}
+                active={orderBy === 'num_clusters'}
+                direction={orderBy === 'num_clusters' ? order : 'asc'}
+                onClick={() => handleSort('num_clusters')}
               >
                 Number of Clusters
               </TableSortLabel>
             </TableCell>
             <TableCell align="right">
               <TableSortLabel
-                active={orderBy === 'numberOfDP'}
-                direction={orderBy === 'numberOfDP' ? order : 'asc'}
-                onClick={() => handleSort('numberOfDP')}
+                active={orderBy === 'num_district_plans'}
+                direction={orderBy === 'num_district_plans' ? order : 'asc'}
+                onClick={() => handleSort('num_district_plans')}
               >
                 Number of District Plans
               </TableSortLabel>
@@ -87,10 +87,10 @@ const EnsembleAssociationTable = ({ ensembles }) => {
               sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
             >
               <TableCell component="th" scope="row">
-                {ensemble.name}
+                {"Ensemble " + ensemble.id}
               </TableCell>
-              <TableCell align="right">{ensemble.numberOfClusters}</TableCell>
-              <TableCell align="right">{ensemble.numberOfDP}</TableCell>
+              <TableCell align="right">{ensemble.num_clusters}</TableCell>
+              <TableCell align="right">{ensemble.num_district_plans}</TableCell>
             </TableRow>
           ))}
         </TableBody>

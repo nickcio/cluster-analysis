@@ -39,19 +39,40 @@ const StateDetails = () => {
   let {stateId} = useParams();
   const [ensembles, setEnsembles] = useState([]);
   const [tabValue, setTabValue] = useState(0);
+  console.log(stateId);
 
   useEffect(() => {
     fetch('http://localhost:8080/retrieveEnsembles?state=' + stateId)
       .then(response => response.json())
       .then(data => {
+        console.log(data);
         setEnsembles(data);
       })
       .catch(error => console.error('Error:', error));
   }, []);
 
+  console.log("Ensembles", ensembles);
+
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
   };
+
+  const structuredEnsembles = ensembles.map((currentEnsemble, index) => ({
+    id: index + 1, 
+    backendId: currentEnsemble._id,
+    dem_votes_percent: currentEnsemble.average_dem_votes_percent,
+    demographic_percent: currentEnsemble.average_demographic_percent,
+    hamming_distance: currentEnsemble.average_hamming_distance,
+    margin_of_victory: currentEnsemble.average_margin_of_victory, 
+    opportunity_districts: currentEnsemble.average_opportunity_districts,
+    optimal_transport_distance: currentEnsemble.average_optimal_transport_distance,
+    population_margin: currentEnsemble.average_population_margin,
+    rep_dem_split: currentEnsemble.average_rep_dem_split,
+    average_rep_votes_percent: currentEnsemble.average_rep_votes_percent, 
+    avg_euclidean_distance: currentEnsemble.avg_euclidean_distance,
+    num_clusters: currentEnsemble.num_clusters,
+    num_district_plans: currentEnsemble.num_district_plans,
+  }))
 
   return (
     <Box sx={{display: "flex", flexDirection: "row"}} style={{height: "93vh", width: "100vw"}}>
@@ -64,12 +85,12 @@ const StateDetails = () => {
           <Tab label="Ensemble Association" {...a11yProps(1)} />
         </Tabs>
         <TabPanel value={tabValue} index={0}>
-          <EnsembleList stateId={stateId} ensembles={ensembles}/>
+          <EnsembleList stateId={stateId} ensembles={structuredEnsembles}/>
         </TabPanel>
         <TabPanel value={tabValue} index={1}>
            Ensemble Association
-           <EnsembleAssociationChart ensembles={ensembles}></EnsembleAssociationChart>
-           <EnsembleAssociationTable ensembles={ensembles}></EnsembleAssociationTable>
+           <EnsembleAssociationChart ensembles={structuredEnsembles}></EnsembleAssociationChart>
+           <EnsembleAssociationTable ensembles={structuredEnsembles}></EnsembleAssociationTable>
         </TabPanel>
       </Box>
       </Box>

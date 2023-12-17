@@ -86,7 +86,7 @@ export default function StateSelectBanner() {
               <MenuItem value={"Select State"}>Select State</MenuItem>
             )}
             <MenuItem value={"Arizona"}>Arizona</MenuItem>
-            <MenuItem value={"South Carolina"}>South Carolina</MenuItem>
+            <MenuItem value={"South_Carolina"}>South Carolina</MenuItem>
             <MenuItem value={"Texas"}>Texas</MenuItem>
           </Select>
         </FormControl>

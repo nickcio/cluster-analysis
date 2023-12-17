@@ -6,7 +6,7 @@ ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, T
 
 const LineChartComponent = ({ ensembles }) => {
   const sortedEnsembles = ensembles.slice().sort((a, b) => 
-      parseInt(a.numberOfDP.replace(/,/g, '')) - parseInt(b.numberOfDP.replace(/,/g, ''))
+          a.num_district_plans - b.num_district_plans
       );
 
   const data = {
@@ -14,8 +14,8 @@ const LineChartComponent = ({ ensembles }) => {
       {
         label: 'Number of Clusters',
         data: sortedEnsembles.map(e => ({
-          x: parseInt(e.numberOfDP.replace(/,/g, '')), 
-          y: parseInt(e.numberOfClusters.replace(/,/g, '')), 
+          x: e.num_district_plans, 
+          y: e.num_clusters, 
         })),
         borderColor: 'rgb(75, 192, 192)',
         backgroundColor: 'rgba(75, 192, 192, 0.5)',
