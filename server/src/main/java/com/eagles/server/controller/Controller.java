@@ -4,6 +4,7 @@ import com.eagles.server.model.Cluster;
 import com.eagles.server.model.DistrictPlan;
 import com.eagles.server.service.ClusterService;
 import com.eagles.server.service.DistrictPlanService;
+import com.eagles.server.service.geoJsonService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 //import com.eagles.server.model.Ensemble;
@@ -17,12 +18,15 @@ public class Controller {
     private final DistrictPlanService districtPlanService;
     private final EnsembleService ensembleService;
     private final ClusterService clusterService;
+    private final geoJsonService geoJsonService;
 
 
-    public Controller(DistrictPlanService districtPlanService, EnsembleService ensembleService, ClusterService clusterService) {
+    public Controller(DistrictPlanService districtPlanService, EnsembleService ensembleService,
+                      ClusterService clusterService,geoJsonService geoJsonService) {
         this.districtPlanService = districtPlanService;
         this.ensembleService = ensembleService;
         this.clusterService = clusterService;
+        this.geoJsonService = geoJsonService;
     }
     @GetMapping("/retrieveEnsembles")
     public List<Object> retrieveEnsembles(@RequestParam(name = "state", required = false) String state) {
@@ -40,6 +44,13 @@ public class Controller {
         //log.info("Retrieving district plan info; state:", state, " cluster_id: ", cluster_id);
         return clusterService.getClusterPlansByStateAndId(state,cluster_id);
     }
+
+    @GetMapping("/geo")
+    public List<Object> retrievePlans() {
+        //log.info("Retrieving district plan info; state:", state, " cluster_id: ", cluster_id);
+        return geoJsonService.getAllJson();
+    }
+
 }
 
 
