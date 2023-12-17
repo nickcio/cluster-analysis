@@ -52,7 +52,7 @@ public class EnsembleService {
         if(Objects.equals(state, "Arizona")){
             Optional<ArizonaEnsembles> currentEnsemb = ArizonaEnsembleRepo.findById(ensembleId);
             Optional<List<String>> clustersOptional = currentEnsemb.map(ArizonaEnsembles::getClusters);
-            log.info("I worked here " + clustersOptional.get());
+            log.info("I worked here in EnsembleClusters" + clustersOptional.get());
             return ClusterService.getAllClustersByStateAndId(state, clustersOptional);
         }
         return new ArrayList<>();

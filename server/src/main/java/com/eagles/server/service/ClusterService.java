@@ -5,6 +5,7 @@ import com.eagles.server.dao.ArizonaClusterRepository;
 import com.eagles.server.model.ArizonaCluster;
 
 
+import com.eagles.server.model.ArizonaEnsembles;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,11 @@ import java.util.Optional;
 @Slf4j
 public class ClusterService {
     private ArizonaClusterRepository ArizonaClusterRepository;
+    private DistrictPlanService DistrictPlanService;
     @Autowired
-    public ClusterService(ArizonaClusterRepository ArizonaClusterRepository){
+    public ClusterService(ArizonaClusterRepository ArizonaClusterRepository, DistrictPlanService DistrictPlanService){
         this.ArizonaClusterRepository = ArizonaClusterRepository;
+        this.DistrictPlanService = DistrictPlanService;
     }
 //    public Cluster getClusterById(String cluster_Id) {
 //        return clusterRepository.findByCluster_Id(cluster_Id);
@@ -37,17 +40,27 @@ public class ClusterService {
 //    }
 
     public List<Object> getAllClustersByStateAndId(String state, Optional<List<String>> clusterId) {
-        //if(Objects.equals(state, "Arizona"))
-        //{
+        if(Objects.equals(state, "Arizona"))
+        {
             List<ArizonaCluster> clusterList = ArizonaClusterRepository.findAllBy_idIn(clusterId);
             log.info("Inside the clustersService here is clusterList " + clusterId);
             return new ArrayList<Object>(clusterList);
-       // }
+        }
 
-       // else{
-        //    return new ArrayList<Object>();
-       // }
+        else {
+            return new ArrayList<Object>();
+        }
+    }
 
+    public List<Object>getClusterPlansByStateAndId(String state, String clusterId){
+
+        if(Objects.equals(state, "Arizona")){
+            Optional<ArizonaCluster> currentEnsemb = ArizonaClusterRepository.findById(clusterId);
+            Optional<List<String>> plansOptional = currentEnsemb.map(ArizonaCluster::getDistrict_plans);
+            log.info("I worked here in Cluster get Plans " + plansOptional.get());
+            return DistrictPlanService.getAllDistrictByStateAndId(state, plansOptional);
+        }
+        return new ArrayList<>();
     }
 
 
