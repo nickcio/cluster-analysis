@@ -66,14 +66,19 @@ const DistrictPlansChart = ({ data }) => {
         plugins: {
             tooltip: {
                 callbacks: {
-                    label: function(context) {
-                        var label = context.dataset.label || '';
-                        if (label) {
-                            label += ': ';
-                        }
-                        label += `(${context.raw.x}, ${context.raw.y}) Size: ${context.raw.r}`;
-                        return label;
-                    }
+                  label: function(context) {
+                    const index = context.dataIndex;
+                    const dataset = context.dataset;
+                    const item = dataset.data[index];
+                    const planDetails = data[index];
+          
+                    const labels = [];
+                      labels.push(`ID: ${planDetails.id}`);
+                      labels.push(`Availability: ${planDetails.availability}`);
+                      labels.push(`Dem %: ${planDetails.dem_percentages}`);
+                      labels.push(`Rep %: ${planDetails.rep_percentages}`);
+                    return labels;
+                  }
                 }
             }
         },

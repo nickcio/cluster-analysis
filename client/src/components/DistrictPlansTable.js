@@ -113,7 +113,7 @@ const DistrictPlansTable = ({ data}) => {
                     </AccordionSummary>
                     <AccordionDetails>
                         <DataGrid
-                                rows={data[expandedRowId].district_object}
+                                rows={data[expandedRowId - 1].district_object}
                                 columns={district_info_columns}
                                 initialState={{
                                 pagination: {

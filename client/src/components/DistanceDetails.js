@@ -1,32 +1,22 @@
-import React, { useState, useEffect} from 'react';
+import React, { useContext, useEffect} from 'react';
+import { GlobalStoreContext } from "../store";
 import { useParams} from 'react-router-dom';
 import Map from './Map';
 import Box from "@mui/material/Box";
 import DistanceMatrix from './DistanceMatrixTable';
 
+import { useLocation } from 'react-router-dom';
+
 const DistanceDetails = () => {
-  let { id } = useParams();
-  useEffect(() => {
-
-    var leafletContainers = document.querySelectorAll('.leaflet-container');
-    leafletContainers.forEach(function(container) {
-      console.log(container);
-      container.style.height = '50vh';
-    });
-
-  }, []); 
-
-  let distanceMatrix = getDistanceMatrix();
-
+  let location = useLocation();
+  const { store } = useContext(GlobalStoreContext);
+  console.log(store.currentOptimalMatrix);
 
 
   return (
-    <Box sx={{display: "flex", flexDirection: "row", overflow:"hidden"}} style={{height: "93vh", width: "100vw"}}>
-      <Box>
-        <Map></Map>
-        <DistanceMatrix distanceData={distanceMatrix}></DistanceMatrix>
-      </Box>
-      <DistanceMatrix distanceData={distanceMatrix}></DistanceMatrix>
+    <Box sx={{display: "flex", flexDirection: "column", overflow:"hidden"}} style={{height: "93vh", width: "100vw",}}>
+      <DistanceMatrix optimal_transport={store.currentOptimalMatrix} nameOfTable={"Optimal Transport"}></DistanceMatrix>
+      <DistanceMatrix optimal_transport={store.currentHammingMatrix} nameOfTable={"Hamming Matrix"}></DistanceMatrix>
 
     </Box>
   );

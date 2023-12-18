@@ -72,6 +72,8 @@ const StateDetails = () => {
     avg_euclidean_distance: currentEnsemble.avg_euclidean_distance,
     num_clusters: currentEnsemble.num_clusters,
     num_district_plans: currentEnsemble.num_district_plans,
+    optimal_transport_matrix: currentEnsemble.optimal_transport_distance_matrix,
+    hamming_distance_matrix: currentEnsemble.hamming_distance_matrix,
   }))
 
   return (

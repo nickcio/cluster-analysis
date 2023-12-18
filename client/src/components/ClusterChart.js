@@ -71,18 +71,24 @@ const ClusterChart = ({ data }) => {
     },
 
     plugins: {
-        tooltip: {
+      tooltip: {
         callbacks: {
-            label: function(context) {
-            var label = context.dataset.label || '';
-            if (label) {
-                label += ': ';
-            }
-            label += `(${context.raw.x}, ${context.raw.y}) Size: ${context.raw.r}`;
-            return label;
-            }
+          label: function(context) {
+            const index = context.dataIndex;
+            const dataset = context.dataset;
+            const item = dataset.data[index];
+            const clusterDetails = data[index];
+  
+            const labels = [];
+              labels.push(`ID: ${clusterDetails.id}`);
+              labels.push(`# of District Plans: ${clusterDetails.num_district_plans}`);
+              labels.push(`Avg. Euclidean Distance: ${clusterDetails.average_euclidean_distance}`);
+              labels.push(`Avg. Dem Votes %: ${clusterDetails.dem_votes_percent}`);
+              labels.push(`Avg. Rep Votes %: ${clusterDetails.dem_votes_percent}`);
+            return labels;
+          }
         }
-        }
+      }
     },
 
     onClick: (event, elements) => {

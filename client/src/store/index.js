@@ -10,20 +10,18 @@ export const GlobalStoreActionType = {
 };
 
 function GlobalStoreContextProvider(props) {
-  // THESE ARE ALL THE THINGS OUR DATA STORE WILL MANAGE
   const [store, setStore] = useState({
     currentState: "",
     currentDistricts: "",
     currentEnsemble: "",
     currentCluster: "",
-    currentDistance: "",
+    currentOptimalMatrix: "",
+    currentHammingMatrix: "",
   });
 
   const storeReducer = (action) => {
     const { type, payload } = action;
-    console.log(store, payload);
     switch (type) {
-      // LIST UPDATE OF ITS NAME
       case GlobalStoreActionType.SET_STATE: {
         return setStore({
           ...store,
@@ -50,7 +48,8 @@ function GlobalStoreContextProvider(props) {
       case GlobalStoreActionType.SET_DISTANCE: {
         return setStore({
           ...store,
-          currentDistance: payload.distance,
+          currentOptimalMatrix: payload.optimalMatrix,
+          currentHammingMatrix: payload.hammingMatrix,
         });
       }
       default:
@@ -82,12 +81,10 @@ function GlobalStoreContextProvider(props) {
     });
   };
 
-  store.setDistance = async function (distance) {
-    console.log("Distance CHANGED TO: ");
-    console.log(distance);
+  store.setDistance = async function (optimal_transport_distance_matrix, hamming_distance_matrix) {
     storeReducer({
       type: GlobalStoreActionType.SET_DISTANCE,
-      payload: { distance: distance },
+      payload: {optimalMatrix: optimal_transport_distance_matrix, hammingMatrix: hamming_distance_matrix},
     });
   };
 

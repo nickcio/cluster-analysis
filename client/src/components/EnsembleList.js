@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useParams} from 'react';
+import React from 'react';
+import { GlobalStoreContext } from "../store";
+import { useContext, useState, } from "react";
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
 import ListItemText from '@mui/material/ListItemText';
@@ -18,12 +20,23 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import StateSelectBanner from "./StateSelection"
-
+import { useNavigate, useLocation } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
 const EnsembleList = ({ stateId, ensembles }) => {
+    const { store } = useContext(GlobalStoreContext);
+    const navigate = useNavigate();
+    const location = useLocation();
 
-  console.log("Ensembles in ENSEMBLE LIST COMPONENET", ensembles)
+    function handleClick(ensemble, event) {
+        event.preventDefault();
+        console.log(ensemble);
+        store.setDistance(ensemble.optimal_transport_matrix, ensemble.hamming_distance_matrix);
+        navigate(`/state/${stateId}/ensemble/${ensemble.backendId}/distance`);
+        
+    }
+    
+    //pathname: `/state/${stateId}/ensemble/${ensemble.backendId}/distance`
   return (
     <Box sx={{ height: '83vh', overflowY: 'auto' }}>
     <List component="nav" aria-label="ensemble options" sx={{ width: '100%' }}>
@@ -35,7 +48,7 @@ const EnsembleList = ({ stateId, ensembles }) => {
                 <Button component={Link} to={`/state/${stateId}/ensemble/${ensemble.backendId}`} variant="outlined" sx={{ marginRight: '8px' }}>
                     Ensemble Details
                 </Button>
-                <Button component={Link} to={`/state/${stateId}/ensemble/${index + 1}/distance`} variant="outlined">
+                <Button onClick={(event) => handleClick(ensemble, event)} variant="outlined">
                     Distance Details
                 </Button>
                 </Box>
