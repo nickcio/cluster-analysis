@@ -1,11 +1,10 @@
 package com.eagles.server.service;
 
 import com.eagles.server.dao.ArizonaDistrictPlansRepository;
-import com.eagles.server.dao.DistrictPlansRepository;
-import com.eagles.server.model.ArizonaCluster;
-import com.eagles.server.model.ArizonaDistrictPlans;
-import com.eagles.server.model.Cluster;
-import com.eagles.server.model.DistrictPlan;
+import com.eagles.server.dao.SCDistrictPlansRepository;
+import com.eagles.server.dao.TexasDistrictPlansRepository;
+import com.eagles.server.dao.SCClusterRepository;
+import com.eagles.server.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,10 +19,15 @@ import java.util.Optional;
 public class DistrictPlanService {
 //    private DistrictPlansRepository districtPlansRepository;
     private ArizonaDistrictPlansRepository ArizonaDistrictPlansRepository;
+    private SCDistrictPlansRepository SCDistrictPlansRepository;
+    private TexasDistrictPlansRepository TexasDistrictPlansRepository;
     @Autowired
-    public DistrictPlanService(ArizonaDistrictPlansRepository ArizonaDistrictPlansRepository) {
+    public DistrictPlanService(ArizonaDistrictPlansRepository ArizonaDistrictPlansRepository, SCDistrictPlansRepository SCDistrictPlansRepository,
+                               TexasDistrictPlansRepository TexasDistrictPlansRepository) {
 
         this.ArizonaDistrictPlansRepository = ArizonaDistrictPlansRepository;
+        this.SCDistrictPlansRepository = SCDistrictPlansRepository;
+        this.TexasDistrictPlansRepository = TexasDistrictPlansRepository;
     }
 
 //    public DistrictPlan saveDistrictPlan(DistrictPlan plan) {
@@ -46,16 +50,38 @@ public class DistrictPlanService {
 //    }
 
     public List<Object> getAllDistrictByStateAndId(String state, Optional<List<String>> districtId){
-        if(Objects.equals(state, "Arizona"))
+        switch (state)
         {
-            List<ArizonaDistrictPlans> districtPlansList = ArizonaDistrictPlansRepository.findAllBy_idIn(districtId);
-            log.info("Inside the districtPlanService to get District plans here is districtListt " + districtPlansList);
-            return new ArrayList<Object>(districtPlansList);
+            case "Arizona":
+                List<ArizonaDistrictPlans> AZdistrictPlansList = ArizonaDistrictPlansRepository.findAllBy_idIn(districtId);
+                log.info("Inside the districtPlanService to get District plans here is AZdistrictListt " + AZdistrictPlansList);
+                return new ArrayList<Object>(AZdistrictPlansList);
+
+            case "SC":
+                List<SCDistrictPlans> SCdistrictPlansList = SCDistrictPlansRepository.findAllBy_idIn(districtId);
+                log.info("Inside the districtPlanService to get District plans here is SCdistrictListt " + SCdistrictPlansList);
+                return new ArrayList<Object>(SCdistrictPlansList);
+
+            case "Texas":
+                List<TexasDistrictPlans> TXdistrictPlansList = TexasDistrictPlansRepository.findAllBy_idIn(districtId);
+                log.info("Inside the districtPlanService to get District plans here is TXdistrictListt " + TXdistrictPlansList);
+                return new ArrayList<Object>(TXdistrictPlansList);
+
+            default:
+                return new ArrayList<Object>();
         }
 
-        else {
-            return new ArrayList<Object>();
-        }
+
+//        if(Objects.equals(state, "Arizona"))
+//        {
+//            List<ArizonaDistrictPlans> districtPlansList = ArizonaDistrictPlansRepository.findAllBy_idIn(districtId);
+//            log.info("Inside the districtPlanService to get District plans here is districtListt " + districtPlansList);
+//            return new ArrayList<Object>(districtPlansList);
+//        }
+//
+//        else {
+//            return new ArrayList<Object>();
+//        }
     }
 
 }
