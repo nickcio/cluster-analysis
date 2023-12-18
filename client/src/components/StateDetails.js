@@ -7,6 +7,10 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import EnsembleAssociationChart from './EnsembleAssociationChart';
 import EnsembleAssociationTable from './EnsembleAssociationTable';
+import AZDistricts from "./geojson/AZDistricts.json";
+import SCDistricts from "./geojson/SCDistricts.json";
+import TXDistricts from "./geojson/TXDistricts.json";
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -42,6 +46,7 @@ const StateDetails = () => {
   console.log(stateId);
 
   useEffect(() => {
+
     fetch('http://localhost:8080/retrieveEnsembles?state=' + stateId)
       .then(response => response.json())
       .then(data => {
@@ -49,9 +54,8 @@ const StateDetails = () => {
         setEnsembles(data);
       })
       .catch(error => console.error('Error:', error));
-  }, []);
+  }, [stateId]);
 
-  console.log("Ensembles", ensembles);
 
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
@@ -76,10 +80,11 @@ const StateDetails = () => {
     hamming_distance_matrix: currentEnsemble.hamming_distance_matrix,
   }))
 
+
   return (
     <Box sx={{display: "flex", flexDirection: "row"}} style={{height: "93vh", width: "100vw"}}>
-      <Box>
-        <Map></Map>
+      <Box sx={{width:'50%'}}>
+        <Map geoJsonName="Arizona" />
       </Box>
         <Box sx={{ display: "flex", flexDirection: "column", height: "93vh", width: "100vw" }}>
         <Tabs value={tabValue} onChange={handleTabChange} aria-label="simple tabs example">

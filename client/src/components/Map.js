@@ -5,13 +5,6 @@ import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useMap } from "react-leaflet";
-import usStatesGeoJSON from "./geojson/state-borders.json";
-import {
-  point,
-  polygon,
-  multiPolygon,
-  booleanPointInPolygon,
-} from "@turf/turf";
 import AZBorders from "./geojson/AZBorders.json";
 import SCBorders from "./geojson/SCBorders.json";
 import TXBorders from "./geojson/TXBorders.json";
@@ -74,8 +67,9 @@ function Component() {
   });
 }
 
-export default function Map(specifiedCenter) {
+export default function Map(geoJsonName) {
   const { store } = useContext(GlobalStoreContext);
+  console.log("name?", geoJsonName);
 
   let stateName =
     store.currentState !== ""

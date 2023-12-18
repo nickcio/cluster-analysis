@@ -9,7 +9,7 @@ const ClusterTable = ({ data }) => {
   const location = useLocation();
 
   const columns = [
-    { field: 'id', headerName: 'ID', width: 70, headerAlign: 'left', align: 'left' },
+    { field: 'id', headerName: 'Cluster', width: 70, headerAlign: 'left', align: 'left' },
     { field: 'num_district_plans', headerName: '# District Plans', width: 95, headerAlign: 'left', align: 'left' },
     { field: 'average_euclidean_distance', headerName: 'Avg. Euclidean Distance', type: 'number', width: 95, headerAlign: 'left', align: 'left' },
     { field: 'dem_votes_percent', headerName: 'Avg. Dem Votes %', type: 'number', width: 95, headerAlign: 'left', align: 'left' },

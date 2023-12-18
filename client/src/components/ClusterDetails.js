@@ -81,6 +81,7 @@ const ClusterDetails = () => {
         pop_black: data.population_data.pop_black[i],
         pop_hisp: data.population_data.pop_hisp[i],
         pop_other: data.population_data.pop_other[i],
+        geojson_id: data.geojson_id,
       };
       return_district_plans.push(obj);
     }
@@ -97,6 +98,7 @@ const ClusterDetails = () => {
     rep_percentages: calculateAverage(plan.rep_percentages),
     rep_dem_splits: plan.rep_dem_splits["Democratic"] + "," + plan.rep_dem_splits["Republican"],
     district_object: form_district_table(plan),
+    geojson_id: plan.geojson_id,
   }));
 
   let mds = [];
