@@ -43,21 +43,35 @@ const EnsembleDetails = () => {
 
 
   const simplifiedClusters = clusters.map((cluster, index) => ({
-    id: index,
-    average_distance: cluster.average_distance,
+    id: index + 1,
+    backendId: cluster._id,
+    num_district_plans: cluster.num_district_plans,
+    centroid: cluster.centroid,
+    average_euclidean_distance: cluster.average_euclidean_distance,
+    dem_votes_percent: cluster.average_rep_dem_split.Democratic,
+    rep_votes_percent: cluster.average_rep_dem_split.Republican,
+    average_dem_votes_percent: cluster.average_dem_votes_percent,
+    average_rep_votes_percent: cluster.average_rep_votes_percent,
+    average_margin_of_victory: cluster.average_margin_of_victory,
+    average_opportunity_districts: cluster.average_opportunity_districts,
+    average_population_margin: cluster.average_population_margin,
+    pop_white: cluster.average_demographic_percent.pop_white,
+    pop_hisp: cluster.average_demographic_percent.pop_hisp,
+    pop_black: cluster.average_demographic_percent.pop_black,
+    pop_other: cluster.average_demographic_percent.pop_other,
   }));
 
-  
-
-
-  console.log("clusters", clusters);
-  console.log("simplified", simplifiedClusters);
+  let mds = [];
+  for(let i = 0; i < clusters.length; i++){
+      mds.push(clusters[i].centroid);
+  }
+  console.log(mds);
 
   return (
     <Box sx={{display: "flex", flexDirection: "row"}} style={{height: "93vh", width: "100vw"}}>
       <Box sx={{padding:2}}>
         <Map></Map>
-        <MdsDisplay clusterData={simplifiedClusters}></MdsDisplay>
+        <MdsDisplay clusterData={mds}></MdsDisplay>
       </Box>
       <ClusterChart 
         data={simplifiedClusters} 

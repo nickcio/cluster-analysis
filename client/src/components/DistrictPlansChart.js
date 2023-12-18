@@ -8,10 +8,10 @@ const DistrictPlansChart = ({ data }) => {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const [xAxisKey, setXAxisKey] = useState('area_data');
-    const [yAxisKey, setYAxisKey] = useState('dem_percentages');
+    const [xAxisKey, setXAxisKey] = useState('id');
+    const [yAxisKey, setYAxisKey] = useState('availability');
 
-    const axisKeys = ["id", "area_data", "availability", "dem_percentages", "african_american_pop", "white_population", "hispanic_population", "rep_percentages"];
+    const axisKeys = ["id", "availability", "dem_percentages", "rep_percentages", "rep_dem_splits",];
 
     const handleXAxisChange = (event) => {
         setXAxisKey(event.target.value);
@@ -21,36 +21,28 @@ const DistrictPlansChart = ({ data }) => {
         setYAxisKey(event.target.value);
     };
 
-    const getDotColor = (availability) => {
-        switch (availability) {
-            case 0:
-                return 'rgba(255, 99, 132, 1)'; 
-            case 1:
-                return 'rgba(54, 162, 235, 1)'; 
-            default:
-                return 'rgba(201, 203, 207, 1)'; 
-        }
-    };
 
     const availabilitySettings = {
         0: { color: 'rgba(255, 99, 132, 1)', label: 'Unavailable' },
         1: { color: 'rgba(54, 162, 235, 1)', label: 'Available' }
     };
-
-    const datasets = Object.keys(availabilitySettings).map(availability => {
-        const setting = availabilitySettings[availability];
+    
+    const datasets = Object.keys(availabilitySettings).map(availabilityKey => {
+        const setting = availabilitySettings[availabilityKey];
         return {
             label: setting.label,
-            data: data.filter(item => item.availability.toString() === availability).map(item => ({
+            data: data.filter(item => item['availability'] === (availabilityKey === '1')).map(item => ({
                 x: item[xAxisKey],
                 y: item[yAxisKey],
             })),
             backgroundColor: setting.color,
         };
     });
-
-    const chartData = { datasets };
-
+    
+    const chartData = {
+        datasets: datasets
+    };
+    
     const chartOptions = {
         responsive: true,
         maintainAspectRatio: false,
@@ -60,14 +52,12 @@ const DistrictPlansChart = ({ data }) => {
                     display: true,
                     text: xAxisKey,
                 },
-                beginAtZero: true,
             },
             y: {
                 title: {
                     display: true,
                     text: yAxisKey,
                 },
-                beginAtZero: true,
             },
         },
         layout: {
