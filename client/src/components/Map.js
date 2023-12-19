@@ -11,6 +11,7 @@ import TXBorders from "./geojson/TXBorders.json";
 import AZDistricts from "./geojson/AZDistricts.json";
 import SCDistricts from "./geojson/SCDistricts.json";
 import TXDistricts from "./geojson/TXDistricts.json";
+import { useNavigate, useLocation } from 'react-router-dom';
 
 const highlightStyle = {
   fillColor: "blue",
@@ -37,11 +38,15 @@ let AZStyle = highlightStyle;
 let TXStyle = highlightStyle;
 let SCStyle = highlightStyle;
 const arizonaPosition = [34.212, -111.929];
-const texasPosition = [29.459, -98.518];
+const texasPosition = [31.459, -98.518];
 const scPosition = [33.639, -80.948];
 const mainPosition = [32, -96];
+const arizonaPositionEnsemble = [30.4, -111.929];
+const texasPositionEnsemble = [25.459, -98.518];
+const scPositionEnsemble = [31.739, -80.948];
 
 function Component() {
+  const location = useLocation();
   const { store } = useContext(GlobalStoreContext);
   let stateName =
     store.currentState !== ""
@@ -50,15 +55,23 @@ function Component() {
   const map = useMap();
 
   useEffect(() => {
-    if (stateName === "Arizona") {
+    if(location.pathname.includes("ensemble") || location.pathname.includes("cluster")){
+      if (location.pathname.includes("Arizona")) {
+        map.setView(arizonaPositionEnsemble, 6);
+      } else if (location.pathname.includes("SC")) {
+        map.setView(scPositionEnsemble, 7);
+      } else if (location.pathname.includes("Texas")) {
+        map.setView(texasPositionEnsemble, 5);
+      } else {
+        map.setView(mainPosition, 5);
+      }
+    }
+    else if (location.pathname.includes("Arizona")) {
       map.setView(arizonaPosition, 6);
-      //AZStyle = mouseoverStyle;
-    } else if (stateName === "South Carolina") {
+    } else if (location.pathname.includes("SC")) {
       map.setView(scPosition, 7);
-      //SCStyle = mouseoverStyle;
-    } else if (stateName === "Texas") {
+    } else if (location.pathname.includes("Texas")) {
       map.setView(texasPosition, 6);
-      //TXStyle = mouseoverStyle;
     } else {
       map.setView(mainPosition, 5);
     }
@@ -357,10 +370,6 @@ export default function Map(geoJsonName) {
     <div>
       <MapContainer
         center={[49.569834, -96.764915]}
-        maxBounds={[
-          [24.661994, -129.571321],
-          [42.403179, -63.785237],
-        ]}
         zoom={5}
         minZoom={4}
         maxZoom={15}

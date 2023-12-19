@@ -1,9 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext} from 'react';
+import { GlobalStoreContext } from "../store";
 import { DataGrid } from '@mui/x-data-grid';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { Button, Dialog, DialogTitle, DialogContent } from '@mui/material';
 
 const ClusterTable = ({ data }) => {
+  const { store } = useContext(GlobalStoreContext);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -25,7 +27,8 @@ const ClusterTable = ({ data }) => {
 
 
   function handleClick(e) {
-    console.log("the cluster id", e.row.backendId);
+    console.log("the cluster id", e.row.backendId, e.row.average_plan );
+    store.updateAveragePlan(e.row.average_plan);
     navigate(`${location.pathname}/cluster/${e.row.backendId}`);
   }
 

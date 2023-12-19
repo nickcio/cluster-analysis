@@ -7,6 +7,7 @@ export const GlobalStoreActionType = {
   SET_ENSEMBLE: "SET_ENSEMBLE",
   SET_CLUSTER: "SET_CLUSTER",
   SET_DISTANCE: "SET_DISTANCE",
+  SET_AVERAGE_PLAN: "SET_AVERAGE_PLAN",
 };
 
 function GlobalStoreContextProvider(props) {
@@ -17,6 +18,7 @@ function GlobalStoreContextProvider(props) {
     currentCluster: "",
     currentOptimalMatrix: "",
     currentHammingMatrix: "",
+    averagePlan: "",
   });
 
   const storeReducer = (action) => {
@@ -50,6 +52,12 @@ function GlobalStoreContextProvider(props) {
           ...store,
           currentOptimalMatrix: payload.optimalMatrix,
           currentHammingMatrix: payload.hammingMatrix,
+        });
+      }
+      case GlobalStoreActionType.SET_AVERAGE_PLAN: {
+        return setStore({
+          ...store,
+          averagePlan: payload
         });
       }
       default:
@@ -94,6 +102,13 @@ function GlobalStoreContextProvider(props) {
     storeReducer({
       type: GlobalStoreActionType.SET_CLUSTER,
       payload: { cluster: cluster, distance: "" },
+    });
+  };
+
+  store.updateAveragePlan = async function (averagePlan) {
+    storeReducer({
+      type: GlobalStoreActionType.SET_AVERAGE_PLAN,
+      payload: averagePlan,
     });
   };
 

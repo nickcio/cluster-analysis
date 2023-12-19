@@ -7,10 +7,13 @@ const COLUMN_PAGE_SIZE = 20;
 const DistanceMatrix = ({ optimal_transport, nameOfTable }) => {
     const [columnPage, setColumnPage] = useState(0);
 
+    if(!optimal_transport){
+        return null;
+    }
     const allColumns = optimal_transport.length > 0 ? 
         Object.keys(optimal_transport[0]).map((key) => ({
             field: key,
-            headerName: key.replace(/([A-Z])/g, ' $1').trim(), 
+            headerName: "District " + (parseInt(key.replace(/([A-Z])/g, ' $1').trim()) + 1), 
             type: 'number',
             width: 65
         })) : [];

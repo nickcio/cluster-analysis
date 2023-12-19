@@ -1,4 +1,5 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext} from 'react';
+import { GlobalStoreContext } from "../store";
 import { useParams, Link } from 'react-router-dom';
 import { DataGrid } from '@mui/x-data-grid';
 import { Button, Dialog, DialogTitle, DialogContent, Box} from '@mui/material';
@@ -13,10 +14,12 @@ import TXDistricts from "./geojson/TXDistricts.json";
 import proj4 from 'proj4';
 
 const DistrictPlansTable = ({ data}) => {
+    const { store } = useContext(GlobalStoreContext);
     const [isDialogOpen, setIsDialogOpen] = useState(false);
     const [expandedRowId, setExpandedRowId] = useState(null);
     let {stateId} = useParams();
     const [currentGeoJson, setGeojson] = useState({});
+    const [averagePlanInfo, setAveragePlanInfo] = useState(null);
 
     useEffect(() => {
         let geojson = {};
@@ -30,8 +33,21 @@ const DistrictPlansTable = ({ data}) => {
         setGeojson(geojson);
     }, [stateId]);
 
-    const sourceProjection = '+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs';
-    const destinationProjection = '+proj=merc +lon_0=0 +k=1 +x_0=0 +y_0=0 +ellps=WGS84 +datum=WGS84 +units=m +no_defs';
+
+    function find_current_geoJson(){
+        let geojson = {};
+        if (stateId === "Arizona") {
+            geojson = AZDistricts;
+        } else if (stateId === "SC") {
+            geojson = SCDistricts;
+        } else if (stateId === "Texas") {
+            geojson = TXDistricts;
+        }
+        return geojson;
+    };
+
+    const sourceProjection = 'EPSG:3857';
+    const destinationProjection = 'EPSG:4326'; 
     const convertCoordinates = (featureCollection, sourceProjection, destinationProjection) => {
         if (!featureCollection || !Array.isArray(featureCollection.features)) {
             throw new Error('Invalid GeoJSON data');
@@ -75,7 +91,7 @@ const DistrictPlansTable = ({ data}) => {
         { field: 'area_data', headerName: 'Area Data', width: 120, type: 'number', align: 'center', headerAlign: 'center' },
         { field: 'dem_percentages', headerName: 'Dem %', width: 90, type: 'number' , align: 'center', headerAlign: 'center'},
         { field: 'rep_percentages', headerName: 'Rep. %', width: 90, type: 'number' , align: 'center', headerAlign: 'center'},
-        { field: 'district_winner', headerName: 'District Winners', width: 170, type: 'String', align: 'center', headerAlign: 'center'},
+        { field: 'district_winner', headerName: 'District Winner(s)', width: 170, type: 'String', align: 'center', headerAlign: 'center'},
         { field: 'opportunity_districts', headerName: 'Opportunity Districts', width: 90, type: 'boolean' , align: 'center', headerAlign: 'center'},
         { field: 'pop_white', headerName: 'White Population', width: 90, type: 'number', align: 'center', headerAlign: 'center' },
         { field: 'pop_asian', headerName: 'Asian Population', width: 90, type: 'number', align: 'center' , headerAlign: 'center'},
@@ -112,16 +128,58 @@ const DistrictPlansTable = ({ data}) => {
                     if(Array.isArray(data) && data[0] && data[0].geoJson){
                         console.log("data received from fetch: ", data[0].geoJson);
                         convertedData = convertCoordinates(data[0].geoJson, sourceProjection, destinationProjection);
+                        setGeojson(convertedData);  
                     } else {
-                        console.error('Received data is not an array or the first element is null');
+                        setGeojson(find_current_geoJson());
                     }
-                    setGeojson(convertedData);  
                 })
                 .catch(error => {
                     console.error('There has been a problem with your fetch operation:', error);
                 });
         }
     };
+
+    const handleAveragePlan = () => {
+        fetch('http://localhost:8080/averagePlan?state='+ stateId + '&averagePlan=' + store.averagePlan)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                let convertedData = '0';
+                console.log("Data:", data);
+                if(Array.isArray(data) && data[0] && data[0].geoJson){
+                    console.log("data received from fetch: ", data[0].geoJson);
+                    convertedData = convertCoordinates(data[0].geoJson, sourceProjection, destinationProjection);
+                    setGeojson(convertedData);  
+                } else {
+                    setGeojson(find_current_geoJson());
+                }
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+
+        console.log('http://localhost:8080/retrieveDistrictPlan?state=' + stateId + '&district_id=' + store.averagePlan);
+        fetch('http://localhost:8080/retrieveDistrictPlan?state=' + stateId + '&district_id=' + store.averagePlan)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log(data);
+                setAveragePlanInfo(data);
+            })
+            .catch(error => {
+                console.error('There has been a problem with your fetch operation:', error);
+            });
+    };
+
+
   
 
     return (
@@ -160,7 +218,7 @@ const DistrictPlansTable = ({ data}) => {
                     <DataGrid
                         rows={data}
                         columns={columns}
-                        sx={{ height: 275, width: '50%' }}
+                        sx={{ height: 275, width: '48%' }}
                         initialState={{
                         pagination: {
                             paginationModel: { page: 0, pageSize: 8 },
@@ -169,10 +227,13 @@ const DistrictPlansTable = ({ data}) => {
                         getRowHeight={() => 'auto'}
                         onRowClick={handleClick}
                     />
-                    <Box sx={{ marginLeft:'5%', marginRight:'5%', width: '45%', height:'20vh', zIndex:'0'}}>
+                    <Box sx={{marginRight:'5%', width: '45%', height:'20vh', zIndex:'0'}}>
                         <DistrictPlanMap geoJsonData={currentGeoJson} center={[34.212, -111.929]} />
+                        
                     </Box>
-                    </Box>
+                </Box>
+                <Button sx={{fontSize:'1.8vh', height:'3vh', marginLeft:'55vh'}} onClick={handleAveragePlan}> Click to display average plan
+                </Button> 
                 {expandedRowId != null && (
                     <Accordion expanded={expandedRowId === data.find(row => row.id === expandedRowId).id}>
                     <AccordionSummary

@@ -5,17 +5,6 @@ import {Box, Typography, Button} from "@mui/material";
 import DistrictPlansChart from './DistrictPlansChart';
 import DistrictPlansTable from './DistrictPlansTable';
 import MdsDisplay from './MDSDisplay';
-import Dialog from '@mui/material/Dialog';
-import DialogActions from '@mui/material/DialogActions';
-import DialogContent from '@mui/material/DialogContent';
-import DialogTitle from '@mui/material/DialogTitle';
-import List from '@mui/material/List';
-import ListItem from '@mui/material/ListItem';
-import ListItemText from '@mui/material/ListItemText';
-import Select from '@mui/material/Select';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import InputLabel from '@mui/material/InputLabel';
 
 
 const ClusterDetails = () => {
@@ -66,14 +55,15 @@ const ClusterDetails = () => {
   };
 
   const form_district_table = (data) => {
-    console.log("From district table", data);
     let return_district_plans = [];
     for(let i = 0; i <  Object.keys(data.area_data).length; i++){
       const obj = {
         id : i + 1,
         area_data: data.area_data[i],
         dem_percentages: data.dem_percentages[i],
-        district_winner: data.district_winners[i][0] + "," + data.district_winners[i][1],
+        district_winner: data.district_winners[i][1] !== undefined ? 
+        data.district_winners[i][0] + "," + data.district_winners[i][1] :
+        data.district_winners[i][0],
         rep_percentages: data.rep_percentages[i],
         opportunity_districts: data.opportunity_districts.includes(i + 1),
         pop_white: data.population_data.pop_white[i],
@@ -85,7 +75,6 @@ const ClusterDetails = () => {
       };
       return_district_plans.push(obj);
     }
-    console.log("return district", return_district_plans);
     return return_district_plans;
   }
 
@@ -113,7 +102,7 @@ const ClusterDetails = () => {
           <MdsDisplay clusterData={mds}></MdsDisplay>
         </Box>
         <Typography variant="h7" component="h5" gutterBottom sx={{ width: "100%", position:'fixed', left:'22%', margin: 2 }}>
-          Cluster {clusterId[0]} Details
+          Cluster Details
         </Typography>
         <Box sx={{ flex: '1 1 auto' }}>
           <DistrictPlansChart data={simplifiedDistrictPlans} />

@@ -52,7 +52,7 @@ export default function StateSelectBanner() {
     let stateValue = event.target.value;
     if (stateValue == "Arizona") {
       store.setState(AZBorders,AZDistricts);
-    } else if (stateValue == "South Carolina") {
+    } else if (stateValue == "SC") {
       store.setState(SCBorders,SCDistricts);
     } 
     else if (stateValue == "Texas") {
