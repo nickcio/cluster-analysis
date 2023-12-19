@@ -27,7 +27,6 @@ const ClusterTable = ({ data }) => {
 
 
   function handleClick(e) {
-    console.log("the cluster id", e.row.backendId, e.row.average_plan );
     store.updateAveragePlan(e.row.average_plan);
     navigate(`${location.pathname}/cluster/${e.row.backendId}`);
   }

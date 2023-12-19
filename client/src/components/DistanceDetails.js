@@ -10,7 +10,6 @@ import { useLocation } from 'react-router-dom';
 const DistanceDetails = () => {
   let location = useLocation();
   const { store } = useContext(GlobalStoreContext);
-  console.log(store.currentOptimalMatrix);
 
 
   return (

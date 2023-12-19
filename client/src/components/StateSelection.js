@@ -19,15 +19,14 @@ import Typography from "@mui/material/Typography";
 import { useNavigate } from 'react-router-dom';
 import { Outlet } from 'react-router-dom';
 
+import backgroundImage from './images/logo.png';
+import StateStatisticsTable from "./StateStatistics";
+
 export default function StateSelectBanner() {
   const { store } = useContext(GlobalStoreContext);
   const navigate = useNavigate();
   let curState = store.currentState !== "" ? store.currentState : "";
   let curStateLabel = "Please Select A State"
-  console.log("CUR STATE " + curState);
-  if (curState !== "") {
-    console.log(curState.features[0].properties.NAME);
-  }
 
   let dropLabel =
     curState !== "" ? curState.features[0].properties.NAME : "Select State";
@@ -62,6 +61,7 @@ export default function StateSelectBanner() {
   };
 
   return (
+    <Box>
     <Box sx={{display: "flex", flexDirection: "row"}} style={{width: "50vw"}}>
     <Grid
       container
@@ -95,6 +95,19 @@ export default function StateSelectBanner() {
         {curStateLabel}
       </Grid>
     </Grid>
+    </Box>
+    <Box sx={{
+            position: 'absolute',
+            top: 150,
+            left: 750,
+            right: 0,
+            bottom: 0,
+            backgroundImage: `url(${backgroundImage})`,
+            backgroundSize: '75% 75%',
+            opacity: 0.05,
+            }}
+            ></Box>
+    <StateStatisticsTable></StateStatisticsTable>
     </Box>
   );
 }

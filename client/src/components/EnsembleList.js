@@ -30,7 +30,6 @@ const EnsembleList = ({ stateId, ensembles }) => {
 
     function handleClick(ensemble, event) {
         event.preventDefault();
-        console.log(ensemble);
         store.setDistance(ensemble.optimal_transport_matrix, ensemble.hamming_distance_matrix);
         navigate(`/state/${stateId}/ensemble/${ensemble.backendId}/distance`);
         
@@ -91,8 +90,8 @@ const EnsembleList = ({ stateId, ensembles }) => {
                 <Table sx={{ minWidth: 650 }} aria-label="ensemble summary table">
                     <TableHead>
                     <TableRow>
-                        <TableCell align="center">Avg. Dem Votes %</TableCell>
-                        <TableCell align="center">Avg. Rep Votes %</TableCell>
+                        <TableCell align="center">Avg. Dem Votes / 1</TableCell>
+                        <TableCell align="center">Avg. Rep Votes / 1</TableCell>
                         <TableCell align="center">Avg. Margin of Victory</TableCell>
                         <TableCell align="center">Avg. Oppurunity Districts</TableCell>
                         <TableCell align="center">Avg. Population Margin</TableCell>

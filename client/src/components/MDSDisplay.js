@@ -4,7 +4,9 @@ import { Chart as ChartJS, Title, Tooltip, Legend, LinearScale, PointElement, Ca
 
 ChartJS.register(Title, Tooltip, Legend, LinearScale, PointElement, CategoryScale);
 
-const MdsDisplay = ({ clusterData }) => {
+const MdsDisplay = ({ clusterData, mdsName}) => {
+
+  const pointRadius = mdsName === 'cluster' ? 10 : 3
   const data = {
     datasets: [
       {
@@ -14,6 +16,7 @@ const MdsDisplay = ({ clusterData }) => {
           y: cluster[1] 
         })),
         backgroundColor: 'rgba(255, 99, 132, 1)',
+        pointRadius: pointRadius,
       }
     ]
   };

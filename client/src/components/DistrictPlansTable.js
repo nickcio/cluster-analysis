@@ -111,10 +111,7 @@ const DistrictPlansTable = ({ data}) => {
 
     const handleClick = (params) => {
         setExpandedRowId(params.id);
-        console.log("the availability", data[params.id - 1].availability, params.id, data[params.id - 1].geojson_id,);
         if (data[params.id - 1].geojson_id !== "0") {
-            console.log("handling click", data, expandedRowId, data[expandedRowId], data[params.id - 1].geojson_id);
-            console.log('http://localhost:8080/geo?state=' + stateId + '&geoJson_id=' + data[params.id - 1].geojson_id)
             fetch('http://localhost:8080/geo?state=' + stateId + '&geoJson_id=' + data[params.id - 1].geojson_id)
                 .then(response => {
                     if (!response.ok) {
@@ -124,9 +121,7 @@ const DistrictPlansTable = ({ data}) => {
                 })
                 .then(data => {
                     let convertedData = '0';
-                    console.log("Data:", data);
                     if(Array.isArray(data) && data[0] && data[0].geoJson){
-                        console.log("data received from fetch: ", data[0].geoJson);
                         convertedData = convertCoordinates(data[0].geoJson, sourceProjection, destinationProjection);
                         setGeojson(convertedData);  
                     } else {
@@ -149,9 +144,7 @@ const DistrictPlansTable = ({ data}) => {
             })
             .then(data => {
                 let convertedData = '0';
-                console.log("Data:", data);
                 if(Array.isArray(data) && data[0] && data[0].geoJson){
-                    console.log("data received from fetch: ", data[0].geoJson);
                     convertedData = convertCoordinates(data[0].geoJson, sourceProjection, destinationProjection);
                     setGeojson(convertedData);  
                 } else {
@@ -162,7 +155,7 @@ const DistrictPlansTable = ({ data}) => {
                 console.error('There has been a problem with your fetch operation:', error);
             });
 
-        console.log('http://localhost:8080/retrieveDistrictPlan?state=' + stateId + '&district_id=' + store.averagePlan);
+    
         fetch('http://localhost:8080/retrieveDistrictPlan?state=' + stateId + '&district_id=' + store.averagePlan)
             .then(response => {
                 if (!response.ok) {
@@ -171,7 +164,6 @@ const DistrictPlansTable = ({ data}) => {
                 return response.json();
             })
             .then(data => {
-                console.log(data);
                 setAveragePlanInfo(data);
             })
             .catch(error => {

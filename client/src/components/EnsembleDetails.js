@@ -35,7 +35,6 @@ const EnsembleDetails = () => {
 
     var leafletContainers = document.querySelectorAll('.leaflet-container');
     leafletContainers.forEach(function(container) {
-      console.log(container);
       container.style.height = '45vh';
     });
 
@@ -66,13 +65,12 @@ const EnsembleDetails = () => {
   for(let i = 0; i < clusters.length; i++){
       mds.push(clusters[i].centroid);
   }
-  console.log(mds);
 
   return (
     <Box sx={{display: "flex", flexDirection: "row"}} style={{height: "93vh", width: "100vw"}}>
       <Box sx={{padding:2}}>
         <Map></Map>
-        <MdsDisplay clusterData={mds}></MdsDisplay>
+        <MdsDisplay clusterData={mds} mdsName="cluster"></MdsDisplay>
       </Box>
       <Typography variant="h7" component="h5" gutterBottom sx={{ width: "100%", position:'fixed', left:'22%', margin: 2 }}>
           Ensemble Details

@@ -7,7 +7,7 @@ const COLUMN_PAGE_SIZE = 20;
 const DistanceMatrix = ({ optimal_transport, nameOfTable }) => {
     const [columnPage, setColumnPage] = useState(0);
 
-    if(!optimal_transport){
+    if(optimal_transport.length === 0){
         return null;
     }
     const allColumns = optimal_transport.length > 0 ? 

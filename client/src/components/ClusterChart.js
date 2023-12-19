@@ -15,7 +15,6 @@ const ClusterChart = ({ data }) => {
     const [xAxisKey, setXAxisKey] = useState('id');
     const [yAxisKey, setYAxisKey] = useState('num_district_plans');
 
-    console.log("data", data);
 
     const axisKeys = ["id", "num_district_plans", "average_euclidean_distance", "dem_votes_percent", "rep_votes_percent", "average_margin_of_victory", "average_opportunity_districts", "average_population_margin", "pop_white", "pop_hisp", "pop_black", "pop_other"];
 
@@ -28,7 +27,7 @@ const ClusterChart = ({ data }) => {
     };
 
     let multiplyBy = 5;
-    if(location.pathname.includes("657fcafa2ffc37508d16a27f")){
+    if(location.pathname.includes("657fcafa2ffc37508d16a27f") || location.pathname.includes("0ea588d2-e926-473a-8a21-c45d8efbdf1d")){
       multiplyBy = .95;
 
     }
@@ -97,7 +96,6 @@ const ClusterChart = ({ data }) => {
             const datasetIndex = elements[0].datasetIndex; 
             const clickedElementData = data[elementIndex];
         
-            console.log(clickedElementData)
             navigate(`${location.pathname}/cluster/${clickedElementData.backendId}`);
         }
         }

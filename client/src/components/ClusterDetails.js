@@ -35,12 +35,10 @@ const ClusterDetails = () => {
 
     var leafletContainers = document.querySelectorAll('.leaflet-container');
     leafletContainers.forEach(function(container) {
-      console.log(container);
       container.style.height = '45vh';
     });
   }, []);
 
-  console.log(districtPlans);
   const calculateAverage = (data) => {
     if (Array.isArray(data)) {
       const sum = data.reduce((acc, value) => acc + value, 0);
@@ -99,7 +97,7 @@ const ClusterDetails = () => {
       <Box sx={{display: "flex", flexDirection: "row"}} style={{height: "93vh", width: "100vw"}}>
         <Box sx={{padding:2}}>
           <Map/>
-          <MdsDisplay clusterData={mds}></MdsDisplay>
+          <MdsDisplay clusterData={mds} mdsName="districts"></MdsDisplay>
         </Box>
         <Typography variant="h7" component="h5" gutterBottom sx={{ width: "100%", position:'fixed', left:'22%', margin: 2 }}>
           Cluster Details

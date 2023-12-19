@@ -82,7 +82,6 @@ function Component() {
 
 export default function Map(geoJsonName) {
   const { store } = useContext(GlobalStoreContext);
-  console.log("name?", geoJsonName);
 
   let stateName =
     store.currentState !== ""
@@ -154,7 +153,6 @@ export default function Map(geoJsonName) {
       layer.bindPopup(feature.properties.LONGNAME);
     }
     const clicked = () => {
-      console.log(feature);
     };
     const mouseovered = (e) => {
       const layer = e.target;
@@ -194,7 +192,6 @@ export default function Map(geoJsonName) {
   };
 
   const districtSC = (feature, layer) => {
-    console.log(feature.properties, feature.properties.DISTRICT, feature);
     if (feature.properties && feature.properties.DISTRICT) {
       layer.bindPopup("District " + feature.properties.DISTRICT);
     }
@@ -254,7 +251,6 @@ export default function Map(geoJsonName) {
 
     switch (stateName) {
       case "Arizona":
-        console.log("RETURNING AZ");
         AZStyle = mouseoverStyle;
         return (
           <>
@@ -282,7 +278,6 @@ export default function Map(geoJsonName) {
           </>
         );
       case "Texas":
-        console.log("RETURNING TX");
         TXStyle = mouseoverStyle;
         return (
           <>
@@ -310,7 +305,6 @@ export default function Map(geoJsonName) {
           </>
         );
       case "South Carolina":
-        console.log("RETURNING SC");
         SCStyle = mouseoverStyle;
         return (
           <>
@@ -338,7 +332,6 @@ export default function Map(geoJsonName) {
           </>
         );
       default:
-        console.log("returning default");
         return stateDisplay;
     }
   }
@@ -363,7 +356,6 @@ export default function Map(geoJsonName) {
 
   const handleMapClick = (e) => {
     const { lat, lng } = e.latlng;
-    console.log(lat, lng);
   };
 
   return (

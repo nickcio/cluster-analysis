@@ -43,14 +43,12 @@ const StateDetails = () => {
   let {stateId} = useParams();
   const [ensembles, setEnsembles] = useState([]);
   const [tabValue, setTabValue] = useState(0);
-  console.log(stateId);
 
   useEffect(() => {
 
     fetch('http://localhost:8080/retrieveEnsembles?state=' + stateId)
       .then(response => response.json())
       .then(data => {
-        console.log(data);
         setEnsembles(data);
       })
       .catch(error => console.error('Error:', error));
@@ -86,7 +84,7 @@ const StateDetails = () => {
       <Box sx={{width:'50%'}}>
         <Map geoJsonName="Arizona" />
       </Box>
-        <Box sx={{ display: "flex", flexDirection: "column", height: "93vh", width: "100vw" }}>
+        <Box sx={{ display: "flex", flexDirection: "column", height: "93vh", width: "100vw"}}>
         <Tabs value={tabValue} onChange={handleTabChange} aria-label="simple tabs example">
           <Tab label="Ensemble List" {...a11yProps(0)} />
           <Tab label="Ensemble Association" {...a11yProps(1)} />
