@@ -10,10 +10,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @Slf4j
@@ -70,6 +67,27 @@ public class DistrictPlanService {
                 List<TexasDistrictPlans> TXdistrictPlansList = TexasDistrictPlansRepository.findAllBy_idIn(districtId);
                 log.info("Inside the districtPlanService to get District plans here is TXdistrictListt " + TXdistrictPlansList);
                 return new ArrayList<Object>(TXdistrictPlansList);
+
+            default:
+                return new ArrayList<Object>();
+        }
+    }
+
+
+    public List<Object> getDistrictByStateAndId(String state, String districtId){
+        switch (state)
+        {
+            case "Arizona":
+                log.info("Inside the districtPlanService, getDistrictByStateAndID method Arizona");
+                return Collections.singletonList(ArizonaDistrictPlansRepository.findById(districtId));
+
+            case "SC":
+                log.info("Inside the districtPlanService, getDistrictByStateAndID method SC");
+                return Collections.singletonList(SCDistrictPlansRepository.findById(districtId));
+
+            case "Texas":
+                log.info("Inside the districtPlanService, getDistrictByStateAndID method Texas");
+                return Collections.singletonList(TexasDistrictPlansRepository.findById(districtId));
 
             default:
                 return new ArrayList<Object>();

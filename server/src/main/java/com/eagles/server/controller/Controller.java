@@ -45,6 +45,13 @@ public class Controller {
         return clusterService.getClusterPlansByStateAndId(state,cluster_id);
     }
 
+    @GetMapping("/retrieveDistrictPlan")
+    public List<Object> retrieveDistrictPlan(@RequestParam(name = "state", required = false) String state,
+                                      @RequestParam(name = "district_id", required = false) String district_id) {
+        //log.info("Retrieving district plan info; state:", state, " cluster_id: ", cluster_id);
+        return districtPlanService.getDistrictByStateAndId(state,district_id);
+    }
+
     @GetMapping("/geo")
     public List<Object> retrieveGeo(@RequestParam(name = "state", required = false) String state,
                                     @RequestParam(name = "geoJson_id", required = false) String geoJson_id) {
