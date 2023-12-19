@@ -4,6 +4,7 @@ import com.eagles.server.dao.ArizonaDistrictPlansRepository;
 import com.eagles.server.dao.SCDistrictPlansRepository;
 import com.eagles.server.dao.TexasDistrictPlansRepository;
 import com.eagles.server.dao.SCClusterRepository;
+import com.eagles.server.service.geoJsonService;
 import com.eagles.server.model.*;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,13 +22,16 @@ public class DistrictPlanService {
     private ArizonaDistrictPlansRepository ArizonaDistrictPlansRepository;
     private SCDistrictPlansRepository SCDistrictPlansRepository;
     private TexasDistrictPlansRepository TexasDistrictPlansRepository;
+
+    private final geoJsonService geoJsonService;
     @Autowired
     public DistrictPlanService(ArizonaDistrictPlansRepository ArizonaDistrictPlansRepository, SCDistrictPlansRepository SCDistrictPlansRepository,
-                               TexasDistrictPlansRepository TexasDistrictPlansRepository) {
+                               TexasDistrictPlansRepository TexasDistrictPlansRepository, geoJsonService geoJsonService) {
 
         this.ArizonaDistrictPlansRepository = ArizonaDistrictPlansRepository;
         this.SCDistrictPlansRepository = SCDistrictPlansRepository;
         this.TexasDistrictPlansRepository = TexasDistrictPlansRepository;
+        this.geoJsonService = geoJsonService;
     }
 
 //    public DistrictPlan saveDistrictPlan(DistrictPlan plan) {
@@ -70,6 +74,33 @@ public class DistrictPlanService {
             default:
                 return new ArrayList<Object>();
         }
+    }
+
+    public List<Object> getGeoByStateandId(String state, String districtId){
+        switch (state)
+        {
+            case "Arizona":
+                Optional<ArizonaDistrictPlans> AZdistrictPlansList = ArizonaDistrictPlansRepository.findById(districtId);
+                log.info("Inside the districtPlanService to get District plans here is AZ ");
+                String AZAveragePlan = AZdistrictPlansList.get().getGeojson_id();
+                log.info("Inside the districtPlanService to get District plans here is AZ geoID is this: " + AZAveragePlan);
+                return geoJsonService.getGeoJsonByStateAndId(state, AZAveragePlan);
+            case "SC":
+                Optional<SCDistrictPlans> SCdistrictPlansList = SCDistrictPlansRepository.findById(districtId);
+                log.info("Inside the districtPlanService to get District plans here is SCdistrictListt " + SCdistrictPlansList);
+                Optional<String> SCAveragePlan = SCdistrictPlansList.map(SCDistrictPlans::getGeojson_id);
+                return geoJsonService.getGeoJsonByStateAndId(state, SCAveragePlan.get());
+
+            case "Texas":
+                Optional<TexasDistrictPlans> TXdistrictPlansList = TexasDistrictPlansRepository.findById(districtId);
+                log.info("Inside the districtPlanService to get District plans here is TXdistrictListt " + TXdistrictPlansList);
+                Optional<String> TexasAveragePlan = TXdistrictPlansList.map(TexasDistrictPlans::getGeojson_id);
+                return geoJsonService.getGeoJsonByStateAndId(state, TexasAveragePlan.get());
+            default:
+                return new ArrayList<Object>();
+        }
+    }
+
 
 
 //        if(Objects.equals(state, "Arizona"))
@@ -82,6 +113,6 @@ public class DistrictPlanService {
 //        else {
 //            return new ArrayList<Object>();
 //        }
-    }
+
 
 }

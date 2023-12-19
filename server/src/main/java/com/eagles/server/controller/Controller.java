@@ -52,6 +52,13 @@ public class Controller {
         return geoJsonService.getGeoJsonByStateAndId(state, geoJson_id);
     }
 
+    @GetMapping("/averagePlan")
+    public List<Object> retrieveAveragePlan(@RequestParam(name = "state", required = false) String state,
+                                    @RequestParam(name = "averagePlan", required = false) String averagePlan) {
+        //log.info("Retrieving district plan info; state:", state, " cluster_id: ", cluster_id);
+        return districtPlanService.getGeoByStateandId(state, averagePlan);
+    }
+
 }
 
 

@@ -19,6 +19,8 @@ public class geoJsonService {
     private ArizonageoJSONRepository ArizonageoJSONRepository;
     private SCgeoJSONRepository SCgeoJSONRepository;
     private TexasgeoJSONRepository TexasgeoJSONRepository;
+
+
     @Autowired
     public geoJsonService(ArizonageoJSONRepository ArizonageoJSONRepository, SCgeoJSONRepository SCgeoJSONRepository,
                           TexasgeoJSONRepository TexasgeoJSONRepository) {

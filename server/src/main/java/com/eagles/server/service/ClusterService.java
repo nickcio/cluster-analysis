@@ -107,6 +107,10 @@ public class ClusterService {
                 return new ArrayList<Object>();
 
         }
+    }
+
+
+
 
 
 //        if(Objects.equals(state, "Arizona")){
@@ -116,7 +120,7 @@ public class ClusterService {
 //            return DistrictPlanService.getAllDistrictByStateAndId(state, plansOptional);
 //        }
 //        return new ArrayList<>();
-    }
+
 
 
 }
