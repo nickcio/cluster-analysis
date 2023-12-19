@@ -81,16 +81,16 @@ const DistrictPlansTable = ({ data}) => {
     const columns = [
         { field: 'id', headerName: 'District Plans', width: 90, type: 'number', align: 'center', headerAlign: 'center'},
         { field: 'availability', headerName: 'Availability', width: 90, type: 'boolean', align: 'center' , headerAlign: 'center'},
-        { field: 'dem_percentages', headerName: 'Dem %', width: 100, type: 'number' , align: 'center', headerAlign: 'center'},
-        { field: 'rep_percentages', headerName: 'Rep. %', width: 100, type: 'number' , align: 'center', headerAlign: 'center'},
+        { field: 'dem_percentages', headerName: 'Dem % / 1', width: 100, type: 'number' , align: 'center', headerAlign: 'center'},
+        { field: 'rep_percentages', headerName: 'Rep. % / 1', width: 100, type: 'number' , align: 'center', headerAlign: 'center'},
         { field: 'rep_dem_splits', headerName: 'Dem : Rep Split', width: 140, type: 'String' , align: 'center', headerAlign: 'center'}
     ];  
 
     const district_info_columns = [
         { field: 'id', headerName: 'District', width: 50, type: 'number' , align: 'center' , headerAlign: 'center'},
         { field: 'area_data', headerName: 'Area Data', width: 120, type: 'number', align: 'center', headerAlign: 'center' },
-        { field: 'dem_percentages', headerName: 'Dem %', width: 90, type: 'number' , align: 'center', headerAlign: 'center'},
-        { field: 'rep_percentages', headerName: 'Rep. %', width: 90, type: 'number' , align: 'center', headerAlign: 'center'},
+        { field: 'dem_percentages', headerName: 'Dem % / 1', width: 90, type: 'number' , align: 'center', headerAlign: 'center'},
+        { field: 'rep_percentages', headerName: 'Rep. % / 1', width: 90, type: 'number' , align: 'center', headerAlign: 'center'},
         { field: 'district_winner', headerName: 'District Winner(s)', width: 170, type: 'String', align: 'center', headerAlign: 'center'},
         { field: 'opportunity_districts', headerName: 'Opportunity Districts', width: 90, type: 'boolean' , align: 'center', headerAlign: 'center'},
         { field: 'pop_white', headerName: 'White Population', width: 90, type: 'number', align: 'center', headerAlign: 'center' },

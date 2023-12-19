@@ -60,6 +60,7 @@ const EnsembleDetails = () => {
     pop_other: cluster.average_demographic_percent.pop_other,
     average_plan: cluster.average_plan
   }));
+  console.log(simplifiedClusters);
 
   let mds = [];
   for(let i = 0; i < clusters.length; i++){

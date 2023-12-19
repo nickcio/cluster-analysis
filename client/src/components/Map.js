@@ -82,7 +82,7 @@ function Component() {
 
 export default function Map(geoJsonName) {
   const { store } = useContext(GlobalStoreContext);
-
+  const navigate = useNavigate();
   let stateName =
     store.currentState !== ""
       ? store.currentState.features[0].properties.NAME
@@ -90,8 +90,8 @@ export default function Map(geoJsonName) {
 
   const onClickAZ = (feature, layer) => {
     const clicked = () => {
-      //map.setView(arizonaPosition, 6)
       store.setState(AZBorders, AZDistricts);
+      navigate(`/state/Arizona`);
     };
     const mouseovered = (e) => {
       const layer = e.target;
@@ -112,6 +112,7 @@ export default function Map(geoJsonName) {
     const clicked = () => {
       //map.setView(scPosition, 7)
       store.setState(SCBorders, SCDistricts);
+      navigate(`/state/SC`);
     };
     const mouseovered = (e) => {
       const layer = e.target;
@@ -132,6 +133,7 @@ export default function Map(geoJsonName) {
     const clicked = () => {
       //map.setView(texasPosition, 6)
       store.setState(TXBorders, TXDistricts);
+      navigate(`/state/Texas`);
     };
     const mouseovered = (e) => {
       const layer = e.target;

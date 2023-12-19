@@ -82,8 +82,8 @@ const ClusterChart = ({ data }) => {
               labels.push(`ID: ${clusterDetails.id}`);
               labels.push(`# of District Plans: ${clusterDetails.num_district_plans}`);
               labels.push(`Avg. Euclidean Distance: ${clusterDetails.average_euclidean_distance}`);
-              labels.push(`Avg. Dem Votes %: ${clusterDetails.dem_votes_percent}`);
-              labels.push(`Avg. Rep Votes %: ${clusterDetails.dem_votes_percent}`);
+              labels.push(`Avg. Dem Votes %: ${clusterDetails.average_dem_votes_percent * 100}`);
+              labels.push(`Avg. Rep Votes %: ${clusterDetails.average_rep_votes_percent * 100}`);
             return labels;
           }
         }
