@@ -10,8 +10,8 @@ const MdsDisplay = ({ clusterData }) => {
       {
         label: 'Clusters',
         data: clusterData.map(cluster => ({
-          x: cluster.average_distance,
-          y: Math.sqrt(cluster.num_district_plans)
+          x: cluster[0],
+          y: cluster[1] 
         })),
         backgroundColor: 'rgba(255, 99, 132, 1)',
       }
@@ -25,13 +25,13 @@ const MdsDisplay = ({ clusterData }) => {
         position: 'bottom',
         title: {
           display: true,
-          text: 'Deminsion Two'
+          text: 'Dimension One'
         }
       },
       y: {
         title: {
           display: true,
-          text: 'Demension One'
+          text: 'Dimension Two'
         }
       }
     },
@@ -41,7 +41,7 @@ const MdsDisplay = ({ clusterData }) => {
       },
       title: {
         display: true,
-        text: 'MDS-like Display of Clusters'
+        text: 'MDS'
       }
     }
   };

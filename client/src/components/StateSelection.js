@@ -1,5 +1,5 @@
 import { GlobalStoreContext } from "../store";
-import { useContext, useState } from "react";
+import { useContext, useState, } from "react";
 
 import AZBorders from "./geojson/AZBorders.json";
 import SCBorders from "./geojson/SCBorders.json";
@@ -86,7 +86,7 @@ export default function StateSelectBanner() {
               <MenuItem value={"Select State"}>Select State</MenuItem>
             )}
             <MenuItem value={"Arizona"}>Arizona</MenuItem>
-            <MenuItem value={"South_Carolina"}>South Carolina</MenuItem>
+            <MenuItem value={"SC"}>South Carolina</MenuItem>
             <MenuItem value={"Texas"}>Texas</MenuItem>
           </Select>
         </FormControl>

@@ -5,15 +5,6 @@ import markerIconPng from "leaflet/dist/images/marker-icon.png";
 import { Icon } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { useMap } from "react-leaflet";
-import { useNavigate } from 'react-router-dom';
-
-import usStatesGeoJSON from "./geojson/state-borders.json";
-import {
-  point,
-  polygon,
-  multiPolygon,
-  booleanPointInPolygon,
-} from "@turf/turf";
 import AZBorders from "./geojson/AZBorders.json";
 import SCBorders from "./geojson/SCBorders.json";
 import TXBorders from "./geojson/TXBorders.json";
@@ -52,7 +43,6 @@ const mainPosition = [32, -96];
 
 function Component() {
   const { store } = useContext(GlobalStoreContext);
-  
   let stateName =
     store.currentState !== ""
       ? store.currentState.features[0].properties.NAME
@@ -77,9 +67,9 @@ function Component() {
   });
 }
 
-export default function Map(specifiedCenter) {
+export default function Map(geoJsonName) {
   const { store } = useContext(GlobalStoreContext);
-  const navigate = useNavigate();
+  console.log("name?", geoJsonName);
 
   let stateName =
     store.currentState !== ""
@@ -88,7 +78,7 @@ export default function Map(specifiedCenter) {
 
   const onClickAZ = (feature, layer) => {
     const clicked = () => {
-      navigate(`/state/Arizona`);
+      //map.setView(arizonaPosition, 6)
       store.setState(AZBorders, AZDistricts);
     };
     const mouseovered = (e) => {
@@ -108,7 +98,7 @@ export default function Map(specifiedCenter) {
 
   const onClickSC = (feature, layer) => {
     const clicked = () => {
-      navigate(`/state/South%20Carolina`);
+      //map.setView(scPosition, 7)
       store.setState(SCBorders, SCDistricts);
     };
     const mouseovered = (e) => {

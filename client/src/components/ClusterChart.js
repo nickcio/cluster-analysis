@@ -12,12 +12,12 @@ const ClusterChart = ({ data }) => {
     const location = useLocation();
     const value = useContext(data);
 
-    const [xAxisKey, setXAxisKey] = useState('average_plan');
+    const [xAxisKey, setXAxisKey] = useState('id');
     const [yAxisKey, setYAxisKey] = useState('num_district_plans');
 
     console.log("data", data);
 
-    const axisKeys = ["id", "average_distance", "average_opportunity_districts", "average_plan", "average_rep_split", "average_dem_split", "num_district_plans"];
+    const axisKeys = ["id", "num_district_plans", "average_euclidean_distance", "dem_votes_percent", "rep_votes_percent", "average_margin_of_victory", "average_opportunity_districts", "average_population_margin", "pop_white", "pop_hisp", "pop_black", "pop_other"];
 
     const handleXAxisChange = (event) => {
         setXAxisKey(event.target.value);
@@ -27,6 +27,12 @@ const ClusterChart = ({ data }) => {
         setYAxisKey(event.target.value);
     };
 
+    let multiplyBy = 5;
+    if(location.pathname.includes("657fcafa2ffc37508d16a27f")){
+      multiplyBy = .95;
+
+    }
+
     const chartData = {
     datasets: [
         {
@@ -35,7 +41,7 @@ const ClusterChart = ({ data }) => {
             x: item[xAxisKey],
             y: item[yAxisKey],
         })),
-        pointRadius: data.map(item => Math.sqrt(item.num_district_plans) * 0.45),
+        pointRadius: data.map(item => Math.sqrt(item.num_district_plans) * multiplyBy),
         backgroundColor: 'rgba(75,192,192,1)',
         },
     ],
@@ -65,18 +71,24 @@ const ClusterChart = ({ data }) => {
     },
 
     plugins: {
-        tooltip: {
+      tooltip: {
         callbacks: {
-            label: function(context) {
-            var label = context.dataset.label || '';
-            if (label) {
-                label += ': ';
-            }
-            label += `(${context.raw.x}, ${context.raw.y}) Size: ${context.raw.r}`;
-            return label;
-            }
+          label: function(context) {
+            const index = context.dataIndex;
+            const dataset = context.dataset;
+            const item = dataset.data[index];
+            const clusterDetails = data[index];
+  
+            const labels = [];
+              labels.push(`ID: ${clusterDetails.id}`);
+              labels.push(`# of District Plans: ${clusterDetails.num_district_plans}`);
+              labels.push(`Avg. Euclidean Distance: ${clusterDetails.average_euclidean_distance}`);
+              labels.push(`Avg. Dem Votes %: ${clusterDetails.dem_votes_percent}`);
+              labels.push(`Avg. Rep Votes %: ${clusterDetails.dem_votes_percent}`);
+            return labels;
+          }
         }
-        }
+      }
     },
 
     onClick: (event, elements) => {
@@ -85,7 +97,8 @@ const ClusterChart = ({ data }) => {
             const datasetIndex = elements[0].datasetIndex; 
             const clickedElementData = data[elementIndex];
         
-            navigate(`${location.pathname}/cluster/${clickedElementData.id}`);
+            console.log(clickedElementData)
+            navigate(`${location.pathname}/cluster/${clickedElementData.backendId}`);
         }
         }
     };

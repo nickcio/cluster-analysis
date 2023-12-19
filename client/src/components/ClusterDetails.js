@@ -4,6 +4,7 @@ import Map from './Map';
 import {Box, Typography, Button} from "@mui/material";
 import DistrictPlansChart from './DistrictPlansChart';
 import DistrictPlansTable from './DistrictPlansTable';
+import MdsDisplay from './MDSDisplay';
 import Dialog from '@mui/material/Dialog';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -36,36 +37,83 @@ const ClusterDetails = () => {
   };
 
   useEffect(() => {
-    fetch('http://localhost:8080/retrievePlans?state=' + stateId + '&ensemble_id=' + ensembleId+ '&cluster_id=' + clusterId)
+    fetch('http://localhost:8080/retrievePlans?state=' + stateId + '&cluster_id=' + clusterId)
       .then(response => response.json())
       .then(data => {
         setPlans(data);
       })
       .catch(error => console.error('Error:', error));
+
+    var leafletContainers = document.querySelectorAll('.leaflet-container');
+    leafletContainers.forEach(function(container) {
+      console.log(container);
+      container.style.height = '45vh';
+    });
   }, []);
 
-
   console.log(districtPlans);
- 
+  const calculateAverage = (data) => {
+    if (Array.isArray(data)) {
+      const sum = data.reduce((acc, value) => acc + value, 0);
+      return sum / data.length;
+    } 
+    else if (typeof data === 'object' && data !== null) {
+      const values = Object.values(data);
+      const sum = values.reduce((acc, value) => acc + value, 0);
+      return sum / values.length;
+    }
+    return data;
+  };
+
+  const form_district_table = (data) => {
+    console.log("From district table", data);
+    let return_district_plans = [];
+    for(let i = 0; i <  Object.keys(data.area_data).length; i++){
+      const obj = {
+        id : i + 1,
+        area_data: data.area_data[i],
+        dem_percentages: data.dem_percentages[i],
+        district_winner: data.district_winners[i][0] + "," + data.district_winners[i][1],
+        rep_percentages: data.rep_percentages[i],
+        opportunity_districts: data.opportunity_districts.includes(i + 1),
+        pop_white: data.population_data.pop_white[i],
+        pop_asian: data.population_data.pop_asian[i],
+        pop_black: data.population_data.pop_black[i],
+        pop_hisp: data.population_data.pop_hisp[i],
+        pop_other: data.population_data.pop_other[i],
+        geojson_id: data.geojson_id,
+      };
+      return_district_plans.push(obj);
+    }
+    console.log("return district", return_district_plans);
+    return return_district_plans;
+  }
+
+  
   const simplifiedDistrictPlans = districtPlans.map((plan, index) => ({
-    id: index,
-    area_data: plan.total_area,
-    availability: plan.availability,
-    dem_percentages: plan.dem_percentages,
-    african_american_pop: plan.population_data["population aa"],
-    white_population: plan.population_data["population white"],
-    hispanic_population: plan.population_data["population hispanic"],
-    rep_percentages: plan.rep_percentages,
+    id: index + 1,
+    availability: plan.geojson_id && plan.geojson_id !== '0',
+    area_data: calculateAverage(plan.area_data),
+    dem_percentages: calculateAverage(plan.dem_percentages),
+    rep_percentages: calculateAverage(plan.rep_percentages),
+    rep_dem_splits: plan.rep_dem_splits["Democratic"] + "," + plan.rep_dem_splits["Republican"],
+    district_object: form_district_table(plan),
+    geojson_id: plan.geojson_id,
   }));
 
+  let mds = [];
+  for(let i = 0; i < districtPlans.length; i++){
+      mds.push(districtPlans[i].mds_centroid);
+  }
 
     return (
-      <Box sx={{ display: "flex", flexDirection: "column", height: "93vh", width: "100vw" }}>
-        <Box sx={{ flex: '1 1 auto' }}>
+      <Box sx={{display: "flex", flexDirection: "row"}} style={{height: "93vh", width: "100vw"}}>
+        <Box sx={{padding:2}}>
           <Map/>
+          <MdsDisplay clusterData={mds}></MdsDisplay>
         </Box>
         <Typography variant="h7" component="h5" gutterBottom sx={{ width: "100%", position:'fixed', left:'22%', margin: 2 }}>
-          Cluster {clusterId} Details
+          Cluster {clusterId[0]} Details
         </Typography>
         <Box sx={{ flex: '1 1 auto' }}>
           <DistrictPlansChart data={simplifiedDistrictPlans} />
